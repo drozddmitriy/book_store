@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_220804) do
+ActiveRecord::Schema.define(version: 2019_09_03_223824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 2019_08_26_220804) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "authors_books", id: false, force: :cascade do |t|
-    t.bigint "author_id", null: false
-    t.bigint "book_id", null: false
-    t.index ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id"
-    t.index ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id"
+  create_table "authors_books", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_authors_books_on_author_id"
+    t.index ["book_id"], name: "index_authors_books_on_book_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -37,12 +39,13 @@ ActiveRecord::Schema.define(version: 2019_08_26_220804) do
     t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id"
     t.integer "year"
     t.decimal "dimension_h", precision: 5, scale: 2
     t.decimal "dimension_w", precision: 5, scale: 2
     t.decimal "dimension_d", precision: 5, scale: 2
     t.string "material"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_books_on_category_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -51,4 +54,6 @@ ActiveRecord::Schema.define(version: 2019_08_26_220804) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "authors_books", "authors"
+  add_foreign_key "authors_books", "books"
 end

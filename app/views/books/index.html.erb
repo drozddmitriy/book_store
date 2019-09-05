@@ -1,5 +1,5 @@
 <main class="container">
-  <h1 class="general-title-margin">Сatalog</h1>
+  <h1 class="general-title-margin"><%= I18n.t('views.books.catalog') %></h1>
   <div class="hidden-xs clearfix">
     <div class="dropdowns pull-right">
       <div class="dropdown width-240">
@@ -24,7 +24,7 @@
     </div>
     <ul class="list-inline pt-10 mb-25 mr-240">
       <li class="mr-35">
-        <a href="<%= books_path %>" class="filter-link">All
+        <a href="<%= books_path %>" class="filter-link"><%= I18n.t('views.books.all') %>
           <span class="badge general-badge"><%= Book.all.count %></span></a>
       </li>
       <% @categories.each do |category| %>
@@ -36,7 +36,7 @@
     </ul>
   </div>
   <div class="dropdowns mb-25 visible-xs">
-    <p class="lead small mb-10">Filter by category</p>
+    <p class="lead small mb-10"><%= I18n.t('views.books.filter') %></p>
     <div class="dropdown">
       <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small">Newest first
         <i class="fa fa-angle-down dropdown-icon pull-right"></i>
@@ -56,7 +56,7 @@
         </li>
       </ul>
     </div>
-    <p class="lead small mb-10">Sort by</p>
+    <p class="lead small mb-10"><%= I18n.t('views.books.sort_by') %></p>
     <div class="dropdown">
       <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small">Newest first
         <i class="fa fa-angle-down dropdown-icon pull-right"></i>
@@ -100,13 +100,13 @@
           <p class="title"><%= book.title %></p>
           <p class="font-16 in-gold-500"><%= book.price %></p>
           <span class="divider-sm"></span>
-          <p class="lead small">John Horton</p>
+          <p class="lead small"><%= book.authors.first.firstname %></p>
         </div>
       </div>
       <%end%>
     </div>
     <div class="text-center">
-      <button class="btn btn-primary">View More</button>
+      <button class="btn btn-primary"><%= I18n.t('views.books.view_more') %></button>
     </div>
   </div>
 </main>

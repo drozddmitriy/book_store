@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   def index
     @categories = Category.all
-    
+
     @books = Book.first(8)
   end
 

@@ -4,22 +4,22 @@
       <div class="col-sm-9">
         <ul class="list-inline general-align mb-25">
           <li>
-            <a href="<%= root_path %>" class="nav-link">Home</a>
+            <a href="<%= root_path %>" class="nav-link"><%= I18n.t('views.pages.home') %></a>
           </li>
           <li>
-            <a href="#" class="nav-link">Shop</a>
+            <a href="#" class="nav-link"><%= I18n.t('views.pages.shop') %></a>
           </li>
           <li>
-            <a href="#" class="nav-link">Orders</a>
+            <a href="#" class="nav-link"><%= I18n.t('views.pages.orders') %></a>
           </li>
           <li>
-            <a href="#" class="nav-link">Settings</a>
+            <a href="#" class="nav-link"><%= I18n.t('views.pages.settings') %></a>
           </li>
         </ul>
       </div>
       <div class="col-sm-3">
-        <p class="general-nav-mail">support@bookstore.com</p>
-        <p class="general-nav-number">(555)-555-5555</p>
+        <p class="general-nav-mail"><%= I18n.t('views.pages.support') %></p>
+        <p class="general-nav-number"><%= I18n.t('views.pages.number') %></p>
         <ul class="list-inline general-align">
           <li>
             <a href="#" class="nav-link">
@@ -48,5 +48,3 @@
 </footer>
 
 <script src="https://use.fontawesome.com/67602d7308.js"></script>
-<script src="assets/javascripts/jquery.js"></script>
-<script src="../../javascripts/bootstrap.js"></script>

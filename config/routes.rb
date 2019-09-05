@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'page#home'
+  root 'pages#home'
 
   resources :books, only: %i[index show]
 end
