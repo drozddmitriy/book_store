@@ -3,54 +3,38 @@
     <ol class="carousel-indicators">
       <li data-target="#slider" data-slide-to="0" class="active"></li>
       <li data-target="#slider" data-slide-to="1"></li>
+      <li data-target="#slider" data-slide-to="2"></li>
     </ol>
     <div role="listbox" class="carousel-inner">
-      <div class="item active">
-        <div class="row">
-          <div class="col-sm-5">
-            <div class="general-img-wrap">
-              <img src="http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg" alt="design-book" class="img-shadow general-thumbnail-img"/></div>
-          </div>
-          <div class="col-sm-7">
-            <div class="mb-60">
-              <h1>Real-Life Responsive Web Design</h1>
-              <p class="lead">Smart front-end techniques and design patterns derived from real-life responsive projects</p>
-              <p class="lead small">Vitaly Friedman, Daniel Mall,Vitaly Friedman</p>
-              <div class="general-align">
-                <button class="disabled btn">Buy Now</button>
+      <% @latest_books.each_with_index do |book, index| %>
+        <div class="item <%= index == 0 ? 'active' : '' %>">
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="general-img-wrap">
+                <img src="http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg" alt="design-book" class="img-shadow general-thumbnail-img"/></div>
+            </div>
+            <div class="col-sm-7">
+              <div class="mb-60">
+                <h1><%= book.title %></h1>
+                <p class="lead"><%= truncate(book.description, :length => 250) %></p>
+                <p class="lead small"><%= book.authors.map { |author| author.firstname + ' ' + author.lastname }.join(", ") %></p>
+                <div class="general-align">
+                  <button class="disabled btn"><%= I18n.t('views.pages.buy_now') %></button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="row">
-          <div class="col-sm-5">
-            <div class="general-img-wrap">
-              <img src="http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg" alt="design-book" class="img-shadow general-thumbnail-img"/></div>
-          </div>
-          <div class="col-sm-7">
-            <div class="mb-60">
-              <h1>Real-Life Responsive Web Design</h1>
-              <p class="lead">Smart front-end techniques and design patterns derived from real-life responsive projects</p>
-              <p class="lead small">Vitaly Friedman, Daniel Mall,Vitaly Friedman</p>
-              <div class="general-align">
-                <button class="btn btn-primary">Buy Now</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
     <a href="#slider" role="button" data-slide="prev" class="left carousel-control">
       <span aria-hidden="true" class="icon-prev"></span>
-      <span class="sr-only">Previous</span></a>
+      <span class="sr-only"><%= I18n.t('views.pages.previous') %></span></a>
     <a href="#slider" role="button" data-slide="next" class="right carousel-control">
       <span aria-hidden="true" class="icon-next"></span>
-      <span class="sr-only">Next</span></a>
+      <span class="sr-only"><%= I18n.t('views.pages.next') %></span></a>
   </div>
 </main>
-
 <div class="container">
   <div class="jumbotron text-center mb-0">
     <h2 class="h1"><%= I18n.t('views.pages.welcome') %></h2>
@@ -61,7 +45,6 @@
       <button class="btn btn-default"><%= I18n.t('views.pages.start') %></button>
     </a>
   </div>
-
   <div class="mb-35">
     <h3><%= I18n.t('views.pages.best_sellers') %></h3>
     <div class="row">

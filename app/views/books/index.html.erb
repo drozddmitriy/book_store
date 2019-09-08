@@ -7,29 +7,10 @@
   <div class="hidden-xs clearfix">
     <div class="dropdowns pull-right">
       <div class="dropdown width-240">
-        <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small">Newest first
+        <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small"><%= I18n.t('models.book.newest') %>
           <i class="fa fa-angle-down dropdown-icon pull-right"></i>
         </a>
-        <ul class="dropdown-menu">
-          <li>
-            <%= link_to I18n.t('models.book.newest'), books_path(category: params[:category], :filter => :newest) %>
-          </li>
-          <li>
-            <%= link_to I18n.t('models.book.popular_first'), books_path(category: params[:category], :filter => :popular_first) %>
-          </li>
-          <li>
-            <%= link_to I18n.t('models.book.price_asc'), books_path(category: params[:category], :filter => :price_asc) %>
-          </li>
-          <li>
-            <%= link_to I18n.t('models.book.price_desc'), books_path(category: params[:category], :filter => :price_desc) %>
-          </li>
-          <li>
-            <%= link_to I18n.t('models.book.title_asc'), books_path(category: params[:category], :filter => :title_asc) %>
-          </li>
-          <li>
-            <%= link_to I18n.t('models.book.title_desc'), books_path(category: params[:category], :filter => :title_desc) %>
-          </li>
-        </ul>
+        <%= render 'books/filter' %>
       </div>
     </div>
     <ul class="list-inline pt-10 mb-25 mr-240">
@@ -48,7 +29,7 @@
   <div class="dropdowns mb-25 visible-xs">
     <p class="lead small mb-10"><%= I18n.t('views.books.filter') %></p>
     <div class="dropdown">
-      <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small">Newest first
+      <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small"><%= I18n.t('models.book.newest') %>
         <i class="fa fa-angle-down dropdown-icon pull-right"></i>
       </a>
       <ul class="dropdown-menu">
@@ -66,29 +47,10 @@
     </div>
     <p class="lead small mb-10"><%= I18n.t('views.books.sort_by') %></p>
     <div class="dropdown">
-      <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small">Newest first
+      <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small"><%= I18n.t('models.book.newest') %>
         <i class="fa fa-angle-down dropdown-icon pull-right"></i>
       </a>
-      <ul class="dropdown-menu">
-        <li>
-          <%= link_to I18n.t('models.book.newest'), books_path(category: params[:category], :filter => :newest) %>
-        </li>
-        <li>
-          <%= link_to I18n.t('models.book.popular_first'), books_path(category: params[:category], :filter => :popular_first) %>
-        </li>
-        <li>
-          <%= link_to I18n.t('models.book.price_asc'), books_path(category: params[:category], :filter => :price_asc) %>
-        </li>
-        <li>
-          <%= link_to I18n.t('models.book.price_desc'), books_path(category: params[:category], :filter => :price_desc) %>
-        </li>
-        <li>
-          <%= link_to I18n.t('models.book.title_asc'), books_path(category: params[:category], :filter => :title_asc) %>
-        </li>
-        <li>
-          <%= link_to I18n.t('models.book.title_desc'), books_path(category: params[:category], :filter => :title_desc) %>
-        </li>
-      </ul>
+      <%= render 'books/filter' %>
     </div>
   </div>
   <div class="mb-120">

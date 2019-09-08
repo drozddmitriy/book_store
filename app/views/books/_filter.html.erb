@@ -1,0 +1,20 @@
+<ul class="dropdown-menu">
+  <li>
+    <%= link_to I18n.t('models.book.newest'), books_path(category: params[:category], :filter => :newest) %>
+  </li>
+  <li>
+    <%= link_to I18n.t('models.book.popular_first'), books_path(category: params[:category], :filter => :popular_first) %>
+  </li>
+  <li>
+    <%= link_to I18n.t('models.book.price_asc'), books_path(category: params[:category], :filter => :price_asc) %>
+  </li>
+  <li>
+    <%= link_to I18n.t('models.book.price_desc'), books_path(category: params[:category], :filter => :price_desc) %>
+  </li>
+  <li>
+    <%= link_to I18n.t('models.book.title_asc'), books_path(category: params[:category], :filter => :title_asc) %>
+  </li>
+  <li>
+    <%= link_to I18n.t('models.book.title_desc'), books_path(category: params[:category], :filter => :title_desc) %>
+  </li>
+</ul>
