@@ -21,6 +21,9 @@ en:
       number: '(555)-555-5555'
       start: 'Get Started'
       best_sellers: 'Best Sellers'
+      previous: 'Previous'
+      next: 'Next'
+      buy_now: 'Buy Now'
     books:
       catalog: 'Сatalog'
       filter: 'Filter by category'

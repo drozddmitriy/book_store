@@ -37,7 +37,6 @@ end
 
 books.each do |book|
   book_authors(authors).each do |author|
-    AuthorsBook.create(book_id: book.id,
-                      author_id: author.id)
+    AuthorsBook.create(book_id: book.id, author_id: author.id)
   end
 end
