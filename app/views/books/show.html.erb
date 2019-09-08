@@ -18,7 +18,9 @@
     </div>
     <div class="col-sm-6">
       <h1 class="mt-res-0"><%= @book.title %></h1>
-      <p class="lead small"><%= @book.authors.first.firstname %></p>
+      <p class="lead small">
+        <%= @authors %>
+      </p>
       <div class="row">
         <div class="col-xs-12 col-md-4">
           <p class="h1 in-gold-500 mt-10">€<%= @book.price %></p>
@@ -40,8 +42,13 @@
       </div>
       <div class="general-info-wrap divider-lg">
         <p><%= I18n.t('views.books.book_description') %></p>
-        <p class="lead small line-height-2"><%= @book.description %>
-          <a href="#" class="in-gold-500 ml-10"><%= I18n.t('views.books.read_more') %></a>
+        <p class="lead small line-height-2">
+          <% unless @book.description.size < 250 || params[:flag] %>
+            <%= truncate(@book.description, :length => 250) %>
+            <a href="<%= book_path(flag: true) %>" class="in-gold-500 ml-10"><%= I18n.t('views.books.read_more') %></a>
+          <% else %>
+            <%= @book.description %>
+          <% end %>
         </p>
       </div>
       <div class="general-info-wrap divider-lg">
@@ -53,7 +60,9 @@
       <div class="general-info-wrap divider-lg">
         <div class="clearfix">
           <p class="pull-left"><%= I18n.t('views.books.dimensions') %></p>
-          <p class="lead small pull-right">H:<%= @book.dimension_h %>" x W: <%= @book.dimension_w %>" x D: <%= @book.dimension_d %></p>
+          <p class="lead small pull-right">H:<%= @book.dimension_h %>" x W:
+            <%= @book.dimension_w %>" x D:
+            <%= @book.dimension_d %></p>
         </div>
       </div>
       <div class="general-info-wrap divider-lg">

@@ -1,5 +1,9 @@
 <main class="container">
-  <h1 class="general-title-margin"><%= I18n.t('views.books.catalog') %></h1>
+  <% if params[:category] %>
+    <h1 class="general-title-margin"><%= @category.first.title %></h1>
+  <% else %>
+    <h1 class="general-title-margin"><%= I18n.t('views.books.catalog') %></h1>
+  <% end %>
   <div class="hidden-xs clearfix">
     <div class="dropdowns pull-right">
       <div class="dropdown width-240">
@@ -8,16 +12,22 @@
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a href="#">Newest first</a>
+            <%= link_to I18n.t('models.book.newest'), books_path(category: params[:category], :filter => :newest) %>
           </li>
           <li>
-            <a href="#">Popular first</a>
+            <%= link_to I18n.t('models.book.popular_first'), books_path(category: params[:category], :filter => :popular_first) %>
           </li>
           <li>
-            <a href="#">Price: Low to hight</a>
+            <%= link_to I18n.t('models.book.price_asc'), books_path(category: params[:category], :filter => :price_asc) %>
           </li>
           <li>
-            <a href="#">Price: Hight to low</a>
+            <%= link_to I18n.t('models.book.price_desc'), books_path(category: params[:category], :filter => :price_desc) %>
+          </li>
+          <li>
+            <%= link_to I18n.t('models.book.title_asc'), books_path(category: params[:category], :filter => :title_asc) %>
+          </li>
+          <li>
+            <%= link_to I18n.t('models.book.title_desc'), books_path(category: params[:category], :filter => :title_desc) %>
           </li>
         </ul>
       </div>
@@ -25,11 +35,11 @@
     <ul class="list-inline pt-10 mb-25 mr-240">
       <li class="mr-35">
         <a href="<%= books_path %>" class="filter-link"><%= I18n.t('views.books.all') %>
-          <span class="badge general-badge"><%= Book.all.count %></span></a>
+          <span class="badge general-badge"><%= Book.count %></span></a>
       </li>
       <% @categories.each do |category| %>
         <li class="mr-35">
-          <a href="#" class="filter-link"><%= category.title %>
+          <a href="<%= books_path(category: category.id) %>" class="filter-link"><%= category.title %>
             <span class="badge general-badge"><%= category.books.count %></span></a>
         </li>
       <%end%>
@@ -42,18 +52,16 @@
         <i class="fa fa-angle-down dropdown-icon pull-right"></i>
       </a>
       <ul class="dropdown-menu">
-        <li>
-          <a href="#">Newest first</a>
+        <li class="mr-35">
+          <a href="<%= books_path %>" class="filter-link"><%= I18n.t('views.books.all') %>
+            <span class="badge general-badge"><%= Book.count %></span></a>
         </li>
-        <li>
-          <a href="#">Popular first</a>
-        </li>
-        <li>
-          <a href="#">Price: Low to hight</a>
-        </li>
-        <li>
-          <a href="#">Price: Hight to low</a>
-        </li>
+        <% @categories.each do |category| %>
+          <li class="mr-35">
+            <a href="<%= books_path(category: category.id) %>" class="filter-link"><%= category.title %>
+              <span class="badge general-badge"><%= category.books.count %></span></a>
+          </li>
+        <%end%>
       </ul>
     </div>
     <p class="lead small mb-10"><%= I18n.t('views.books.sort_by') %></p>
@@ -63,16 +71,22 @@
       </a>
       <ul class="dropdown-menu">
         <li>
-          <a href="#">Newest first</a>
+          <%= link_to I18n.t('models.book.newest'), books_path(category: params[:category], :filter => :newest) %>
         </li>
         <li>
-          <a href="#">Popular first</a>
+          <%= link_to I18n.t('models.book.popular_first'), books_path(category: params[:category], :filter => :popular_first) %>
         </li>
         <li>
-          <a href="#">Price: Low to hight</a>
+          <%= link_to I18n.t('models.book.price_asc'), books_path(category: params[:category], :filter => :price_asc) %>
         </li>
         <li>
-          <a href="#">Price: Hight to low</a>
+          <%= link_to I18n.t('models.book.price_desc'), books_path(category: params[:category], :filter => :price_desc) %>
+        </li>
+        <li>
+          <%= link_to I18n.t('models.book.title_asc'), books_path(category: params[:category], :filter => :title_asc) %>
+        </li>
+        <li>
+          <%= link_to I18n.t('models.book.title_desc'), books_path(category: params[:category], :filter => :title_desc) %>
         </li>
       </ul>
     </div>
@@ -80,33 +94,33 @@
   <div class="mb-120">
     <div class="row">
       <% @books.each do |book| %>
-      <div class="col-xs-6 col-sm-3">
-        <div class="general-thumb-wrap">
-          <div class="thumbnail general-thumbnail">
-            <img src="http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg" alt="design-book" class="img-shadow general-thumbnail-img"/>
-            <div class="thumb-hover">
-              <div class="general-thumb-link-wrap">
-                <a href="<%= book_path(book) %>" class="thumb-hover-link">
-                  <i aria-hidden="true" class="fa fa-eye thumb-icon"></i>
-                </a>
-                <a href="#" class="thumb-hover-link">
-                  <i class="fa fa-shopping-cart thumb-icon"></i>
-                </a>
+        <div class="col-xs-6 col-sm-3">
+          <div class="general-thumb-wrap">
+            <div class="thumbnail general-thumbnail">
+              <img src="http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg" alt="design-book" class="img-shadow general-thumbnail-img"/>
+              <div class="thumb-hover">
+                <div class="general-thumb-link-wrap">
+                  <a href="<%= book_path(book) %>" class="thumb-hover-link">
+                    <i aria-hidden="true" class="fa fa-eye thumb-icon"></i>
+                  </a>
+                  <a href="#" class="thumb-hover-link">
+                    <i class="fa fa-shopping-cart thumb-icon"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
+          <div class="general-thumb-info">
+            <p class="title"><%= book.title %></p>
+            <p class="font-16 in-gold-500"><%= book.price %></p>
+            <span class="divider-sm"></span>
+            <p class="lead small"><%= book.authors.map { |author| author.firstname }.join(", ") %></p>
+          </div>
         </div>
-        <div class="general-thumb-info">
-          <p class="title"><%= book.title %></p>
-          <p class="font-16 in-gold-500"><%= book.price %></p>
-          <span class="divider-sm"></span>
-          <p class="lead small"><%= book.authors.first.firstname %></p>
-        </div>
-      </div>
       <%end%>
     </div>
     <div class="text-center">
-      <button class="btn btn-primary"><%= I18n.t('views.books.view_more') %></button>
+      <%= pagy_bootstrap_nav(@pagy).html_safe %>
     </div>
   </div>
 </main>

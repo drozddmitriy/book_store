@@ -1,4 +1,12 @@
 en:
+  models:
+    book:
+      newest: 'Newest first'
+      popular_first: 'Popular first'
+      title_asc: 'Title A-Z'
+      title_desc: 'Title Z-A'
+      price_asc: 'Price: Low to high'
+      price_desc: 'Price: High to low'
   views:
     pages:
       description: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'

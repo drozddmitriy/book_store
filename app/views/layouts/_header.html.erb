@@ -49,15 +49,11 @@
           <li class="dropdown">
             <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><%= I18n.t('views.pages.shop') %></a>
             <ul class="dropdown-menu">
-              <li>
-                <a href="#">Mobile development</a>
-              </li>
-              <li>
-                <a href="#">Photo</a>
-              </li>
-              <li>
-                <a href="#">Web design</a>
-              </li>
+              <% Category.all.each do |category| %>
+                <li>
+                  <a href="<%= books_path(category: category.id) %>" class="collapse-link"><%= category.title %></a>
+                </li>
+              <%end%>
               <li role="separator" class="divider"></li>
               <li>
                 <a href="#">Log out</a>
