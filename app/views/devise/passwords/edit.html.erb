@@ -1,25 +1,22 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<main class="container general-main-wrap">
+  <div class="text-center">
+    <h3 class="general-login-title">
+      <%= I18n.t('views.devise.passwords.new_password') %>
+    </h3>
+  </div>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "general-form" }) do |f| %>
+  <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+  <div class="form-group mb-30">
+    <%= f.label :password, I18n.t('views.devise.passwords.type_new_password'), class: "control-label input-label" %>
+    <%= f.password_field :password, placeholder: I18n.t('views.devise.passwords.type_new_password'), class: "form-control" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-group mb-40">
+    <%= f.label :password, I18n.t('views.devise.registrations.confirm_password'), class: "control-label input-label" %>
+    <%= f.password_field :confirm_password, placeholder: I18n.t('views.devise.registrations.confirm_password'), class: "form-control" %>
   </div>
-
   <div class="actions">
-    <%= f.submit "Change my password" %>
+    <%= f.submit I18n.t('views.devise.passwords.change'), class: "btn btn-default center-block mb-20" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+</main>

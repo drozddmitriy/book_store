@@ -9,6 +9,9 @@ en:
       price_desc: 'Price: High to low'
   views:
     pages:
+      log_in: 'Log in'
+      sign_up: 'Sign up'
+      log_out: 'Log out'
       description: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
       welcome: 'Welcome to our amazing Bookstore!'
       bookstore: 'Bookstore'
@@ -38,3 +41,24 @@ en:
       read_more: 'Read More'
       book_description: 'Description'
       sort_by: 'Sort by'
+    devise:
+      passwords:
+        forgot_password: 'Forgot your password?'
+        instructions: "We'll email you instructions on how to reset it"
+        enter_email: 'Enter your email'
+        email_instructions: 'Email Instructions'
+        cancel: 'Cancel'
+        new_password: 'Set new password'
+        type_new_password: 'Type a new Password'
+        change: 'Change'
+      registrations:
+        sign_up: 'Sign up'
+        password: 'Password'
+        or: 'or'
+        enter_email: 'Enter Email'
+        password: 'Password'
+        forgot_password: 'Forgot password?'
+        confirm_password: 'Confirm Password'
+        log_in: 'Log in'
+        remember_me: 'Remember me'
+        have_account: 'Have an Account?'
