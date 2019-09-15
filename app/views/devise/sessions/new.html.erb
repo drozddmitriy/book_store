@@ -8,7 +8,7 @@
   </div>
   <div class="general-form">
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
+      <%= render "devise/shared/error_login_messages" %>
       <div class="form-inputs">
         <div class="form-group mb-30">
           <%= f.label :email, I18n.t('views.devise.registrations.enter_email'), class:"control-label input-label" %>

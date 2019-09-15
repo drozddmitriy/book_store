@@ -11,6 +11,7 @@ class BooksController < ApplicationController
       # @books = Book.by_filter(@filter).limit(8)
     end
 
+    # flash.now.notice = 'На свете счастья нет, но есть покой и воля'
     @categories = Category.all
   end
 
