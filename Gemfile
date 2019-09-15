@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem "letter_opener"
 gem 'simple_form'
 gem 'devise'
