@@ -29,6 +29,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'rspec-rails'
   gem "factory_bot_rails"
+  gem 'rails-controller-testing'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry'
 end
@@ -45,6 +46,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'chromedriver-helper'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
