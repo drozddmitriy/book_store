@@ -13,6 +13,17 @@ RSpec.describe BooksController, type: :controller do
     it 'render :index template' do
       expect(subject).to render_template(:index)
     end
+
+    context 'assigns @filter' do
+     it 'equal to DEFAULT_FILTER' do
+       expect(assigns(:filter)).to eq(Book::FILTERS.first)
+     end
+
+     it 'equal to filter from params' do
+       get :index, params: { filter: :popular_first }
+       expect(assigns(:filter)).to eq(Book::FILTERS.second)
+     end
+   end
   end
 
   describe 'GET #show' do

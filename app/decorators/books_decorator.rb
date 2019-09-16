@@ -4,6 +4,6 @@ class BooksDecorator
   end
 
   def category_title
-    @category_title = Category.where(id: @category_id).first.title
+    Category.where(id: @category_id).first.title
   end
 end
