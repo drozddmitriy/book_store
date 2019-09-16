@@ -5,14 +5,18 @@ class Book < ApplicationRecord
   has_many :authors_books
   has_many :authors, through: :authors_books
 
-# Newest first, Popular first, Price: low to high, Price: high to low, Title: A - Z, Title: Z - A.
+  def self.latest_books
+    self.order('created_at DESC').limit(3)
+  end
 
-  scope :by_filter, ->(filter) { public_send(filter) }
-  scope :newest, -> { order('created_at DESC') }
-  scope :popular_first, -> { order('created_at DESC') }
-  scope :title_asc, -> { order('title') }
-  scope :title_desc, -> { order('title DESC') }
-  scope :price_asc, -> { order('price') }
-  scope :price_desc, -> { order('price DESC') }
-  scope :latest_books, -> { order('created_at DESC').limit(3) }
+  def self.by_filter(filter)
+    case filter
+       when :newest then self.order('created_at DESC')
+       when :popular_first then self.order('created_at DESC')
+       when :title_asc then self.order('title')
+       when :title_desc then self.order('title DESC')
+       when :price_asc then self.order('price')
+       when :price_desc then self.order('price DESC')
+    end
+  end
 end
