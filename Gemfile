@@ -9,6 +9,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem "letter_opener"
 gem 'simple_form'
+gem 'country_select'
 gem 'devise'
 gem 'pagy'
 gem 'font-awesome-rails'

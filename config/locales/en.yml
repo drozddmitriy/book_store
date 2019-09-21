@@ -41,6 +41,13 @@ en:
       read_more: 'Read More'
       book_description: 'Description'
       sort_by: 'Sort by'
+    addresses:
+      billing: 'Billing Address'
+      shipping: 'Shipping Address'
+      country: 'Select country'
+      phone: 'Example +355661234567'
+      order: 'Order'
+      save: 'Save'
     devise:
       passwords:
         forgot_password: 'Forgot your password?'
@@ -62,3 +69,14 @@ en:
         log_in: 'Log in'
         remember_me: 'Remember me'
         have_account: 'Have an Account?'
+        settings: 'Settings'
+        address: 'Address'
+        privacy: 'Privacy'
+        save: 'Save'
+        email: 'Email'
+        waiting_confirmation: "Currently waiting confirmation for: %{email}"
+        old_password: 'Old Password'
+        new_password: 'New Password'
+        remove_account: 'Remove Account'
+        please_remove_account: 'Please Remove My Account'
+        all_data_will_be_lost: 'I understand that all data will be lost'

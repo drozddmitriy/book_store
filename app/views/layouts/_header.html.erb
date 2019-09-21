@@ -50,8 +50,19 @@
                   <a href="<%= books_path(category: category.id) %>" class="collapse-link"><%= category.title %></a>
                 </li>
               <%end%>
-              <li role="separator" class="divider"></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><%= I18n.t('views.pages.my_account') %></a>
+            <ul class="dropdown-menu">
               <% if user_signed_in?%>
+                <li>
+                  <%= link_to 'Orderss', root_path %>
+                </li>
+                <li>
+                  <%= link_to 'Settings', addresses_path %>
+                </li>
+                <li role="separator" class="divider"></li>
                 <li>
                   <%= link_to I18n.t('views.pages.log_out'), destroy_user_session_path, method: :delete %>
                 </li>
@@ -64,9 +75,6 @@
                 </li>
               <% end %>
             </ul>
-          </li>
-          <li>
-            <a href="#"><%= I18n.t('views.pages.my_account') %></a>
           </li>
         </ul>
       </div>

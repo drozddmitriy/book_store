@@ -1,9 +1,12 @@
 class User < ApplicationRecord
+  attr_accessor :current_password
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, :omniauth_providers => [:facebook]
+
+  has_many :addresses, as: :addressable, dependent: :destroy
 
   def self.new_with_session(params, session)
     super.tap do |user|

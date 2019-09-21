@@ -7,18 +7,17 @@
       <%= I18n.t('views.devise.passwords.instructions') %>
     </p>
   </div>
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "general-form" }) do |f| %>
-    <%= devise_error_messages! %>
-    <div class="form-group mb-25">
-      <%= f.email_field :email, placeholder: I18n.t('views.devise.passwords.enter_email'), class: "form-control" %>
-    </div>
-    <div class="actions">
-      <%= f.submit I18n.t('views.devise.passwords.email_instructions'), class: "btn btn-default center-block mb-20",  id: 'reset-btn' %>
-    </div>
-    <div class="text-center">
-      <a class="in-gold-500 mb-20" href="<%= root_path %>">
-        <%= I18n.t('views.devise.passwords.cancel') %>
-      </a>
-    </div>
-  <% end %>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "general-form" }) do |f| %>
+  <div class="form-group mb-25">
+    <%= f.input :email, required: false,placeholder: I18n.t('views.devise.passwords.enter_email'), input_html: { autocomplete: "email" }, label: false %>
+  </div>
+  <div class="actions">
+    <%= f.submit I18n.t('views.devise.passwords.email_instructions'), class: "btn btn-default center-block mb-20", id: 'reset-btn' %>
+  </div>
+  <div class="text-center">
+    <a class="in-gold-500 mb-20" href="<%= root_path %>">
+      <%= I18n.t('views.devise.passwords.cancel') %>
+    </a>
+  </div>
+<% end %>
 </main>
