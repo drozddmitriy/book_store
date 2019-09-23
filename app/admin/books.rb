@@ -23,6 +23,7 @@ ActiveAdmin.register Book do
 
   show do
     attributes_table do
+      row :title
       row :authors do |resource|
         BookDecorator.new(resource).author_full_name
       end
