@@ -2,7 +2,7 @@ class Book < ApplicationRecord
   FILTERS = %i[newest popular_first title_asc title_desc price_asc price_desc].freeze
 
   belongs_to :category
-  has_many :authors_books
+  has_many :authors_books, dependent: :destroy
   has_many :authors, through: :authors_books
 
   def self.latest_books
