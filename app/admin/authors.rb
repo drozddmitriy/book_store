@@ -1,4 +1,5 @@
 ActiveAdmin.register Author do
+  remove_filter :authors_books
   permit_params :firstname, :lastname, :biography
 
   index do
