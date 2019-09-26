@@ -1,0 +1,26 @@
+<div class="mb-80">
+  <h3><%= I18n.t('views.books.write_review') %></h3>
+  <%= simple_form_for ([@book, @book.reviews.build]) do |f| %>
+  <div class="col-md-8">
+    <div class="mb-40">
+      <div id="rating-form">
+        <%= f.label :rating, "Score", class: "control-label input-label in-grey-600" %>
+      </div>
+      <%= f.label :title, "Title", class: "control-label input-label in-grey-600" %>
+      <%= f.input :title, label: false, class: "form-control" %>
+      <%= f.label :comment, "Review", class: "control-label input-label in-grey-600" %>
+      <%= f.input :comment, label: false, class: "form-control" %>
+      <%= f.input :user_id, label: false, input_html: { value: current_user.id, type: 'hidden' } %>
+      <%= f.input :book_id, label: false, input_html: { value: @book.id, type: 'hidden' } %>
+    </div>
+    <div class="text-right">
+      <%= f.button :submit, "Post", class: "btn btn-default mb-20" %>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
+
+<script>
+$('#rating-form').raty({path: '/assets/', scoreName: 'review[rating]'});
+</script>

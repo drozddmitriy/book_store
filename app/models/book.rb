@@ -4,6 +4,7 @@ class Book < ApplicationRecord
   belongs_to :category
   has_many :authors_books, dependent: :destroy
   has_many :authors, through: :authors_books
+  has_many :reviews, dependent: :destroy
 
   def self.latest_books
     self.order('created_at DESC').limit(3)
