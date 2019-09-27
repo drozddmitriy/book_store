@@ -8,20 +8,20 @@ class AddressesController < ApplicationController
     @address.addressable = current_user
 
     if @address.save
-      flash.now[:success] = 'Address created!!!'
+      flash.now[:success] = I18n.t('controllers.addresses.address_created')
       redirect_to addresses_path
     else
-      flash.now[:danger] = 'Address not created!!!'
+      flash.now[:danger] = I18n.t('controllers.addresses.address_not_created')
       render :index
     end
   end
 
   def update
     if Address.find(params[:id]).update(address_params)
-      flash.now[:success] = 'Address updated!!!'
+      flash.now[:success] = I18n.t('controllers.addresses.address_updated')
       redirect_to addresses_path
     else
-      flash.now[:danger] = 'Address not updated!!!'
+      flash.now[:danger] = I18n.t('controllers.addresses.address_not_updated')
       render :index
     end
   end

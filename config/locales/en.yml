@@ -1,4 +1,13 @@
 en:
+  controllers:
+    reviews:
+      thanks_for_review: 'Thanks for Review. It will be published as soon as Admin will approve it.'
+      reviews_not_applied: 'Reviews not applied'
+    addresses:
+      address_created: 'Address created'
+      address_not_created: 'Address not created'
+      address_updated: 'Address updated'
+      address_not_updated: 'Address not updated'
   models:
     book:
       newest: 'Newest first'
@@ -8,6 +17,20 @@ en:
       price_asc: 'Price: Low to high'
       price_desc: 'Price: High to low'
   views:
+    admin:
+      publish: 'Publish'
+      unpublish: 'Unpublish'
+      show: 'Show'
+      edit: 'Edit'
+      delete: 'Delete'
+      are_you_sure_authors: "Are you sure you want to delete this items? They are associated with %{books_count} of books."
+      are_you_sure_books: 'Are you sure you want to delete this book?'
+      are_you_sure_categorie: "Are you sure you want to delete these item? They are associated with %{books_count} of books."
+    reviews:
+      score: 'Score'
+      title: 'Title'
+      review: 'Review'
+      post: 'Post'
     pages:
       log_in: 'Log in'
       sign_up: 'Sign up'
@@ -41,6 +64,8 @@ en:
       read_more: 'Read More'
       book_description: 'Description'
       sort_by: 'Sort by'
+      reviews: 'Reviews'
+      verified_reviewer: 'Verified Reviewer'
     addresses:
       billing: 'Billing Address'
       shipping: 'Shipping Address'

@@ -74,7 +74,7 @@
     </div>
   </div>
   <div class="mb-80">
-    <h3 class="in-gold-500 mb-25">Reviews (<%= @book.reviews.count %>)</h3>
+    <h3 class="in-gold-500 mb-25"><%= I18n.t('views.books.reviews') %> (<%= @book.reviews.count %>)</h3>
     <% @book.reviews.each do |review| %>
       <% if review.publish == true %>
         <div class="general-message-wrap divider-lg">
@@ -84,7 +84,7 @@
               <div>
                 <div class="general-message-date hidden-xs"><%= review.created_at.strftime("%d/%m/%y") %></div>
                 <div class="max-240">
-                  <div class="general-message-verified pull-right">Verified Reviewer</div>
+                  <div class="general-message-verified pull-right"><%= I18n.t('views.books.verified_reviewer') %></div>
                   <div class="general-message-name"><%= review.user.email %></div>
                 </div>
               </div>

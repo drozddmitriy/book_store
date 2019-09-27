@@ -4,17 +4,17 @@
   <div class="col-md-8">
     <div class="mb-40">
       <div id="rating-form">
-        <%= f.label :rating, "Score", class: "control-label input-label in-grey-600" %>
+        <%= f.label :rating, I18n.t('views.reviews.score'), class: "control-label input-label in-grey-600" %>
       </div>
-      <%= f.label :title, "Title", class: "control-label input-label in-grey-600" %>
+      <%= f.label :title, I18n.t('views.reviews.title'), class: "control-label input-label in-grey-600" %>
       <%= f.input :title, label: false, class: "form-control" %>
-      <%= f.label :comment, "Review", class: "control-label input-label in-grey-600" %>
+      <%= f.label :comment, I18n.t('views.reviews.review'), class: "control-label input-label in-grey-600" %>
       <%= f.input :comment, label: false, class: "form-control" %>
       <%= f.input :user_id, label: false, input_html: { value: current_user.id, type: 'hidden' } %>
       <%= f.input :book_id, label: false, input_html: { value: @book.id, type: 'hidden' } %>
     </div>
     <div class="text-right">
-      <%= f.button :submit, "Post", class: "btn btn-default mb-20" %>
+      <%= f.button :submit, I18n.t('views.reviews.post'), class: "btn btn-default mb-20" %>
     </div>
   </div>
 <% end %>

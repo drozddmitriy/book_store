@@ -7,9 +7,8 @@ ActiveAdmin.register Category do
     column :title
     column :actions do |resource|
       links = []
-      links << link_to('Edit', edit_admin_category_path(resource))
-      links << link_to('Delete', admin_category_path(resource), method: :delete, data: { confirm: "Are you sure you want to delete these item?
-  They are associated with #{resource.books.count} of books." })
+      links << link_to(I18n.t('views.admin.edit'), edit_admin_category_path(resource))
+      links << link_to(I18n.t('views.admin.delete'), admin_category_path(resource), method: :delete, data: { confirm: I18n.t('views.admin.are_you_sure_categorie', books_count: resource.books.count) })
       links.join(' ').html_safe
     end
   end

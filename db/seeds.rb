@@ -43,11 +43,6 @@ books.each do |book|
 end
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 9d27fe42c950093b411945db040dcee65ab6afdb
 
 books.each do |book|
   rand(1..4).times do
@@ -59,7 +54,3 @@ books.each do |book|
                   user_id: users.sample.id)
   end
 end
-<<<<<<< HEAD
-=======
->>>>>>> 9039dc3d43ee307f28b1328a50569a4039a47138
->>>>>>> 9d27fe42c950093b411945db040dcee65ab6afdb

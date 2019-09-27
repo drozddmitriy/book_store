@@ -10,11 +10,11 @@ ActiveAdmin.register Review do
   scope :unpublished
 
   action_item :publish, only: :show do
-    link_to "Publish", publish_admin_review_path(review), method: :put unless review.publish?
+    link_to I18n.t('views.admin.publish'), publish_admin_review_path(review), method: :put unless review.publish?
   end
 
   action_item :publish, only: :show do
-    link_to "Unpublish", unpublish_admin_review_path(review), method: :put if review.publish?
+    link_to I18n.t('views.admin.unpublish'), unpublish_admin_review_path(review), method: :put if review.publish?
   end
 
   member_action :publish, method: :put do
@@ -39,7 +39,7 @@ ActiveAdmin.register Review do
     column :created_at
     column :actions do |resource|
       links = []
-      links << link_to('Show', admin_review_path(resource))
+      links << link_to(I18n.t('views.admin.show'), admin_review_path(resource))
       links.join(' ').html_safe
     end
   end

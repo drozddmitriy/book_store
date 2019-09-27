@@ -20,8 +20,8 @@ ActiveAdmin.register Book do
     end
     column :actions do |resource|
       links = []
-      links << link_to('Edit', edit_admin_book_path(resource))
-      links << link_to('Delete', admin_book_path(resource), method: :delete, data: { confirm: 'Are you sure you want to delete this items?' })
+      links << link_to(I18n.t('views.admin.edit'), edit_admin_book_path(resource))
+      links << link_to(I18n.t('views.admin.delete'), admin_book_path(resource), method: :delete, data: { confirm: I18n.t('views.admin.are_you_sure_books') })
       links.join(' ').html_safe
     end
   end

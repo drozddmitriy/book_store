@@ -5,9 +5,9 @@ class ReviewsController < ApplicationController
     @book = Book.find(params[:book_id])
 
     if @review.save
-      flash[:success] = 'Thanks for Review. It will be published as soon as Admin will approve it.'
+      flash[:success] = I18n.t('controllers.reviews.thanks_for_review')
     else
-      flash[:danger] = "Reviews not appliedd!!!"
+      flash[:danger] = I18n.t('controllers.reviews.reviews_not_applied')
     end
 
     redirect_to book_path(@book)

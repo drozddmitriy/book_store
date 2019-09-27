@@ -57,10 +57,10 @@
             <ul class="dropdown-menu">
               <% if user_signed_in?%>
                 <li>
-                  <%= link_to 'Orderss', root_path %>
+                  <%= link_to I18n.t('views.pages.orders'), root_path %>
                 </li>
                 <li>
-                  <%= link_to 'Settings', addresses_path %>
+                  <%= link_to I18n.t('views.pages.settings'), addresses_path %>
                 </li>
                 <li role="separator" class="divider"></li>
                 <li>
