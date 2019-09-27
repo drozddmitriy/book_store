@@ -24,6 +24,7 @@ categories = Category.all
 end
 
 books = Book.all
+users = User.all
 authors = Author.all
 
 def book_authors(authors)
@@ -42,3 +43,17 @@ books.each do |book|
 end
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+<<<<<<< HEAD
+=======
+
+books.each do |book|
+  rand(1..4).times do
+    Review.create(title: FFaker::Lorem.word,
+                  comment: FFaker::Lorem.sentences.join('. '),
+                  rating: rand(1..5),
+                  publish: true,
+                  book_id: book.id,
+                  user_id: users.sample.id)
+  end
+end
+>>>>>>> 9039dc3d43ee307f28b1328a50569a4039a47138
