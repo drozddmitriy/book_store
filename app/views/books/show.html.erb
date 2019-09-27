@@ -23,7 +23,7 @@
       </p>
       <div class="row">
         <div class="col-xs-12 col-md-4">
-          <p class="h1 in-gold-500 mt-10">€<%= @book.price %></p>
+          <p class="h1 in-gold-500 mt-10"><%= number_to_currency(@book.price, unit: "€") %></p>
         </div>
         <div class="col-xs-5 col-md-3">
           <div class="input-group general-position">
