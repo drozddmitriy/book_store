@@ -15,7 +15,9 @@ ActiveAdmin.register Book do
     column :description do |resource|
       truncate(resource.description, length: 250)
     end
-    column :price
+    column :price do |resource|
+      number_to_currency(resource.price, unit: "€")
+    end
     column :actions do |resource|
       links = []
       links << link_to('Edit', edit_admin_book_path(resource))
