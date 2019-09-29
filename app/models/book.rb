@@ -6,6 +6,8 @@ class Book < ApplicationRecord
   has_many :authors, through: :authors_books
   has_many :reviews, dependent: :destroy
 
+  mount_uploaders :images, ImageUploader
+
   def self.latest_books
     self.order('created_at DESC').limit(3)
   end

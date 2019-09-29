@@ -5,6 +5,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem "fog-google"
+gem 'google-cloud-storage', "~> 1.11" , require: false
+gem 'fog'
+gem 'carrierwave'
+gem 'figaro'
 gem 'activeadmin'
 gem 'omniauth'
 gem 'omniauth-facebook'

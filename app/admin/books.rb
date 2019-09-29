@@ -2,12 +2,15 @@ ActiveAdmin.register Book do
   preserve_default_filters!
   remove_filter :authors_books
   filter :authors, collection: -> { Author.all.map { |author| author.firstname + " #{author.lastname}" } }
-  permit_params :title, :description, :price, :quantity, :year, :dimension_h, :dimension_w, :dimension_d, :material, :category_id, author_ids: []
+  permit_params :title, :description, :price, :quantity, :year, :dimension_h, :dimension_w, :dimension_d, :material, :category_id, author_ids: [], images: []
 
   index do
     selectable_column
 
     column :title
+    column :images do |resource|
+      image_tag resource.images.first.thumb.url if resource.images.any?
+    end
     column :category
     column :authors do |resource|
       BookDecorator.new(resource).author_full_name
@@ -20,6 +23,7 @@ ActiveAdmin.register Book do
     end
     column :actions do |resource|
       links = []
+      links << link_to("View", admin_book_path(resource))
       links << link_to(I18n.t('views.admin.edit'), edit_admin_book_path(resource))
       links << link_to(I18n.t('views.admin.delete'), admin_book_path(resource), method: :delete, data: { confirm: I18n.t('views.admin.are_you_sure_books') })
       links.join(' ').html_safe
@@ -27,6 +31,13 @@ ActiveAdmin.register Book do
   end
 
   show do
+    panel "Images" do
+     table do
+         resource.images.each do |image|
+            span image_tag image.thumb.url
+         end
+       end
+     end
     attributes_table do
       row :title
       row :authors do |resource|
@@ -49,6 +60,7 @@ ActiveAdmin.register Book do
 
   form do |f|
     f.semantic_errors *f.object.errors.keys
+
     f.inputs do
       f.input :title
       f.input :authors, as: :check_boxes, collection: Author.all.map { |author| [author.firstname + ' ' + author.lastname, author.id] }
@@ -61,7 +73,30 @@ ActiveAdmin.register Book do
       f.input :dimension_w
       f.input :dimension_d
       f.input :quantity
-      f.actions
     end
+
+    f.inputs do
+      f.input :images, as: :file, input_html: { multiple: true }
+    end
+
+    f.inputs "Images", multipart: true do
+      f.object.images.each do |image|
+        span image_tag image.thumb.url
+      end
+    end
+
+    f.actions
+  end
+
+  action_item :delete_image, only: :edit do
+    link_to("Delete all images", delete_image_admin_book_path(resource), method: :delete)
+  end
+
+  member_action :delete_image, method: :delete do
+    # binding.pry
+    book = Book.find_by(id: resource.id)
+    book.remove_images!
+    book.save
+    redirect_to edit_admin_book_path(book)
   end
 end

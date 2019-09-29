@@ -59,7 +59,9 @@
         <div class="col-xs-6 col-sm-3">
           <div class="general-thumb-wrap">
             <div class="thumbnail general-thumbnail">
-              <img src="http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg" alt="design-book" class="img-shadow general-thumbnail-img"/>
+              <%= link_to book.images.first.url do %>
+                <%= image_tag book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book" %>
+              <% end %>
               <div class="thumb-hover">
                 <div class="general-thumb-link-wrap">
                   <a href="<%= book_path(book) %>" class="thumb-hover-link">
