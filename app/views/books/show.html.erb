@@ -31,17 +31,19 @@
       <div class="col-xs-12 col-md-4">
         <p class="h1 in-gold-500 mt-10"><%= number_to_currency(@book.price, unit: "€") %></p>
       </div>
+
       <div class="col-xs-5 col-md-3">
         <div class="input-group general-position">
-          <a href="#" class="input-link">
+          <a href="#" class="input-link" id="minus">
             <i class="fa fa-minus line-height-40"></i>
           </a>
           <input type="text" class="form-control quantity-input"/>
-          <a href="#" class="input-link">
+          <a href="#" class="input-link" id="plus">
             <i class="fa fa-plus line-height-40"></i>
           </a>
         </div>
       </div>
+
       <div class="col-xs-7 col-md-5">
         <button class="btn btn-default pull-right general-position"><%= I18n.t('views.books.add_to_cart') %></button>
       </div>
