@@ -2,7 +2,6 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @book = Book.find(params[:book_id])
 
     if @review.save
       flash[:success] = I18n.t('controllers.reviews.thanks_for_review')
@@ -10,7 +9,7 @@ class ReviewsController < ApplicationController
       flash[:danger] = I18n.t('controllers.reviews.reviews_not_applied')
     end
 
-    redirect_to book_path(@book)
+    redirect_to book_path(params[:book_id])
   end
 
   private
