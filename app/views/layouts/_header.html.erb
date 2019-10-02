@@ -11,9 +11,9 @@
         <span class="shop-icon">
           <span class="shop-quantity">3</span></span></a>
     </div>
-    <a href="#" class="shop-link pull-right hidden-xs">
+    <a href="<%= line_items_path %>" class="shop-link pull-right hidden-xs">
       <span class="shop-icon">
-        <span class="shop-quantity">3</span></span></a>
+        <span class="shop-quantity"><%= LineItem.all.count %></span></span></a>
     <div id="navbar" aria-expanded="false" class="navbar-collapse collapse pl-30">
       <div class="visible-xs">
         <button type="button" aria-label="Close" class="close">

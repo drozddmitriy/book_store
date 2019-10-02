@@ -4,7 +4,9 @@ $(document).ready(function(){
     var quantity;
     input = $(this).siblings('.quantity-input');
     quantity = +input.val();
-    return input.val(quantity - 1);
+    if (quantity > 1) {
+      return input.val(quantity - 1);
+    }
   });
 
   $('.fa-plus').parent('#plus').click(function(event) {
