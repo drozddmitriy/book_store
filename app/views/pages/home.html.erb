@@ -22,7 +22,11 @@
               <p class="lead"><%= truncate(book.description, :length => 250) %></p>
               <p class="lead small"><%= book.authors.map { |author| author.firstname + ' ' + author.lastname }.join(", ") %></p>
               <div class="general-align">
-                <button class="disabled btn"><%= I18n.t('views.pages.buy_now') %></button>
+                <%= simple_form_for LineItem.new, method: :post do |f| %>
+                 <%= f.hidden_field :book_id, value: book.id %>
+                 <%= f.hidden_field :quantity, value: 1 %>
+                 <%= f.submit I18n.t('views.pages.buy_now'), class: "btn btn-primary" %>
+               <% end %>
               </div>
             </div>
           </div>

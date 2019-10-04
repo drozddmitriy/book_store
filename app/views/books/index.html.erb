@@ -67,9 +67,9 @@
                   <a href="<%= book_path(book) %>" class="thumb-hover-link">
                     <i aria-hidden="true" class="fa fa-eye thumb-icon"></i>
                   </a>
-                  <a href="#" class="thumb-hover-link">
-                    <i class="fa fa-shopping-cart thumb-icon"></i>
-                  </a>
+                  <%= link_to line_items_path(@item, line_item: { book_id: book.id, quantity: 1 }), class: "thumb-hover-link", method: :post do %>
+                   <i class="fa fa-shopping-cart thumb-icon"></i>
+                 <% end %>
                 </div>
               </div>
             </div>

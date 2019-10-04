@@ -1,6 +1,5 @@
 <main class="container general-main-wrap">
   <h1 class="general-title-margin">Cart</h1>
-
   <div class="visible-xs">
     <% @items.each do |item| %>
       <div class="general-cart-item divider-lg-bottom">
@@ -43,7 +42,6 @@
         <%= link_to line_item_path(item), class: "close general-cart-close", method: :delete, data: { confirm: 'Are you sure?' } do %>
         <span aria-hidden="true">&times;</span>
       <% end %>
-
         <div class="general-img-wrap-table">
           <%= image_tag item.book.images.first.url(:thumb), class: "cart-img-shadow pull-left", alt: "design-book" %></div>
         <p class="title"><%= item.book.title %></p>
@@ -79,7 +77,6 @@
       </div>
     <% end %>
   </div>
-
   <div class="hidden-xs">
     <table class="table table-hover">
       <tr class="no-hover">
@@ -128,7 +125,6 @@
 <% end %>
 </table>
 </div>
-
 <div class="general-order-wrap">
 <div class="row">
 <div class="col-sm-4">
@@ -149,7 +145,7 @@
           <p class="font-16">Subtotal:</p>
         </td>
         <td>
-          <p class="font-16">€117.69</p>
+          <p class="font-16">€<%= current_order.total_price %></p>
         </td>
       </tr>
       <tr>
@@ -165,7 +161,7 @@
           <strong class="font-18">Order Total:</strong>
         </td>
         <td>
-          <strong class="font-18">€117.69</strong>
+          <strong class="font-18">€0.00</strong>
         </td>
       </tr>
     </table>
@@ -174,6 +170,5 @@
 </div>
 </div>
 </div>
-
 <button class="btn btn-default mb-20 hidden-xs center-block">Checkout</button>
 </main>

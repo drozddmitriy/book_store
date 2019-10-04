@@ -45,7 +45,7 @@
         </div>
         <div class="col-xs-7 col-md-5">
           <%= f.hidden_field :book_id, value: @book.id %>
-          <%= f.button :submit, I18n.t('views.books.add_to_cart'), class: "btn btn-default pull-right general-position" %>
+          <%= f.submit I18n.t('views.books.add_to_cart'), class: "btn btn-default pull-right general-position" %>
         </div>
       <% end %>
     </div>

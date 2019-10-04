@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :addresses,  only: %i[index create update]
   resources :line_items
+  resources :orders
 
   resources :books, only: %i[index show]  do
     resources :reviews, only: :create

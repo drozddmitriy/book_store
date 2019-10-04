@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_01_191332) do
+ActiveRecord::Schema.define(version: 2019_10_03_205734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,16 @@ ActiveRecord::Schema.define(version: 2019_10_01_191332) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cupons", force: :cascade do |t|
+    t.string "coupon", null: false
+    t.boolean "active", default: false
+    t.decimal "sale", precision: 6, scale: 2, null: false
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_cupons_on_order_id"
+  end
+
   create_table "line_items", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "order_id"
@@ -109,7 +119,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_191332) do
 
   create_table "orders", force: :cascade do |t|
     t.string "number"
-    t.decimal "total_price", precision: 6, scale: 2, null: false
+    t.decimal "total_price", precision: 5, scale: 2
     t.string "status"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -158,6 +168,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_191332) do
 
   add_foreign_key "authors_books", "authors"
   add_foreign_key "authors_books", "books"
+  add_foreign_key "cupons", "orders"
   add_foreign_key "line_items", "books"
   add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "users"
