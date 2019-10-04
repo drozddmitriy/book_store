@@ -4,14 +4,13 @@ class LineItemsController < ApplicationController
   end
 
   def create
-    @line_item = LineItem.find_or_initialize_by(book_id: params[:line_item][:book_id])
+    @line_item = LineItem.find_or_initialize_by(book_id: params[:line_item][:book_id], order_id: current_order.id)
     @line_item.quantity = params[:line_item][:quantity]
-
     if @line_item.save
       flash[:success] = 'Item add to cart!'
     else
       flash[:danger] = 'Item not create!!!!!'
-     end
+    end
 
     redirect_back(fallback_location: root_path)
   end
@@ -35,7 +34,7 @@ class LineItemsController < ApplicationController
       @line_item.quantity += 1
     when 'minus'
       @line_item.quantity -= 1 if @line_item.quantity > 1
-     end
+    end
 
     @line_item.save
 

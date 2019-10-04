@@ -5,6 +5,7 @@ class BooksController < ApplicationController
   def index
     @pagy, @books = pagy(BookService.new(params[:category], @filter).call, items: BOOKITEM)
     @categories = Category.all
+    @item = LineItem.new
   end
 
   def show
@@ -13,6 +14,7 @@ class BooksController < ApplicationController
   end
 
   private
+
   def set_filter
     @filter = BookFiltersService.filter(params[:filter])
   end
