@@ -128,13 +128,7 @@
 <div class="general-order-wrap">
 <div class="row">
 <div class="col-sm-4">
-  <div class="input-group general-input-group">
-    <label class="input-label">Enter Your Coupon Code</label>
-    <input type="text" placeholder="Enter Your Coupon Code " class="form-control mb-30"/>
-    <div>
-      <button class="btn btn-primary mr-5 mb-15">Apply Coupon</button>
-    </div>
-  </div>
+  <%= render 'coupon_form' %>
 </div>
 <div class="col-sm-8">
   <div class="res-mr-200 text-center general-text-right">
@@ -153,7 +147,7 @@
           <p class="font-16">Coupon:</p>
         </td>
         <td>
-          <p class="font-16">€0.00</p>
+          <p class="font-16">€<%= current_order.discount %></p>
         </td>
       </tr>
       <tr>
@@ -161,7 +155,7 @@
           <strong class="font-18">Order Total:</strong>
         </td>
         <td>
-          <strong class="font-18">€0.00</strong>
+          <strong class="font-18">€<%= current_order.total_order_price %></strong>
         </td>
       </tr>
     </table>

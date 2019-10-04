@@ -6,9 +6,10 @@ Rails.application.routes.draw do
                                        :registrations => 'users/registrations' }
   root 'pages#home'
 
-  resources :addresses,  only: %i[index create update]
+  resources :addresses, only: %i[index create update]
   resources :line_items
   resources :orders
+  resource  :coupon, only: :update
 
   resources :books, only: %i[index show]  do
     resources :reviews, only: :create

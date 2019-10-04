@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_205734) do
+ActiveRecord::Schema.define(version: 2019_10_03_205219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,14 +97,14 @@ ActiveRecord::Schema.define(version: 2019_10_03_205734) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cupons", force: :cascade do |t|
+  create_table "coupons", force: :cascade do |t|
     t.string "coupon", null: false
     t.boolean "active", default: false
     t.decimal "sale", precision: 6, scale: 2, null: false
     t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_cupons_on_order_id"
+    t.index ["order_id"], name: "index_coupons_on_order_id"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 2019_10_03_205734) do
 
   add_foreign_key "authors_books", "authors"
   add_foreign_key "authors_books", "books"
-  add_foreign_key "cupons", "orders"
+  add_foreign_key "coupons", "orders"
   add_foreign_key "line_items", "books"
   add_foreign_key "line_items", "orders"
   add_foreign_key "orders", "users"
