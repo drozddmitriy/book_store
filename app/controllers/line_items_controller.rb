@@ -1,4 +1,6 @@
 class LineItemsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @items = LineItem.all
   end
@@ -39,5 +41,11 @@ class LineItemsController < ApplicationController
     @line_item.save
 
     redirect_back(fallback_location: root_path)
+  end
+
+  private
+
+  def line_item_params
+    params.require(:line_item).permit(:book_id, :quantity)
   end
 end
