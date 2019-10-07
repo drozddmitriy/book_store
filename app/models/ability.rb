@@ -17,7 +17,8 @@ class Ability
         can :update, Coupon
         # can :read, :all
       else
-        can :create, LineItem
+        # can :create, LineItem
+        can %i[create update destroy], LineItem
         can :update, Coupon
       end
   end

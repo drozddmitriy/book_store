@@ -2,7 +2,8 @@ class LineItemsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @items = LineItem.all
+    @items = current_order.line_items
+    # binding.pry
   end
 
   def create

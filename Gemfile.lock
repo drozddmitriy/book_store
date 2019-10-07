@@ -115,6 +115,7 @@ GEM
       countries (~> 3.0)
       sort_alphabetical (~> 1.0)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
     devise (4.7.1)
@@ -467,6 +468,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   country_select
+  database_cleaner
   devise
   factory_bot_rails
   ffaker

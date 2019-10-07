@@ -10,7 +10,7 @@ RSpec.describe AddressesController, type: :controller do
 
     let!(:addresses) { create(:address, addressable: user) }
 
-    it 'return a success response' do
+    it 'return success response' do
       expect(response).to have_http_status(200)
     end
 

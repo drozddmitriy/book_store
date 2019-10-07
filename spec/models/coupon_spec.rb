@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Coupon, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:order) { create(:order) }
+  
+  it { expect(subject).to belong_to(:order).optional }
 end

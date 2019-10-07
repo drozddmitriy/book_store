@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe LineItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:book) { create(:book) }
+  let(:order) { create(:order) }
+
+  it { expect(subject).to belong_to(:book) }
+  it { expect(subject).to belong_to(:order).optional }
 end

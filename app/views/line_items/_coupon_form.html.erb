@@ -1,4 +1,4 @@
-<%= form_with url: coupon_path, method: :put do |f| %>
+<%= form_with url: coupon_path, local: true, method: :put do |f| %>
 <div class="input-group general-input-group">
   <label class="input-label">Enter Your Coupon Code</label>
   <%= f.text_field :coupon, class: 'form-control mb-30', required: true %>
