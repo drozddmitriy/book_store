@@ -2,14 +2,16 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",
-                                       :registrations => 'users/registrations' }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks",
+                                    sessions: 'users/sessions',
+                                    registrations: 'users/registrations' }
   root 'pages#home'
 
   resources :addresses, only: %i[index create update]
   resources :line_items
   resources :orders
   resource  :coupon, only: :update
+  resources :checkout
 
   resources :books, only: %i[index show]  do
     resources :reviews, only: :create

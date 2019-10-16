@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CouponsController, type: :controller do
   describe 'PUT #update' do
-    let(:coupon) { create(:coupon) }
+    let!(:coupon) { create(:coupon) }
 
     context 'valid coupon' do
       before { put :update, params: { coupon: 'COUPON', active: true } }
@@ -12,9 +12,9 @@ RSpec.describe CouponsController, type: :controller do
         expect(response).to redirect_to line_items_path
       end
 
-      # it 'show success message' do
-      #   expect(flash[:success]).to eq "Coupon applied!"
-      # end
+      it 'show success message' do
+        expect(flash[:success]).to eq "Coupon applied!"
+      end
     end
 
     context 'invalid coupon' do

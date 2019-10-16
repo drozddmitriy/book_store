@@ -5,9 +5,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'wicked'
 gem 'cancancan'
 gem 'fog-core', '2.1.0'
-gem "fog-google"
+gem 'fog-google'
 gem 'google-cloud-storage', "~> 1.11" , require: false
 gem 'fog'
 gem 'carrierwave'
@@ -15,7 +16,7 @@ gem 'figaro'
 gem 'activeadmin'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem "letter_opener"
+gem 'letter_opener'
 gem 'simple_form'
 gem 'country_select'
 gem 'devise'
@@ -37,7 +38,7 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry'
