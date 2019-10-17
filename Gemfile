@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'draper'
 gem 'wicked'
 gem 'cancancan'
 gem 'fog-core', '2.1.0'

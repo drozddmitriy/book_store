@@ -1,5 +1,5 @@
 class BookService
-  def initialize(category_id, filter)
+  def initialize(category_id, filter = nil)
     @category_id = category_id
     @filter = filter
   end
@@ -10,5 +10,9 @@ class BookService
     else
       Book.by_filter(@filter)
     end
+  end
+
+  def category_title
+    Category.where(id: @category_id).first.title if @category_id
   end
 end

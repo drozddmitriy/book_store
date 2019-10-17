@@ -7,11 +7,12 @@ class BooksController < ApplicationController
   def index
     @pagy, @books = pagy_countless(BookService.new(params[:category], @filter).call, items: BOOKITEM, link_extra: 'data-remote="true"')
     @categories = Category.all
+    @category_title = BookService.new(params[:category]).category_title
     @item = LineItem.new
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:id]).decorate
     @item = LineItem.new
   end
 

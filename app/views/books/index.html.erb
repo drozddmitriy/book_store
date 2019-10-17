@@ -1,6 +1,6 @@
 <main class="container">
   <% if params[:category] %>
-    <h1 class="general-title-margin"><%= BooksDecorator.new(params[:category]).category_title %></h1>
+    <h1 class="general-title-margin"><%= @category_title %></h1>
   <% else %>
     <h1 class="general-title-margin"><%= I18n.t('views.books.catalog') %></h1>
   <% end %>
