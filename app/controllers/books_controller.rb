@@ -1,11 +1,11 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
-  
+
   BOOKITEM = 8
   before_action :set_filter
 
   def index
-    @pagy, @books = pagy(BookService.new(params[:category], @filter).call, items: BOOKITEM)
+    @pagy, @books = pagy_countless(BookService.new(params[:category], @filter).call, items: BOOKITEM, link_extra: 'data-remote="true"')
     @categories = Category.all
     @item = LineItem.new
   end

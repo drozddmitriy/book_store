@@ -54,37 +54,11 @@
     </div>
   </div>
   <div class="mb-120">
-    <div class="row">
-      <% @books.each do |book| %>
-        <div class="col-xs-6 col-sm-3">
-          <div class="general-thumb-wrap">
-            <div class="thumbnail general-thumbnail">
-              <%= link_to book.images.first.url do %>
-                <%= image_tag book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book" %>
-              <% end %>
-              <div class="thumb-hover">
-                <div class="general-thumb-link-wrap">
-                  <a href="<%= book_path(book) %>" class="thumb-hover-link">
-                    <i aria-hidden="true" class="fa fa-eye thumb-icon"></i>
-                  </a>
-                  <%= link_to line_items_path(@item, line_item: { book_id: book.id, quantity: 1 }), class: "thumb-hover-link", method: :post do %>
-                   <i class="fa fa-shopping-cart thumb-icon"></i>
-                 <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="general-thumb-info">
-            <p class="title"><%= book.title %></p>
-            <p class="font-16 in-gold-500"><%= book.price %></p>
-            <span class="divider-sm"></span>
-            <p class="lead small"><%= book.authors.map { |author| author.firstname }.join(", ") %></p>
-          </div>
-        </div>
-      <%end%>
+    <div class="row" id="records_table">
+      <%= render 'books' %>
     </div>
-    <div class="text-center">
-      <%= pagy_bootstrap_nav(@pagy).html_safe %>
+    <div class="text-center" id="div_next_link">
+      <%= render 'next_link' %>
     </div>
   </div>
 </main>
