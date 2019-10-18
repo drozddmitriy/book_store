@@ -82,7 +82,7 @@
 </div>
 <div class="mb-80">
   <h3 class="in-gold-500 mb-25"><%= I18n.t('views.books.reviews') %>
-    (<%= @book.reviews.count %>)</h3>
+    (<%= @book.book_reviews %>)</h3>
   <% @book.reviews.each do |review| %>
     <% if review.publish == true %>
       <div class="general-message-wrap divider-lg">

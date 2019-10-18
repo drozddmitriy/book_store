@@ -8,4 +8,8 @@ class BookDecorator < Draper::Decorator
   def book_dimensions
     "H: #{dimension_h} x W: #{dimension_w} x D: #{dimension_d}"
   end
+
+  def book_reviews
+    reviews.where(publish: true).count
+  end
 end

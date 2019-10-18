@@ -7,10 +7,10 @@
   <div class="hidden-xs clearfix">
     <div class="dropdowns pull-right">
       <div class="dropdown width-240">
-        <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small"><%= I18n.t('models.book.newest') %>
+        <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small"><%= @sort %>
           <i class="fa fa-angle-down dropdown-icon pull-right"></i>
         </a>
-        <%= render 'books/filter' %>
+        <%= render 'filter' %>
       </div>
     </div>
     <ul class="list-inline pt-10 mb-25 mr-240">
@@ -29,7 +29,7 @@
   <div class="dropdowns mb-25 visible-xs">
     <p class="lead small mb-10"><%= I18n.t('views.books.filter') %></p>
     <div class="dropdown">
-      <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small"><%= I18n.t('models.book.newest') %>
+      <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small"><%= @sort %>
         <i class="fa fa-angle-down dropdown-icon pull-right"></i>
       </a>
       <ul class="dropdown-menu">
@@ -50,7 +50,7 @@
       <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small"><%= I18n.t('models.book.newest') %>
         <i class="fa fa-angle-down dropdown-icon pull-right"></i>
       </a>
-      <%= render 'books/filter' %>
+      <%= render 'filter' %>
     </div>
   </div>
   <div class="mb-120">
