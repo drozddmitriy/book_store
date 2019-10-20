@@ -15,7 +15,7 @@ RSpec.describe BooksController, type: :controller do
     end
 
     context 'assigns @filter' do
-     it 'equal to DEFAULT_FILTER' do
+     it 'equal to default filter' do
        expect(assigns(:filter)).to eq(Book::FILTERS.first)
      end
 

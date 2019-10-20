@@ -5,12 +5,12 @@
         <%= link_to book.images.first.url do %>
         <%= image_tag book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book" %>
       <% end %>
-      <div class="thumb-hover">
+      <div class="thumb-hover" id="my">
         <div class="general-thumb-link-wrap">
           <a href="<%= book_path(book) %>" class="thumb-hover-link">
             <i aria-hidden="true" class="fa fa-eye thumb-icon"></i>
           </a>
-          <%= link_to line_items_path(@item, line_item: { book_id: book.id, quantity: 1 }), class: "thumb-hover-link", method: :post do %>
+          <%= link_to line_items_path(@item, line_item: { book_id: book.id, quantity: 1 }), class: "thumb-hover-link link", method: :post do %>
           <i class="fa fa-shopping-cart thumb-icon"></i>
         <% end %>
       </div>

@@ -40,6 +40,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.infer_spec_type_from_file_location!
 
