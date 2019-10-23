@@ -1,0 +1,20 @@
+<ul class="steps list-inline">
+  <% wizard_steps[1,5].each_with_index do |step, index| %>
+    <li class="<%= step_state(step) %> step">
+      <%= link_to wizard_path(step), class: 'step-link' do %>
+      <span class="step-number">
+        <%= index + 1 unless past_step?(step) %>
+        <% if past_step?(step) %>
+          <i class="fa fa-check step-icon"></i>
+        <% end %>
+      </span>
+      <span class="step-text hidden-xs">
+        <%= step.capitalize %>
+      </span>
+    <% end %>
+  </li>
+  <% unless step == :complete %>
+    <li class="step-divider"></li>
+  <% end %>
+<% end %>
+</ul>

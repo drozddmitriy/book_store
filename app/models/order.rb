@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  belongs_to :delivery, optional: true
   belongs_to :user, optional: true
   has_many :line_items, dependent: :destroy
   has_one :coupon, required: false, dependent: :destroy

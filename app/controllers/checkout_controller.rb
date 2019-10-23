@@ -41,6 +41,17 @@ class CheckoutController < ApplicationController
     @shipping = Address.new(show_address_params)
   end
 
+  def show_delivery
+    return jump_to(previous_step) unless current_order.addresses.presence
+
+    @deliveries = Delivery.all
+  end
+
+  def update_delivery
+    current_order.update_attributes(order_params)
+    flash[:danger] = 'Please choose delivery method!' if current_order.delivery_id.nil?
+  end
+
   def update_addresses
     @billing = Address.new(billing_params)
     @shipping = Address.new(shipping_params)
@@ -51,6 +62,10 @@ class CheckoutController < ApplicationController
   end
 
   private
+
+  def order_params
+    params.require(:order).permit(:delivery_id)
+  end
 
   def show_address_params
     return { addressable_type: "User", addressable_id: current_user.id } if current_order.addresses.empty?

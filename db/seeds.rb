@@ -1,3 +1,7 @@
+Delivery.create(name: 'FedEx', time: '1', price:  30.00)
+Delivery.create(name: 'UPS', time: '2', price: 20.00)
+Delivery.create(name: 'DHL', time: '3', price: 10.00)
+
 ['Mobile development', 'Photo', 'Web development', 'Web design'].each do |category|
   Category.create(title: category)
 end
