@@ -1,129 +1,88 @@
 <main class="container">
   <h1 class="general-title-margin">Checkout</h1>
   <ul class="steps list-inline">
-    <li class="step active">
-      <span class="step-number">1</span>
-      <span class="step-text hidden-xs">Address</span></li>
-    <li class="step-divider"></li>
-    <li class="step">
-      <span class="step-number">2</span>
-      <span class="step-text hidden-xs">Delivery</span></li>
-    <li class="step-divider"></li>
-    <li class="step">
-      <span class="step-number">3</span>
-      <span class="step-text hidden-xs">Payment</span></li>
-    <li class="step-divider"></li>
-    <li class="step">
-      <span class="step-number">4</span>
-      <span class="step-text hidden-xs">Confirm</span></li>
-    <li class="step-divider"></li>
-    <li class="step">
-      <span class="step-number">5</span>
-      <span class="step-text hidden-xs">Complete</span></li>
-  </ul>
-  <form class="res-mb-100">
-    <div class="hidden-xs hidden-sm">
-      <div class="row">
-        <div class="col-md-5">
-          <h3 class="general-subtitle">Billing Address</h3>
-          <p class="general-info-text">all fields are required</p>
-        </div>
-        <div class="col-md-5 col-md-offset-1">
-          <h3 class="general-subtitle">Shipping Address</h3>
-        </div>
-      </div>
-    </div>
+    <% wizard_steps[1,5].each_with_index do |step, index| %>
+      <li class="<%= step_state(step) %> step">
+        <%= link_to wizard_path(step), class: 'step-link' do %>
+        <span class="step-number">
+          <%= index + 1 unless past_step?(step) %>
+          <% if past_step?(step) %>
+            <i class="fa fa-check step-icon"></i>
+          <% end %>
+        </span>
+        <span class="step-text hidden-xs">
+          <%= step.capitalize %>
+        </span>
+      <% end %>
+    </li>
+    <% unless step == :complete %>
+      <li class="step-divider"></li>
+    <% end %>
+  <% end %>
+</ul>
+  <%= simple_form_for current_order, url: wizard_path, method: :put, class: 'res-mb-100' do |form| %>
+  <div class="hidden-xs hidden-sm">
     <div class="row">
-      <div class="col-md-5 mb-40">
-        <div class="visible-xs visible-sm">
-          <h3 class="general-subtitle">Billing Address</h3>
-          <p class="general-info-text">all fields are required</p>
-        </div>
-        <div class="form-group has-error">
-          <label for="firstName" class="control-label input-label">First Name</label>
-          <input id="firstName" name="fname" type="text" placeholder="First Name" class="form-control"/>
-          <span class="help-block">Please enter your first name</span></div>
-        <div class="form-group">
-          <label for="lastName" class="control-label input-label">Last Name</label>
-          <input id="lastName" name="lname" type="text" placeholder="Last Name" class="form-control"/></div>
-        <div class="form-group">
-          <label for="address" class="control-label input-label">Address</label>
-          <input id="address" name="address" type="text" placeholder="Address" class="form-control"/></div>
-        <div class="form-group">
-          <label for="city" class="control-label input-label">City</label>
-          <input id="city" name="city" type="text" placeholder="City" class="form-control"/></div>
-        <div class="form-group">
-          <label for="zip" class="control-label input-label">Zip</label>
-          <input id="zip" name="zip" type="text" placeholder="Zip" class="form-control"/></div>
-        <div class="form-group">
-          <label for="сountry" class="control-label input-label">Country</label>
-          <input id="country" name="country" type="text" placeholder="Select a country" class="form-control"/></div>
-        <div class="form-group">
-          <label for="phone" class="control-label input-label">Phone</label>
-          <input id="phone" name="phone" type="tel" placeholder="Example +355 66 123 4567" class="form-control"/></div>
+      <div class="col-md-5">
+        <h3 class="general-subtitle">Billing Address</h3>
+        <p class="general-info-text">all fields are required</p>
       </div>
-      <div class="col-md-5 col-md-offset-1 mb-60">
-        <div class="visible-xs visible-sm">
-          <h3 class="general-subtitle">Shipping Address</h3>
-        </div>
-        <div class="form-group has-error">
-          <label for="firstName" class="control-label input-label">First Name</label>
-          <input id="firstName" name="fname" type="text" placeholder="First Name" class="form-control"/>
-          <span class="help-block">Please enter your first name</span></div>
-        <div class="form-group">
-          <label for="lastName" class="control-label input-label">Last Name</label>
-          <input id="lastName" name="lname" type="text" placeholder="Last Name" class="form-control"/></div>
-        <div class="form-group">
-          <label for="address" class="control-label input-label">Address</label>
-          <input id="address" name="address" type="text" placeholder="Address" class="form-control"/></div>
-        <div class="form-group">
-          <label for="city" class="control-label input-label">City</label>
-          <input id="city" name="city" type="text" placeholder="City" class="form-control"/></div>
-        <div class="form-group">
-          <label for="zip" class="control-label input-label">Zip</label>
-          <input id="zip" name="zip" type="text" placeholder="Zip" class="form-control"/></div>
-        <div class="form-group">
-          <label for="сountry" class="control-label input-label">Country</label>
-          <select id="country" name="country" placeholder="Select a country" class="form-control">
-            <option>London</option>
-            <option>London</option>
-            <option>London</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="phone" class="control-label input-label">Phone</label>
-          <input id="phone" name="phone" type="tel" placeholder="Example +355 66 123 4567" class="form-control"/></div>
-        <div class="form-group checkbox">
-          <label class="checkbox-label">
-            <input type="checkbox" hidden="true" class="checkbox-input"/>
-            <span class="checkbox-icon">
-              <i class="fa fa-check"></i>
-            </span>
-            <span class="checkbox-text">Use Billing Adress</span></label>
-        </div>
+      <div class="col-md-5 col-md-offset-1">
+        <h3 class="general-subtitle">Shipping Address</h3>
       </div>
     </div>
-    <div class="general-text-align mb-60">
-      <p class="in-gold-500 font-18">Order Summary</p>
-      <table class="general-summary-table">
-        <tr>
-          <td>
-            <p class="font-16">Item Total:</p>
-          </td>
-          <td>
-            <p class="font-16">€117.69</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p class="font-16">Order Total:</p>
-          </td>
-          <td>
-            <p class="font-16">€117.69</p>
-          </td>
-        </tr>
-      </table>
-      <button class="btn disabled center-block mb-20">Save and Continue</button>
+  </div>
+  <div class="row">
+    <div class="col-md-5 mb-40">
+      <div class="visible-xs visible-sm">
+        <h3 class="general-subtitle">Billing Address</h3>
+        <p class="general-info-text">all fields are required</p>
+      </div>
+      <%= form.simple_fields_for :billing, Address.new(cast: :shipping) do |f| %>
+        <%= render 'addresses_form', f: f, cast: "billing" %>
+      <% end %>
     </div>
-  </form>
+    <div class="col-md-5 col-md-offset-1 mb-60">
+      <div class="visible-xs visible-sm">
+        <h3 class="general-subtitle">Shipping Address</h3>
+      </div>
+      <%= form.simple_fields_for :shipping, Address.new(cast: :shipping) do |f| %>
+        <%= render 'addresses_form', f: f, cast: "shipping" %>
+      <% end %>
+      <div class="form-group checkbox">
+        <label class="checkbox-label">
+          <input type="checkbox" hidden="true" class="checkbox-input"/>
+          <span class="checkbox-icon">
+            <i class="fa fa-check"></i>
+          </span>
+          <span class="checkbox-text">Use Billing Adress</span></label>
+      </div>
+    </div>
+  </div>
+  <div class="general-text-align mb-60">
+    <p class="in-gold-500 font-18">Order Summary</p>
+    <table class="general-summary-table">
+      <tr>
+        <td>
+          <p class="font-16">Item Total:</p>
+        </td>
+        <td>
+          <p class="font-16">€<%= current_order.total_price %></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="font-16">Order Total:</p>
+        </td>
+        <td>
+          <p class="font-16">€<%= current_order.total_order_price %></p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="actions text-center">
+    <%= form.submit "Save and Continue", class: 'btn btn-default mb-20' %>
+  </div>
+<% end %>
+
 </main>

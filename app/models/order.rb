@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   has_many :line_items, dependent: :destroy
   has_one :coupon, required: false, dependent: :destroy
+  has_many :addresses, as: :addressable, dependent: :destroy
 
   before_create :set_number
 

@@ -15,6 +15,8 @@ class Ability
         can %i[create update destroy], LineItem
         can %i[create update], Address
         can :update, Coupon
+        can %i[show update], :checkout
+        can %i[create update], Order, user_id: user.id
         # can :read, :all
       else
         # can :create, LineItem
