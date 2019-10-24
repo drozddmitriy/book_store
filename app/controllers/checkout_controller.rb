@@ -47,6 +47,17 @@ class CheckoutController < ApplicationController
     @deliveries = Delivery.all
   end
 
+  def show_payment
+    return jump_to(previous_step) unless current_order.delivery
+
+    @credit_card = current_order.credit_card || current_user.credit_card || CreditCard.new
+  end
+
+  def show_confirm
+    # binding.pry
+    return jump_to(previous_step) unless current_order.credit_card
+  end
+
   def update_delivery
     current_order.update_attributes(order_params)
     flash[:danger] = 'Please choose delivery method!' if current_order.delivery_id.nil?
@@ -59,6 +70,12 @@ class CheckoutController < ApplicationController
     @shipping.addressable = current_order
 
     render_wizard unless @billing.save && @shipping.save
+  end
+
+  def update_payment
+    @credit_card = CreditCard.new(credit_card_params)
+    render_wizard unless @credit_card.save
+    current_order.update_attributes(credit_card_id: @credit_card.id)
   end
 
   private
@@ -81,6 +98,10 @@ class CheckoutController < ApplicationController
   def shipping_params
     shipping_params = params[:order][:shipping].keys
     params.require(:order).permit(shipping: shipping_params)[:shipping]
+  end
+
+  def credit_card_params
+    params.require(:credit_card).permit(:name, :card_number, :cvv, :expiration_month_year)
   end
 
 end
