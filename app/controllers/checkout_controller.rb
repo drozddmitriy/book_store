@@ -19,7 +19,6 @@ class CheckoutController < ApplicationController
   end
 
   def update
-    # binding.pry
 
     case step
     when :addresses then update_addresses
@@ -54,8 +53,21 @@ class CheckoutController < ApplicationController
   end
 
   def show_confirm
-    # binding.pry
     return jump_to(previous_step) unless current_order.credit_card
+  end
+
+  def update_confirm
+
+  end
+
+  def update_complete
+  end
+
+  def show_complete
+    return jump_to(previous_step) unless session[:order_complete]
+
+    @order = current_user.orders.in_queue.last
+    session[:order_complete] = false
   end
 
   def update_delivery

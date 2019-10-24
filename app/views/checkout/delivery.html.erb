@@ -45,30 +45,7 @@
   <div class="general-text-align">
     <p class="in-gold-500 font-18">Order Summary</p>
     <table class="general-summary-table">
-      <tr>
-        <td>
-          <p class="font-16">Subtotal:</p>
-        </td>
-        <td>
-          <p class="font-16"><%= number_to_currency(current_order.total_price, unit: "€") %></p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p class="font-16">Coupon:</p>
-        </td>
-        <td>
-          <p class="font-16"><%= number_to_currency(current_order.discount, unit: "€") %></p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <strong class="font-18">Order Total:</strong>
-        </td>
-        <td>
-          <strong class="font-18"><%= number_to_currency(current_order.total_order_price, unit: "€") %></strong>
-        </td>
-      </tr>
+      <%= render 'order_coupon_summary' %>
     </table>
   </div>
   <div class="actions text-center">

@@ -19,30 +19,7 @@
   <div class="general-text-align">
     <p class="in-gold-500 font-18">Order Summary</p>
     <table class="general-summary-table">
-      <tr>
-        <td>
-          <p class="font-16">Subtotal:</p>
-        </td>
-        <td>
-          <p class="font-16">€117.69</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <p class="font-16">Coupon:</p>
-        </td>
-        <td>
-          <p class="font-16">€0.00</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <strong class="font-18">Order Total:</strong>
-        </td>
-        <td>
-          <strong class="font-18">€117.69</strong>
-        </td>
-      </tr>
+      <%= render 'order_coupon_summary' %>
     </table>
   </div>
   <div class="pull-right">
