@@ -5,7 +5,8 @@ class CouponsController < ApplicationController
     coupon = Coupon.find_by(coupon: params[:coupon], active: true)
 
     if coupon
-      coupon.update(order_id: current_order.id, active: false)
+      coupon.update(order_id: current_order.id)
+      session[:coupon_id] = coupon.id
       flash[:success] = "Coupon applied!"
     else
       flash[:danger] = "Coupon not applied"

@@ -1,7 +1,7 @@
 <main class="container">
   <h1 class="general-title-margin">Checkout</h1>
   <%= render 'steps_header' %>
-  <%= simple_form_for current_order, url: wizard_path, method: :put, class: 'res-mb-100' do |form| %>
+  <%= simple_form_for @addresses, url: wizard_path, method: :put, class: 'res-mb-100' do |form| %>
   <div class="hidden-xs hidden-sm">
     <div class="row">
       <div class="col-md-5">
@@ -19,7 +19,7 @@
         <h3 class="general-subtitle">Billing Address</h3>
         <p class="general-info-text">all fields are required</p>
       </div>
-      <%= form.simple_fields_for :billing, Address.new(cast: :shipping) do |f| %>
+      <%= form.simple_fields_for :billing, form.object.billing do |f| %>
         <%= render 'addresses_form', f: f, cast: "billing" %>
       <% end %>
     </div>
@@ -27,7 +27,7 @@
       <div class="visible-xs visible-sm">
         <h3 class="general-subtitle">Shipping Address</h3>
       </div>
-      <%= form.simple_fields_for :shipping, Address.new(cast: :shipping) do |f| %>
+      <%= form.simple_fields_for :shipping, form.object.shipping do |f| %>
         <%= render 'addresses_form', f: f, cast: "shipping" %>
       <% end %>
       <div class="form-group checkbox">

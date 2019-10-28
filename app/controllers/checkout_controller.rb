@@ -36,8 +36,13 @@ class CheckoutController < ApplicationController
   end
 
   def show_addresses
-    @billing = Address.new(show_address_params)
-    @shipping = Address.new(show_address_params)
+    @addresses = AddressesForm.new(current_user, current_order, show_address_params)
+    # binding.pry
+  end
+
+  def update_addresses
+    @addresses = AddressesForm.new(current_user, current_order, addresses_params)
+    render_wizard unless @addresses.save
   end
 
   def show_delivery
@@ -57,31 +62,30 @@ class CheckoutController < ApplicationController
   end
 
   def update_confirm
-
+    session[:current_order_complete] = true
+    current_order.check_status
+    current_order.check_total_price
+    current_order.check_completed_at
+    session[:line_item_ids] = nil
+    coupon = Coupon.find_by(id: session[:order_id])
+    coupon.update(active: false) if coupon
+    session[:coupon_id] = nil
   end
 
   def update_complete
   end
 
   def show_complete
-    return jump_to(previous_step) unless session[:order_complete]
+    return jump_to(previous_step) unless session[:current_order_complete]
 
-    @order = current_user.orders.in_queue.last
-    session[:order_complete] = false
+    @order = current_order
+    # session[:current_order_complete] = false
+    # session[:order_id] = nil
   end
 
   def update_delivery
     current_order.update_attributes(order_params)
     flash[:danger] = 'Please choose delivery method!' if current_order.delivery_id.nil?
-  end
-
-  def update_addresses
-    @billing = Address.new(billing_params)
-    @shipping = Address.new(shipping_params)
-    @billing.addressable = current_order
-    @shipping.addressable = current_order
-
-    render_wizard unless @billing.save && @shipping.save
   end
 
   def update_payment
@@ -102,14 +106,8 @@ class CheckoutController < ApplicationController
     { addressable_type: "Order", addressable_id: current_order.id }
   end
 
-  def billing_params
-    billing_params = params[:order][:billing].keys
-    params.require(:order).permit(billing: billing_params)[:billing]
-  end
-
-  def shipping_params
-    shipping_params = params[:order][:shipping].keys
-    params.require(:order).permit(shipping: shipping_params)[:shipping]
+  def addresses_params
+    params.require(:addresses_form)
   end
 
   def credit_card_params

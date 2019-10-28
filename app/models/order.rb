@@ -8,6 +8,18 @@ class Order < ApplicationRecord
 
   before_create :set_number
 
+  def check_status
+    update(status: 1)
+  end
+
+  def check_total_price
+    update(total_price: total_order_price)
+  end
+
+  def check_completed_at
+    update(completed_at: Time.current)
+  end
+
   def total_price
     line_items.map { |item| item.book.price * item.quantity }.sum
   end
@@ -28,6 +40,7 @@ class Order < ApplicationRecord
 
   def set_number
     self.number ||= generate_number
+    self.status = 0
   end
 
   def generate_number
