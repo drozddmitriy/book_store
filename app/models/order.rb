@@ -8,15 +8,15 @@ class Order < ApplicationRecord
 
   before_create :set_number
 
-  def check_status
+  def set_status
     update(status: 1)
   end
 
-  def check_total_price
+  def set_total_price
     update(total_price: total_order_price)
   end
 
-  def check_completed_at
+  def set_completed_at
     update(completed_at: Time.current)
   end
 

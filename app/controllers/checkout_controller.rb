@@ -63,9 +63,9 @@ class CheckoutController < ApplicationController
 
   def update_confirm
     session[:current_order_complete] = true
-    current_order.check_status
-    current_order.check_total_price
-    current_order.check_completed_at
+    current_order.set_status
+    current_order.set_total_price
+    current_order.set_completed_at
     session[:line_item_ids] = nil
     coupon = Coupon.find_by(id: session[:order_id])
     coupon.update(active: false) if coupon
@@ -79,6 +79,7 @@ class CheckoutController < ApplicationController
     return jump_to(previous_step) unless session[:current_order_complete]
 
     @order = current_order
+    OrderMailer.confirm_order(current_user).deliver_now
     # session[:current_order_complete] = false
     # session[:order_id] = nil
   end
