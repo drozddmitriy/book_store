@@ -13,13 +13,13 @@
     </div>
     <div class="col-sm-3">
       <%= form.input :cvv, label: 'CVV', required: false, placeholder: 'CVV', input_html: { class: 'relative' } %>
-      <i class="fa fa-question-circle general-form-help pr-15"></i>
+      <i class="fa fa-question-circle general-form-help pr-15" data-placement="<%= :top %>" data-toggle="tooltip" title="3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front"></i>
     </div>
   </div>
   <div class="general-text-align">
     <p class="in-gold-500 font-18">Order Summary</p>
     <table class="general-summary-table">
-      <%= render 'order_coupon_summary' %>
+      <%= render 'order_summary' %>
     </table>
   </div>
   <div class="pull-right">

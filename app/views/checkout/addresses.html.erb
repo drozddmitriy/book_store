@@ -42,7 +42,9 @@
   </div>
   <div class="general-text-align mb-60">
     <p class="in-gold-500 font-18">Order Summary</p>
-    <%= render 'order_summary' %>
+    <table class="general-summary-table">
+      <%= render 'order_summary' %>
+    </table>
   </div>
   <div class="actions text-center">
     <%= form.submit "Save and Continue", class: 'btn btn-default mb-20' %>

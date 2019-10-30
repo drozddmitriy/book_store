@@ -6,6 +6,7 @@ class LineItemsController < ApplicationController
   end
 
   def create
+    # binding.pry
     @line_item = LineItem.find_or_initialize_by(book_id: params[:line_item][:book_id], order_id: current_order.id)
     @line_item.quantity = params[:line_item][:quantity]
     if @line_item.save
@@ -52,15 +53,15 @@ class LineItemsController < ApplicationController
   end
 
   def line_item_ids
-   session[:line_item_ids] ||= []
- end
+    session[:line_item_ids] ||= []
+  end
 
- def create_line_item
-   return if line_item_ids.include?(@line_item.id)
-   line_item_ids << @line_item.id
- end
+  def create_line_item
+    return if line_item_ids.include?(@line_item.id)
+    line_item_ids << @line_item.id
+  end
 
- def destroy_line_item
-   line_item_ids.delete_if { |item_id| item_id == @line_item.id }
- end
+  def destroy_line_item
+    line_item_ids.delete_if { |item_id| item_id == @line_item.id }
+  end
 end
