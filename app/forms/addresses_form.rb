@@ -1,6 +1,8 @@
 class AddressesForm
   include ActiveModel::Model
 
+  attr_reader :user, :order, :billing, :shipping, :params, :use_billing
+
   def initialize(user, order, addresses_params = nil)
     @user = user
     @order = order
@@ -24,28 +26,38 @@ class AddressesForm
   private
 
   def save_billing
-    @billing = @order.addresses.billing.first_or_initialize
+    @billing = order.addresses.billing.first_or_initialize
     @billing.update(address_params(:billing))
   end
 
   def save_shipping
-    @shipping = @order.addresses.shipping.first_or_initialize
-    @shipping.update(address_params(:shipping))
+    @shipping = order.addresses.shipping.first_or_initialize
+    @shipping.update(set_address_cast(address_params(type)))
   end
 
   def set_billing
-    return @user.addresses.billing.first_or_initialize if @order.addresses.billing.none?
+    return user.addresses.billing.first_or_initialize if order.addresses.billing.none?
 
-    @order.addresses.billing.first_or_initialize
+    order.addresses.billing.first_or_initialize
   end
 
   def set_shipping
-    return @user.addresses.shipping.first_or_initialize if @order.addresses.shipping.none?
+    return user.addresses.shipping.first_or_initialize if order.addresses.shipping.none?
 
-    @order.addresses.shipping.first_or_initialize
+    order.addresses.shipping.first_or_initialize
   end
 
   def address_params(type)
-    @params.require(type).permit(:firstname, :lastname, :address, :city, :zip, :country, :phone, :cast)
+    params.require(type).permit(:firstname, :lastname, :address, :city, :zip, :country, :phone, :cast)
+  end
+
+  def set_address_cast(params)
+    params[:cast] = 'shipping' if params[:use_billing]
+
+    params
+  end
+
+  def type
+    params[:use_billing] ? :billing : :shipping
   end
 end

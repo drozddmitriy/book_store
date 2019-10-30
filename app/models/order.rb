@@ -16,6 +16,14 @@ class Order < ApplicationRecord
     update(total_price: total_order_price)
   end
 
+  def set_order_use_billing(use_billing)
+    if use_billing
+      update(use_billing: true)
+    else
+      update(use_billing: false)
+    end
+  end
+
   def set_completed_at
     update(completed_at: Time.current)
   end

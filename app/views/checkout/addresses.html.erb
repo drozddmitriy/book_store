@@ -20,35 +20,36 @@
         <p class="general-info-text">all fields are required</p>
       </div>
       <%= form.simple_fields_for :billing, form.object.billing do |f| %>
-        <%= render 'addresses_form', f: f, cast: "billing" %>
-      <% end %>
+      <%= render 'addresses_form', f: f, cast: "billing" %>
+    <% end %>
+  </div>
+  <div class="col-md-5 col-md-offset-1 mb-60">
+     <div class="hideShipping">
+    <div class="visible-xs visible-sm">
+      <h3 class="general-subtitle">Shipping Address</h3>
     </div>
-    <div class="col-md-5 col-md-offset-1 mb-60">
-      <div class="visible-xs visible-sm">
-        <h3 class="general-subtitle">Shipping Address</h3>
-      </div>
-      <%= form.simple_fields_for :shipping, form.object.shipping do |f| %>
-        <%= render 'addresses_form', f: f, cast: "shipping" %>
-      <% end %>
-      <div class="form-group checkbox">
-        <label class="checkbox-label">
-          <input type="checkbox" hidden="true" class="checkbox-input"/>
-          <span class="checkbox-icon">
-            <i class="fa fa-check"></i>
-          </span>
-          <span class="checkbox-text">Use Billing Adress</span></label>
-      </div>
-    </div>
+    <%= form.simple_fields_for :shipping, form.object.shipping do |f| %>
+    <%= render 'addresses_form', f: f, cast: "shipping" %>
+  <% end %>
   </div>
-  <div class="general-text-align mb-60">
-    <p class="in-gold-500 font-18">Order Summary</p>
-    <table class="general-summary-table">
-      <%= render 'order_summary' %>
-    </table>
+  <div class="form-group checkbox">
+    <label class="checkbox-label">
+      <%= form.check_box :use_billing,{ id: 'use_billing', class: 'checkbox-input', hidden: true, checked: @addresses.order.use_billing } %>
+      <span class="checkbox-icon">
+        <i class="fa fa-check"></i>
+      </span>
+      <span class="checkbox-text">Use Billing Adress</span></label>
   </div>
-  <div class="actions text-center">
-    <%= form.submit "Save and Continue", class: 'btn btn-default mb-20' %>
-  </div>
+</div>
+</div>
+<div class="general-text-align mb-60">
+<p class="in-gold-500 font-18">Order Summary</p>
+<table class="general-summary-table">
+  <%= render 'order_summary' %>
+</table>
+</div>
+<div class="actions text-center">
+<%= form.submit "Save and Continue", class: 'btn btn-default mb-20' %>
+</div>
 <% end %>
-
 </main>

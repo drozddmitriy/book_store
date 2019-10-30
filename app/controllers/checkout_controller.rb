@@ -37,10 +37,11 @@ class CheckoutController < ApplicationController
 
   def show_addresses
     @addresses = AddressesForm.new(current_user, current_order, show_address_params)
-    # binding.pry
   end
 
   def update_addresses
+    current_order.set_order_use_billing(addresses_params[:use_billing])
+
     @addresses = AddressesForm.new(current_user, current_order, addresses_params)
     render_wizard unless @addresses.save
   end

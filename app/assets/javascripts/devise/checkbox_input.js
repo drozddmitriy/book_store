@@ -1,4 +1,4 @@
- function checkForm(f) {
-  if (f.check.checked) f.commit.disabled = 0
-  else f.commit.disabled = 1
+ function checkForm(form) {
+  if (form.check.checked) form.commit.disabled = 0
+  else form.commit.disabled = 1
  }
