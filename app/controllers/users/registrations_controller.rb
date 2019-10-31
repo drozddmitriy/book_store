@@ -1,5 +1,22 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+  def quik_register
+    user = User.new({
+                  email: params[:user][:email],
+                  password: Devise.friendly_token.first(Devise.password_length.first)
+                  })
+
+    if params[:user][:email].present?
+      user.confirm
+      user.save
+      sign_up(:user, user)
+      user.send_reset_password_instructions
+      redirect_to checkout_path(:addresses)
+    else
+      redirect_to checkout_path(:login)
+    end
+  end
+
   protected
 
   def update_resource(resource, params)
