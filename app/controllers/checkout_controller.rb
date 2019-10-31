@@ -68,7 +68,7 @@ class CheckoutController < ApplicationController
     current_order.set_total_price
     current_order.set_completed_at
     session[:line_item_ids] = nil
-    coupon = Coupon.find_by(id: session[:order_id])
+    coupon = Coupon.find_by(id: session[:coupon_id])
     coupon.update(active: false) if coupon
     session[:coupon_id] = nil
   end
