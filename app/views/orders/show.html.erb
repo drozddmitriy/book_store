@@ -1,35 +1,42 @@
 <main class="container general-main-wrap">
-  <h1 class="general-title-margin">Checkout</h1>
-  <%= render 'steps_header' %>
-  <div class="text-center mb-40">
-    <h3 class="general-subtitle">Thank You for your Order!</h3>
-    <p class="fw-300"><%= "An order confirmation has been sent to #{current_user.email}" %></p>
-  </div>
+  <h1 class="general-title-margin"><%= "Order #{@order.number}" %></h1>
   <div class="row mb-20">
-    <div class="col-sm-6">
-      <div class="visible-xs">
-        <p class="general-order-number mb-0"><%= "Order ##{@order.number}" %></p>
-        <p class="general-address mb-30"><%= @order.completed_at.strftime("%B %-d, %Y") %></p>
-      </div>
+    <% @order.addresses.each do |current_address| %>
+    <div class="col-sm-3">
+      <h3 class="general-subtitle mt-0"><%= "#{current_address.cast.capitalize} Address" %></h3>
       <p class="general-address">
-        <%= "#{@order.addresses.first.firstname} #{@order.addresses.first.lastname}" %>
+        <%= "#{current_address.firstname} #{current_address.lastname}" %>
+        <%= link_to "edit", checkout_path(:addresses), class: "general-edit" %>
         <br/>
-        <%= @order.addresses.first.address %>
+        <%= current_address.address %>
         <br/>
-        <%= "#{@order.addresses.first.city} #{@order.addresses.first.zip}" %>
+        <%= "#{current_address.city} #{current_address.zip}" %>
         <br/>
-        <%= @order.addresses.first.country %>
+        <%= current_address.country %>
         <br/>
-        <%= "Phone #{@order.addresses.first.phone}" %>
+      <%= "Phone #{current_address.phone}" %>
+    </p>
+    </div>
+    <% end %>
+    <div class="col-sm-3">
+      <h3 class="general-subtitle mt-0">Shipments</h3>
+      <p class="general-address">
+        <%= @order.delivery.name %>
+        <br/>
+        <%= @order.delivery.time %>
       </p>
     </div>
-    <div class="col-sm-6 hidden-xs text-right">
-      <p class="general-order-number mb-0"><%= "Order ##{@order.number}" %></p>
-      <p class="general-address mb-30"><%= @order.completed_at.strftime("%B %-d, %Y") %></p>
+    <div class="col-sm-3">
+      <h3 class="general-subtitle mt-0">Payment Information</h3>
+      <p class="general-address">
+        <%= "**** **** **** #{@order.credit_card.card_number.last(4)}" %>
+        <br/>
+        <%= @order.credit_card.expiration_month_year %>
+      </p>
     </div>
   </div>
   <div class="visible-xs">
-    <% current_order.line_items.each do |line_item| %>
+    <% @order.line_items.each do |line_item| %>
       <div class="general-cart-item divider-lg">
         <div class="general-img-wrap-table">
           <%= link_to line_item.book.images.first.url do %>
@@ -94,7 +101,7 @@
         </tr>
       </thead>
       <tbody>
-        <% current_order.line_items.each do |line_item| %>
+        <% @order.line_items.each do |line_item| %>
           <tr>
             <td>
               <div class="general-img-wrap-table">
@@ -134,10 +141,7 @@
   <div class="text-center general-text-right">
     <p class="in-gold-500 font-18">Order Summary</p>
     <table class="general-summary-table general-summary-table-right general-text-right">
-      <%= render 'order_summary', order: @order %>
+      <%= render 'checkout/order_summary', order: @order %>
     </table>
-  </div>
-  <div class="text-center">
-    <%= link_to "Back to Store", root_path, class: 'btn btn-default mb-20' %>
   </div>
 </main>

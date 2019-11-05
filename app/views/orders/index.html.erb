@@ -2,83 +2,60 @@
   <h1 class="mt-0 mb-25">My Orders</h1>
   <p class="lead small mb-10 visible-xs">Sort by</p>
   <div class="dropdowns dropdown general-order-dropdown">
-    <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small">Waiting for processing
+    <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle lead small">
+      <%= @active_filter %>
       <i class="fa fa-angle-down dropdown-icon pull-right"></i>
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="#">Newest first</a>
+        <%= link_to 'All', orders_path(order_status: 'all_orders') %>
       </li>
       <li>
-        <a href="#">Popular first</a>
+        <%= link_to 'Waiting for processing', orders_path(order_status: 'in_queue') %>
       </li>
       <li>
-        <a href="#">Price: Low to hight</a>
+        <%= link_to 'In delivery', orders_path(order_status: 'in_delivery') %>
       </li>
       <li>
-        <a href="#">Price: Low to hight</a>
+        <%= link_to 'Delivered', orders_path(order_status: 'delivered') %>
+      </li>
+      <li>
+        <%= link_to 'Canceled', orders_path(order_status: 'canceled') %>
       </li>
     </ul>
   </div>
   <div class="visible-xs">
+    <% @orders.each do |order| %>
     <div class="general-cart-item divider-lg-bottom pt-0">
       <table class="table">
         <tr>
           <td class="col-half">
             <span class="in-grey-600">Number</span></td>
           <td class="col-half">
-            <span class="general-order-number">R25314582</span></td>
+            <span class="general-order-number"><%= order.number %></span></td>
         </tr>
         <tr>
           <td>
             <span class="in-grey-600">Completed at</span></td>
           <td>
-            <span class="in-grey-900 font-16 fw-300">2016-11-14</span></td>
+            <span class="in-grey-900 font-16 fw-300"><%= order.completed_at.strftime("%Y-%m-%d") %></span></td>
         </tr>
         <tr>
           <td>
             <span class="in-grey-600">Status</span></td>
           <td>
-            <span class="font-16 in-grey-900 fw-300">In Progress</span></td>
+            <span class="font-16 in-grey-900 fw-300"><%= order.status.capitalize %></span></td>
         </tr>
         <tr>
           <td>
             <span class="in-grey-600">Total</span></td>
           <td>
-            <strong class="font-16">€32.90</strong>
+            <strong class="font-16"><%= number_to_currency(order.total_price, unit: "€") %></strong>
           </td>
         </tr>
       </table>
     </div>
-    <div class="general-cart-item">
-      <table class="table">
-        <tr>
-          <td class="col-half">
-            <span class="in-grey-600">Number</span></td>
-          <td class="col-half">
-            <span class="general-order-number">R25314582</span></td>
-        </tr>
-        <tr>
-          <td>
-            <span class="in-grey-600">Completed at</span></td>
-          <td>
-            <span class="in-grey-900 font-16 fw-300">2016-11-14</span></td>
-        </tr>
-        <tr>
-          <td>
-            <span class="in-grey-600">Status</span></td>
-          <td>
-            <span class="font-16 fw-300 text-success">Delivered</span></td>
-        </tr>
-        <tr>
-          <td>
-            <span class="in-grey-600">Total</span></td>
-          <td>
-            <strong class="font-16">€32.90</strong>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <% end %>
   </div>
   <div class="hidden-xs mb-res-50">
     <table class="table table-hover">
@@ -95,28 +72,23 @@
         </tr>
       </thead>
       <tbody>
+        <% @orders.each do |order| %>
         <tr>
           <td>
-            <span class="general-order-number">R25314582</span></td>
+            <%= link_to order_path(order), class: "nav-link" do %>
+              <span class="general-order-number">
+                <%= order.number %>
+              </span>
+            <% end %>
           <td>
-            <span class="in-grey-900 font-16 fw-300">2016-11-14</span></td>
+            <span class="in-grey-900 font-16 fw-300"><%= order.completed_at.strftime("%Y-%m-%d") %></span></td>
           <td>
-            <span class="font-16 in-grey-900 fw-300">In Progress</span></td>
+            <span class="font-16 in-grey-900 fw-300"><%= order.status.capitalize %></span></td>
           <td>
-            <strong class="font-16">€32.90</strong>
+            <strong class="font-16"><%= number_to_currency(order.total_price, unit: "€") %></strong>
           </td>
         </tr>
-        <tr>
-          <td>
-            <span class="general-order-number">R25314582</span></td>
-          <td>
-            <span class="in-grey-900 font-16 fw-300">2016-11-14</span></td>
-          <td>
-            <span class="font-16 fw-300 text-success">Delivered</span></td>
-          <td>
-            <strong class="font-16">€32.90</strong>
-          </td>
-        </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

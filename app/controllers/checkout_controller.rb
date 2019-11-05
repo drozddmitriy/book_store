@@ -41,6 +41,7 @@ class CheckoutController < ApplicationController
 
   def update_addresses
     current_order.set_order_use_billing(addresses_params[:use_billing])
+    current_order.update(step: :delivery)
 
     @addresses = AddressesForm.new(current_user, current_order, addresses_params)
     render_wizard unless @addresses.save
@@ -64,9 +65,13 @@ class CheckoutController < ApplicationController
 
   def update_confirm
     session[:current_order_complete] = true
-    current_order.set_status
+    # current_order.set_status
     current_order.set_total_price
     current_order.set_completed_at
+    current_order.update(step: :complete)
+
+    binding.pry
+
     session[:line_item_ids] = nil
     coupon = Coupon.find_by(id: session[:coupon_id])
     coupon.update(active: false) if coupon
@@ -79,14 +84,19 @@ class CheckoutController < ApplicationController
   def show_complete
     return jump_to(previous_step) unless session[:current_order_complete]
 
+    binding.pry
     @order = current_order
-    OrderMailer.confirm_order(current_user).deliver_now
-    # session[:current_order_complete] = false
-    # session[:order_id] = nil
+    current_order.set_user_id(current_user.id)
+    # current_user.orders.last.in_queue
+    binding.pry
+    # OrderMailer.confirm_order(current_user).deliver_now
+    session[:current_order_complete] = false
+    session[:order_id] = nil
   end
 
   def update_delivery
     current_order.update_attributes(order_params)
+    current_order.update(step: :payment)
     flash[:danger] = 'Please choose delivery method!' if current_order.delivery_id.nil?
   end
 
@@ -94,6 +104,7 @@ class CheckoutController < ApplicationController
     @credit_card = CreditCard.new(credit_card_params)
     render_wizard unless @credit_card.save
     current_order.update_attributes(credit_card_id: @credit_card.id)
+    current_order.update(step: :confirm)
   end
 
   private

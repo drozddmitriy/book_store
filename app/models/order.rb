@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include AASM
+
   belongs_to :credit_card, optional: true
   belongs_to :delivery, optional: true
   belongs_to :user, optional: true
@@ -8,9 +10,45 @@ class Order < ApplicationRecord
 
   before_create :set_number
 
-  def set_status
-    update(status: 1)
+  enum status: %i[in_progress in_queue in_delivery delivered canceled]
+
+  scope :all_orders, -> { where(status: %w[in_progress]).order('created_at DESC') }
+
+  aasm :status, column: :status do
+    state :in_progress, initial: true
+    state :in_queue
+    state :in_delivery
+    state :delivered
+    state :canceled
+
+    event :place_in_queue do
+      transitions from: %i[in_progress], to: %i[in_queue]
+    end
+
+    event :order_in_delivery do
+      transitions from: %i[in_queue], to: %i[in_delivery]
+    end
+
+    event :order_delivered do
+      transitions from: %i[in_delivery], to: %i[delivered]
+    end
+
+    event :canceled do
+      transitions from: %i[in_queue in_delivery in_progress delivered], to: %i[canceled]
+    end
   end
+
+  aasm :step, column: :step do
+    state :addresses, initial: true
+    state :delivery
+    state :payment
+    state :confirm
+    state :complete
+  end
+
+  # def set_status
+  #   update(status: 1)
+  # end
 
   def set_total_price
     update(total_price: total_order_price)
@@ -22,6 +60,10 @@ class Order < ApplicationRecord
     else
       update(use_billing: false)
     end
+  end
+
+  def set_user_id(user_id)
+    update(user_id: user_id)
   end
 
   def set_completed_at
