@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
 
   def index
     # order_status = params[:order_status]
-    # order_status = 'in_progress'
+    order_status = 'in_progress'
     binding.pry
 
     @orders = case order_status
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
               else current_user.orders.all_orders
               end
 
-    @active_filter = order_status ? ORDER_STATUSES[order_status.to_sym] : 'All'
+    @filter = order_status ? ORDER_STATUSES[order_status.to_sym] : 'All'
   end
 
   def show

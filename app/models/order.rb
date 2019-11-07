@@ -38,14 +38,6 @@ class Order < ApplicationRecord
     end
   end
 
-  aasm :step, column: :step do
-    state :addresses, initial: true
-    state :delivery
-    state :payment
-    state :confirm
-    state :complete
-  end
-
   # def set_status
   #   update(status: 1)
   # end

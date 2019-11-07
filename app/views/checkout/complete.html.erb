@@ -29,7 +29,7 @@
     </div>
   </div>
   <div class="visible-xs">
-    <% current_order.line_items.each do |line_item| %>
+    <% @order.line_items.each do |line_item| %>
       <div class="general-cart-item divider-lg">
         <div class="general-img-wrap-table">
           <%= link_to line_item.book.images.first.url do %>
@@ -94,7 +94,7 @@
         </tr>
       </thead>
       <tbody>
-        <% current_order.line_items.each do |line_item| %>
+        <% @order.line_items.each do |line_item| %>
           <tr>
             <td>
               <div class="general-img-wrap-table">
