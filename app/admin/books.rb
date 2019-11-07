@@ -1,6 +1,6 @@
 ActiveAdmin.register Book do
   preserve_default_filters!
-  remove_filter :authors_books
+  remove_filter :authors_books, :line_items
   filter :authors, collection: -> { Author.all.map { |author| author.firstname + " #{author.lastname}" } }
   permit_params :title, :description, :price, :quantity, :year, :dimension_h, :dimension_w, :dimension_d, :material, :category_id, author_ids: [], images: []
 

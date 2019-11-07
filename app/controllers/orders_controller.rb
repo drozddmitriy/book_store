@@ -10,9 +10,7 @@ class OrdersController < ApplicationController
   }.freeze
 
   def index
-    # order_status = params[:order_status]
-    order_status = 'in_progress'
-    binding.pry
+    order_status = params[:order_status]
 
     @orders = case order_status
               when 'in_queue' then current_user.orders.in_queue
@@ -27,6 +25,5 @@ class OrdersController < ApplicationController
 
   def show
     @order = current_user.orders.find_by(id: params[:id])
-    # binding.pry
   end
 end

@@ -82,7 +82,7 @@ class CheckoutController < ApplicationController
     binding.pry
     @order = current_order
     current_order.set_user_id(current_user.id)
-    # current_user.orders.last.place_in_queue!
+    current_user.orders.last.place_in_queue!
     binding.pry
     # OrderMailer.confirm_order(current_user).deliver_now
     session[:current_order_complete] = false

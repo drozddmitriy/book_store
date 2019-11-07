@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   include AASM
+  attr_accessor :active_admin_requested_event
 
   belongs_to :credit_card, optional: true
   belongs_to :delivery, optional: true
@@ -12,9 +13,9 @@ class Order < ApplicationRecord
 
   enum status: %i[in_progress in_queue in_delivery delivered canceled]
 
-  scope :all_orders, -> { where(status: %w[in_progress]).order('created_at DESC') }
+  scope :all_orders, -> { order('created_at DESC') }
 
-  aasm :status, column: :status do
+  aasm column: :status, enum: true do
     state :in_progress, initial: true
     state :in_queue
     state :in_delivery
