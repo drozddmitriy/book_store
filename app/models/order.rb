@@ -13,7 +13,7 @@ class Order < ApplicationRecord
 
   enum status: %i[in_progress in_queue in_delivery delivered canceled]
 
-  scope :all_orders, -> { order('created_at DESC') }
+  scope :all_orders, -> { where.not(status: :in_progress).order('created_at DESC') }
 
   aasm column: :status, enum: true do
     state :in_progress, initial: true
@@ -22,26 +22,22 @@ class Order < ApplicationRecord
     state :delivered
     state :canceled
 
-    event :place_in_queue do
-      transitions from: %i[in_progress], to: %i[in_queue]
+    event :order_in_queue do
+      transitions from: :in_progress, to: :in_queue
     end
 
     event :order_in_delivery do
-      transitions from: %i[in_queue], to: %i[in_delivery]
+      transitions from: :in_queue, to: :in_delivery
     end
 
     event :order_delivered do
-      transitions from: %i[in_delivery], to: %i[delivered]
+      transitions from: :in_delivery, to: :delivered
     end
 
     event :canceled do
-      transitions from: %i[in_queue in_delivery in_progress delivered], to: %i[canceled]
+      transitions from: %i[in_progress in_queue in_delivery delivered], to: :canceled
     end
   end
-
-  # def set_status
-  #   update(status: 1)
-  # end
 
   def set_total_price
     update(total_price: total_order_price)
