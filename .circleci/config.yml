@@ -1,13 +1,11 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/circle_ci_example
     docker:
        - image: circleci/ruby:2.5.3-node-browsers
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
       - image: circleci/postgres:9.4
 
     working_directory: ~/repo
