@@ -5,7 +5,7 @@ RSpec.describe CouponsController, type: :controller do
     let!(:coupon) { create(:coupon) }
 
     context 'valid coupon' do
-      before { put :update, params: { coupon: 'COUPON', active: true } }
+      before { put :update, params: { coupon: 'COUPONNNNN', active: true } }
 
 
       it 'redirect to Cart' do
