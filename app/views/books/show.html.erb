@@ -51,12 +51,10 @@
     </div>
     <div class="general-info-wrap divider-lg">
       <p><%= I18n.t('views.books.book_description') %></p>
-      <p class="lead small line-height-2">
-        <% unless @book.description.size < 250 || params[:flag] %>
-          <%= truncate(@book.description, :length => 250) %>
-          <a href="<%= book_path(flag: true) %>" class="in-gold-500 ml-10"><%= I18n.t('views.books.read_more') %></a>
-        <% else %>
-          <%= @book.description %>
+      <p class="lead small line-height-2" id="description">
+        <%= truncate(@book.description, length: 250) %>
+        <% if @book.description.size > 250 %>
+          <%= link_to I18n.t('views.books.read_more'), @book, class: 'in-gold-500 ml-10', remote: true %>
         <% end %>
       </p>
     </div>

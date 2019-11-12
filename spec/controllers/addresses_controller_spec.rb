@@ -31,9 +31,7 @@ RSpec.describe AddressesController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:address_params) do
-      { address: attributes_for(:address) }
-    end
+    let(:address_params) { address: attributes_for(:address) }
 
     before { post :create, params: address_params }
 
