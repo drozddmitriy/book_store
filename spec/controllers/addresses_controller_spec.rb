@@ -21,9 +21,7 @@ RSpec.describe AddressesController, type: :controller do
 
   describe 'PUT #update' do
     let(:address) { create(:address) }
-    let(:address_params) do
-      { address: attributes_for(:address), id: address.id }
-    end
+    let(:address_params) { address: attributes_for(:address), id: address.id }
 
     before { put :update, params: address_params }
 

@@ -39,6 +39,7 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
+  gem 'simplecov'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
