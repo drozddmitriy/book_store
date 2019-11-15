@@ -18,8 +18,7 @@ class Book < ApplicationRecord
   def self.best_sellers
     # SELECT COUNT(*) AS count_all, "book_id" AS book_id FROM "orders" INNER JOIN "line_items" ON "line_items"."order_id" = "orders"."id" WHERE (orders.status = 4) GROUP BY "book_id"
     # binding.pry
-    self.find(Order.joins(:line_items).group(:book_id)
-                    .where("orders.status = ?", 4).count.keys).first(ITEM_BOOK_BEST_SELLERS)
+    self.find(Order.joins(:line_items).group(:book_id).canceled.count.keys).first(ITEM_BOOK_BEST_SELLERS)
   end
 
   def self.by_filter(filter)

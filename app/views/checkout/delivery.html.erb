@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= form.collection_radio_buttons :delivery_id, @deliveries, :id, :name do |line_item| %>
+        <%= form.collection_radio_buttons :delivery_id, @checkout, :id, :name do |line_item| %>
           <tr>
             <td>
               <div class="form-group radio mt-0 mb-0">

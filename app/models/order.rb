@@ -79,7 +79,6 @@ class Order < ApplicationRecord
 
   def set_number
     self.number ||= generate_number
-    self.status = 0
   end
 
   def generate_number

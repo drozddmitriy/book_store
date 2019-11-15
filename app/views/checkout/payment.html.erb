@@ -2,7 +2,7 @@
   <h1 class="general-title-margin">Checkout</h1>
   <%= render 'steps_header' %>
   <h3 class="general-subtitle">Credit Card</h3>
-  <%= simple_form_for @credit_card, url: wizard_path, method: :put, html: {class: 'max-600'} do |form| %>
+  <%= simple_form_for @checkout, url: wizard_path, method: :put, html: {class: 'max-600'} do |form| %>
   <%= form.input :card_number, required: false, label: 'Card Number', placeholder: 'Card Number' %>
   <div class="row">
     <div class="col-sm-6">

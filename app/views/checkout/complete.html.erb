@@ -8,28 +8,28 @@
   <div class="row mb-20">
     <div class="col-sm-6">
       <div class="visible-xs">
-        <p class="general-order-number mb-0"><%= "Order ##{@order.number}" %></p>
-        <p class="general-address mb-30"><%= @order.completed_at.strftime("%B %-d, %Y") %></p>
+        <p class="general-order-number mb-0"><%= "Order ##{@checkout.number}" %></p>
+        <p class="general-address mb-30"><%= @checkout.completed_at.strftime("%B %-d, %Y") %></p>
       </div>
       <p class="general-address">
-        <%= "#{@order.addresses.first.firstname} #{@order.addresses.first.lastname}" %>
+        <%= "#{@checkout.addresses.first.firstname} #{@checkout.addresses.first.lastname}" %>
         <br/>
-        <%= @order.addresses.first.address %>
+        <%= @checkout.addresses.first.address %>
         <br/>
-        <%= "#{@order.addresses.first.city} #{@order.addresses.first.zip}" %>
+        <%= "#{@checkout.addresses.first.city} #{@checkout.addresses.first.zip}" %>
         <br/>
-        <%= @order.addresses.first.country %>
+        <%= @checkout.addresses.first.country %>
         <br/>
-        <%= "Phone #{@order.addresses.first.phone}" %>
+        <%= "Phone #{@checkout.addresses.first.phone}" %>
       </p>
     </div>
     <div class="col-sm-6 hidden-xs text-right">
-      <p class="general-order-number mb-0"><%= "Order ##{@order.number}" %></p>
-      <p class="general-address mb-30"><%= @order.completed_at.strftime("%B %-d, %Y") %></p>
+      <p class="general-order-number mb-0"><%= "Order ##{@checkout.number}" %></p>
+      <p class="general-address mb-30"><%= @checkout.completed_at.strftime("%B %-d, %Y") %></p>
     </div>
   </div>
   <div class="visible-xs">
-    <% @order.line_items.each do |line_item| %>
+    <% @checkout.line_items.each do |line_item| %>
       <div class="general-cart-item divider-lg">
         <div class="general-img-wrap-table">
           <%= link_to line_item.book.images.first.url do %>
@@ -94,7 +94,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @order.line_items.each do |line_item| %>
+        <% @checkout.line_items.each do |line_item| %>
           <tr>
             <td>
               <div class="general-img-wrap-table">
@@ -134,7 +134,7 @@
   <div class="text-center general-text-right">
     <p class="in-gold-500 font-18">Order Summary</p>
     <table class="general-summary-table general-summary-table-right general-text-right">
-      <%= render 'order_summary', order: @order %>
+      <%= render 'order_summary', order: @checkout %>
     </table>
   </div>
   <div class="text-center">

@@ -6,7 +6,6 @@
       <h3 class="general-subtitle mt-0"><%= "#{current_address.cast.capitalize} Address" %></h3>
       <p class="general-address">
         <%= "#{current_address.firstname} #{current_address.lastname}" %>
-        <%= link_to "edit", checkout_path(:addresses), class: "general-edit" %>
         <br/>
         <%= current_address.address %>
         <br/>

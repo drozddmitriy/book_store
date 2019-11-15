@@ -9,7 +9,7 @@ class CouponsController < ApplicationController
       session[:coupon_id] = coupon.id
       flash[:success] = "Coupon applied!"
     else
-      flash[:danger] = "Coupon not applied"
+      flash[:danger] = "Coupon not applied!"
     end
 
     redirect_to line_items_path
