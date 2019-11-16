@@ -1,0 +1,31 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title= I18n.t('views.devise.registrations.log_in')
+    = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
+      %i.fa.fa-facebook-official
+    %p.general-login-text= I18n.t('views.devise.registrations.or')
+  .general-form
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form-inputs
+        .form-group.mb-30
+          = f.label :email, "Enter Email", class:"control-label input-label"
+          = f.input :email, required: false, autofocus: true, input_html: { autocomplete: "email" }, label: false
+        .form-group.mb-30
+          = f.label :password, "Password", class:"control-label input-label"
+          = f.input :password, required: false, input_html: { autocomplete: "current-password" }, label: false
+        - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+          = link_to I18n.t('views.devise.registrations.forgot_password'), new_password_path(resource_name), class: "help-block in-gold-500"
+        - if devise_mapping.rememberable?
+          .form-group.checkbox.text-center.mb-30
+            %label.checkbox-label
+              = f.check_box :remember_me, { class: 'checkbox-input', hidden: 'true', id: 'remember_me' }, 'true', 'false'
+              %span.checkbox-icon
+                %i.fa.fa-check
+              %span.checkbox-text
+                = I18n.t('views.devise.registrations.remember_me')
+        .text-center
+          = f.submit I18n.t('views.devise.registrations.log_in'), class:"btn btn-default mb-20"
+  %p.general-sign-text.text-center
+    Don’t have an Account?
+    - if devise_mapping.registerable? && controller_name != 'registrations'
+      = link_to I18n.t('views.devise.registrations.sign_up'), new_registration_path(resource_name), class:"in-gold-500"
