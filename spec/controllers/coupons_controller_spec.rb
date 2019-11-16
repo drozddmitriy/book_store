@@ -25,7 +25,7 @@ RSpec.describe CouponsController, type: :controller do
       end
 
       it 'show error message' do
-        expect(flash[:danger]).to eq "Coupon not applied"
+        expect(flash[:danger]).to eq "Coupon not applied!"
       end
     end
   end

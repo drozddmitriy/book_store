@@ -40,7 +40,7 @@ class Order < ApplicationRecord
   end
 
   def set_total_price
-    update(total_price: total_order_price)
+    update(total_price: self.decorate.total_order_price)
   end
 
   def set_order_use_billing(use_billing)
@@ -57,22 +57,6 @@ class Order < ApplicationRecord
 
   def set_completed_at
     update(completed_at: Time.current)
-  end
-
-  def total_price
-    line_items.map { |item| item.book.price * item.quantity }.sum
-  end
-
-  def discount
-    return 0 unless coupon
-
-    total_price * coupon.sale / 100
-  end
-
-  def total_order_price
-    return total_price unless coupon
-
-    total_price - discount
   end
 
   private

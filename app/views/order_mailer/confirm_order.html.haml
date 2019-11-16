@@ -1,0 +1,6 @@
+%p
+  = "Hi #{@user.email}!"
+%p Thanks for choosing us!
+%p Please visit our site for checking your status of order.
+%p
+  = link_to 'Check it', orders_url(host: "localhost:3000")

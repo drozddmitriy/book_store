@@ -11,16 +11,9 @@ class OrdersController < ApplicationController
 
   def index
     order_status = params[:order_status]
+    @orders = OrderDecorator.decorate_collection(OrderFiltersService.filter(order_status, current_user))
 
-    @orders = case order_status
-              when 'in_queue' then current_user.orders.in_queue
-              when 'in_delivery' then current_user.orders.in_delivery
-              when 'delivered' then current_user.orders.delivered
-              when 'canceled' then current_user.orders.canceled
-              else current_user.orders.all_orders
-              end
-
-    @filter = order_status ? ORDER_STATUSES[order_status.to_sym] : 'All'
+    @filter = order_status ? ORDER_STATUSES[order_status.to_sym] : ORDER_STATUSES[:all]
   end
 
   def show

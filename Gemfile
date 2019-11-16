@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'haml'
+gem 'haml-rails'
 gem 'aasm'
 gem 'draper'
 gem 'wicked'

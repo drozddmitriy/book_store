@@ -19,7 +19,7 @@
   <div class="general-text-align">
     <p class="in-gold-500 font-18">Order Summary</p>
     <table class="general-summary-table">
-      <%= render 'order_summary', order: current_order %>
+      <%= render 'order_summary', order: current_order.decorate %>
     </table>
   </div>
   <div class="pull-right">

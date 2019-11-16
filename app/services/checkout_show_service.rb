@@ -31,7 +31,7 @@ class CheckoutShowService
     # OrderMailer.confirm_order(current_user).deliver_now
     @session[:current_order_complete] = false
     @session[:order_id] = nil
-    @order
+    @order.decorate
   end
 
   private
