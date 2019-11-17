@@ -17,6 +17,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = current_user.orders.find_by(id: params[:id])
+    @order = current_user.orders.find_by(id: params[:id]).decorate
   end
 end

@@ -39,16 +39,12 @@ class Order < ApplicationRecord
     end
   end
 
-  def set_total_price
-    update(total_price: self.decorate.total_order_price)
+  def set_total_price(total_order_price)
+    update(total_price: total_order_price)
   end
 
   def set_order_use_billing(use_billing)
-    if use_billing
-      update(use_billing: true)
-    else
-      update(use_billing: false)
-    end
+    use_billing ? update(use_billing: true) : update(use_billing: false)
   end
 
   def set_user_id(user_id)
@@ -62,15 +58,6 @@ class Order < ApplicationRecord
   private
 
   def set_number
-    self.number ||= generate_number
-  end
-
-  def generate_number
-    characters = %w(A B C D E F G H J K L M P Q R T W X Y Z 1 2 3 4 5 6 7 8 9)
-    code = ''
-
-    6.times { code << characters.sample }
-
-    code
+    self.number ||= OrderService.generate_number
   end
 end
