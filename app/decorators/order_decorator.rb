@@ -25,4 +25,11 @@ class OrderDecorator < Draper::Decorator
     total_price - discount
   end
 
+  def show_credit_card
+    "**** **** **** #{credit_card.card_number.last(4)}"
+  end
+
+  def show_expiration_month_year
+    credit_card.expiration_month_year
+  end
 end

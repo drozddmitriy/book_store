@@ -11,7 +11,7 @@ class CheckoutController < ApplicationController
 
   def show
     if current_order.line_items.none? && step == :addresses
-      flash[:danger] = 'Cart empty!!!'
+      flash[:danger] = 'Cart empty!'
       return redirect_back(fallback_location: root_path)
     end
 

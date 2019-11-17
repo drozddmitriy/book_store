@@ -7,9 +7,9 @@ class CouponsController < ApplicationController
     if coupon
       coupon.update(order_id: current_order.id)
       session[:coupon_id] = coupon.id
-      flash[:success] = "Coupon applied!"
+      flash[:success] = I18n.t('controllers.coupons.coupon_applied')
     else
-      flash[:danger] = "Coupon not applied!"
+      flash[:danger] = I18n.t('controllers.coupons.coupon_not_applied')
     end
 
     redirect_to line_items_path

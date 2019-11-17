@@ -8,6 +8,15 @@ en:
       address_not_created: 'Address not created'
       address_updated: 'Address updated'
       address_not_updated: 'Address not updated'
+    orders:
+      processing: 'Waiting for processing'
+      in_delivery: 'In delivery'
+      delivered: 'Delivery'
+      canceled: 'Canceled'
+      all: 'All'
+    coupons:
+      coupon_applied: 'Coupon applied!'
+      coupon_not_applied: 'Coupon not applied!'
   models:
     book:
       newest: 'Newest first'
@@ -31,6 +40,21 @@ en:
       title: 'Title'
       review: 'Review'
       post: 'Post'
+    orders:
+      my_orders: 'My Orders'
+      sort_by: 'Sort by'
+      number: 'Number'
+      completed_at: 'Completed at'
+      status: 'Status'
+      total: 'Total'
+      shipments: 'Shipments'
+      payment_information: 'Payment Information'
+      price: 'Price'
+      quantity: 'Quantity'
+      subtotal: 'SubTotal'
+      book: 'Book'
+      price: 'Price'
+      order_summary: 'Order Summary'
     pages:
       log_in: 'Log in'
       sign_up: 'Sign up'
