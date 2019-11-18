@@ -1,0 +1,36 @@
+%main.container
+  %h1.general-title-margin= I18n.t('views.checkout.checkout_title')
+  = render 'steps_header'
+  = simple_form_for @checkout, url: wizard_path, method: :put, class: 'res-mb-100' do |form|
+    .hidden-xs.hidden-sm
+      .row
+        .col-md-5
+          %h3.general-subtitle= I18n.t('views.checkout.billing_address')
+          %p.general-info-text= I18n.t('views.checkout.fields_required')
+        .col-md-5.col-md-offset-1
+          %h3.general-subtitle= I18n.t('views.checkout.shipping_address')
+    .row
+      .col-md-5.mb-40
+        .visible-xs.visible-sm
+          %h3.general-subtitle= I18n.t('views.checkout.billing_address')
+          %p.general-info-text= I18n.t('views.checkout.fields_required')
+        = form.simple_fields_for :billing, form.object.billing do |f|
+          = render 'addresses_form', f: f, cast: "billing"
+      .col-md-5.col-md-offset-1.mb-60
+        .hideShipping
+          .visible-xs.visible-sm
+            %h3.general-subtitle= I18n.t('views.checkout.shipping_address')
+          = form.simple_fields_for :shipping, form.object.shipping do |f|
+            = render 'addresses_form', f: f, cast: "shipping"
+        .form-group.checkbox
+          %label.checkbox-label
+            = form.check_box :use_billing,{ id: 'use_billing', class: 'checkbox-input', hidden: true, checked: @checkout.order.use_billing }, true, false
+            %span.checkbox-icon
+              %i.fa.fa-check
+            %span.checkbox-text= I18n.t('views.checkout.use_billing')
+    .general-text-align.mb-60
+      %p.in-gold-500.font-18= I18n.t('views.checkout.order_summary')
+      %table.general-summary-table
+        = render 'order_summary', order: current_order.decorate
+    .actions.text-center
+      = form.submit I18n.t('views.checkout.save_continue'), class: 'btn btn-default mb-20'

@@ -32,4 +32,28 @@ class OrderDecorator < Draper::Decorator
   def show_expiration_month_year
     credit_card.expiration_month_year
   end
+
+  def date_complete
+    completed_at.strftime("%B %-d, %Y")
+  end
+
+  def full_name_complete
+    "#{addresses.first.firstname} #{addresses.first.lastname}"
+  end
+
+  def address_complete
+    addresses.first.address
+  end
+
+  def city_zip_complete
+    "#{addresses.first.city} #{addresses.first.zip}"
+  end
+
+  def country_complete
+    addresses.first.country
+  end
+
+  def phone_complete
+    "Phone #{addresses.first.phone}"
+  end
 end

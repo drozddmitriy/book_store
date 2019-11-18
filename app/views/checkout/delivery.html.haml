@@ -1,0 +1,36 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= I18n.t('views.checkout.checkout_title')
+  = render 'steps_header'
+  %h3.general-subtitle= I18n.t('views.checkout.shipping_method')
+  = simple_form_for current_order, url: wizard_path do |form|
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.col-method
+            %span.in-grey-600.ml-40= I18n.t('views.checkout.method')
+          %th
+            %span.in-grey-600= I18n.t('views.checkout.days')
+          %th
+            %span.in-grey-600= I18n.t('views.checkout.price')
+      %tbody
+        = form.collection_radio_buttons :delivery_id, @checkout, :id, :name do |line_item|
+          %tr
+            %td
+              .form-group.radio.mt-0.mb-0
+                = line_item.label(class: 'radio-label') do
+                  = line_item.radio_button(class: 'radio-input', hidden: "true")
+                  %span.radio-icon
+                  %span.radio-text
+                    = line_item.text
+            %td
+              %span
+                = line_item.object.time
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(line_item.object.price, unit: "€")
+    .general-text-align
+      %p.in-gold-500.font-18= I18n.t('views.checkout.order_summary')
+      %table.general-summary-table
+        = binding.pry; render 'order_summary', order: current_order.decorate
+    .actions.text-center
+      = form.submit I18n.t('views.checkout.save_continue'), class: 'btn btn-default mb-20'

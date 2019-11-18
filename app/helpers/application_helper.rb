@@ -13,5 +13,4 @@ module ApplicationHelper
   def cart_items_count
     current_order.line_items.count
   end
-
 end

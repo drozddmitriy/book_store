@@ -1,0 +1,27 @@
+.visible-xs
+  - order.line_items.each do |line_item|
+    .general-cart-item.divider-lg
+      .general-img-wrap-table
+        = link_to line_item.book.images.first.url do
+          = image_tag line_item.book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
+      %p.title
+        = line_item.book.title
+      %table.table
+        %tr
+          %td
+            %span.in-grey-600= I18n.t('views.checkout.price')
+          %td
+            %span.font-16.in-gold-500
+              = number_to_currency(line_item.book.price, unit: "€")
+        %tr
+          %td.vertical-middle
+            %span.in-grey-600= I18n.t('views.checkout.quantity')
+          %td
+            %span
+              = line_item.quantity
+        %tr
+          %td
+            %span.in-grey-600= I18n.t('views.checkout.subtotal')
+          %td
+            %span.font-16.in-gold-500
+              = number_to_currency(line_item.total_price, unit: "€")

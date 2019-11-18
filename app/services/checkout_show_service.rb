@@ -23,6 +23,7 @@ class CheckoutShowService
   end
 
   def confirm
+    @order.decorate
   end
 
   def complete
