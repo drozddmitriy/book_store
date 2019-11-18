@@ -1,0 +1,37 @@
+%main.container
+  .row
+    .col-md-5.mb-40
+      .text-center
+        %h3.general-subtitle= I18n.t('views.checkout.returning_customer')
+        = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
+          %i.fa.fa-facebook-official
+        %p.general-login-text= I18n.t('views.checkout.or')
+      .general-form
+        %p.mb-15= I18n.t('views.checkout.with_password')
+        = simple_form_for(User.new, url: user_session_path) do |f|
+          .form-inputs
+            .form-group.mb-30
+              = f.label :email, I18n.t('views.checkout.enter_email'), class:"control-label input-label"
+              = f.input :email, required: false, autofocus: true, input_html: { autocomplete: "email" }, label: false
+            .form-group.mb-30
+              = f.label :password, I18n.t('views.checkout.password'), class:"control-label input-label"
+              = f.input :password, required: false, input_html: { autocomplete: "current-password" }, label: false
+            = link_to I18n.t('views.checkout.forgot_password'), new_user_password_path, class: "help-block in-gold-500"
+            .text-center
+              = f.submit I18n.t('views.checkout.with_password'), class:"btn btn-default mb-20"
+    .col-md-5.col-md-offset-1.mb-60
+      .text-center
+        %h3.general-subtitle= I18n.t('views.checkout.new_customer')
+        = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
+          %i.fa.fa-facebook-official
+        %p.general-login-text= I18n.t('views.checkout.or')
+      .general-form
+        = simple_form_for(User.new, url: users_quik_register_path) do |f|
+          .mb-40
+            %p.mb-5= I18n.t('views.checkout.quik_register')
+            %p.general-info-text.font-12.mb-20= I18n.t('views.checkout.create_password_later')
+            .form-group.mb-30
+              = f.label :email, I18n.t('views.checkout.enter_email'), class:"control-label input-label"
+              = f.input :email, required: false, autofocus: true, input_html: { autocomplete: "email" }, label: false
+          .text-center
+            = f.submit I18n.t('views.checkout.continue_checkout'), class:"btn btn-default mb-20"

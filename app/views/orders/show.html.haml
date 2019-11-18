@@ -1,5 +1,5 @@
 %main.container.general-main-wrap
-  %h1.general-title-margin= "Order #{@order.number}"
+  %h1.general-title-margin= I18n.t('views.checkout.order', order: @order.number)
   .row.mb-20
     - @current_address.each do |address|
       .col-sm-3

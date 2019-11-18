@@ -31,6 +31,6 @@
     .general-text-align
       %p.in-gold-500.font-18= I18n.t('views.checkout.order_summary')
       %table.general-summary-table
-        = binding.pry; render 'order_summary', order: current_order.decorate
+        = render 'order_summary', order: current_order.decorate
     .actions.text-center
       = form.submit I18n.t('views.checkout.save_continue'), class: 'btn btn-default mb-20'

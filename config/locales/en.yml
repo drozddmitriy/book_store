@@ -27,6 +27,16 @@ en:
       price_desc: 'Price: High to low'
   views:
     checkout:
+      continue_checkout: 'Continue to Checkout'
+      create_password_later: "You’ll be able to create password later"
+      quik_register: 'Quik Register'
+      new_customer: 'New Customer'
+      forgot_password: 'Forgot password?'
+      password: 'Password'
+      enter_email: 'Enter Email'
+      with_password: 'Log In with Password'
+      or: 'or'
+      returning_customer: 'Returning Customer'
       checkout_title: 'Checkout'
       billing_address: 'Billing Address'
       shipping_address: 'Shipping Address'
