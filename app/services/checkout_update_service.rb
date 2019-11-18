@@ -1,10 +1,13 @@
 class CheckoutUpdateService
-  def initialize(step, order, user, params, session)
+  attr_reader :order, :session, :user, :params, :step, :flash
+
+  def initialize(step, order, user, params, session, flash)
     @user = user
     @order = order
     @step = step
     @params = params
     @session = session
+    @flash = flash
   end
 
   def call
@@ -20,7 +23,9 @@ class CheckoutUpdateService
 
   def delivery
     @order.update_attributes(order_params)
-    # flash[:danger] = 'Please choose delivery method!' if @order.delivery_id.nil?
+    return @flash[:danger] = 'Please choose delivery method!' if @order.delivery_id.nil?
+
+    @order
   end
 
   def payment

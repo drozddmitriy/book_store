@@ -20,7 +20,7 @@ class CheckoutController < ApplicationController
   end
 
   def update
-    @checkout = CheckoutUpdateService.new(step, current_order, current_user, params, session).call
+    @checkout = CheckoutUpdateService.new(step, current_order, current_user, params, session, flash).call
     render_wizard unless @checkout
     redirect_to next_wizard_path unless performed?
   end
