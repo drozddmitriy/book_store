@@ -1,9 +1,9 @@
 class AddressesController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_addresses
-
-  def index; end
+  def index
+    @addresses = AddressService.new(current_user)
+  end
 
   def create
     @address = Address.new(address_params)
@@ -32,9 +32,5 @@ class AddressesController < ApplicationController
 
   def address_params
     params.require(:address).permit(:firstname, :lastname, :address, :city, :zip, :country, :phone, :cast)
-  end
-
-  def set_addresses
-    @addresses = current_user.addresses
   end
 end
