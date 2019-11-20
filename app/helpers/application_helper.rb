@@ -3,11 +3,10 @@ module ApplicationHelper
 
   def alert_class(key)
     alert_class = case key
-                   when 'notice' then "success"
-                   when 'alert' then "danger"
-                   else key
-                   end
-
+                  when 'notice' then 'success'
+                  when 'alert' then 'danger'
+                  else key
+                  end
   end
 
   def cart_items_count

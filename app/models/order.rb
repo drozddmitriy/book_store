@@ -11,7 +11,7 @@ class Order < ApplicationRecord
 
   before_create :set_number
 
-  enum status: %i[in_progress in_queue in_delivery delivered canceled]
+  enum status: { in_progress: 0, in_queue: 1, in_delivery: 2, delivered: 3, canceled: 4 }
 
   scope :all_orders, -> { where.not(status: :in_progress).order('created_at DESC') }
 

@@ -2,12 +2,10 @@ class OrderDecorator < Draper::Decorator
   delegate_all
 
   def date
-    created_at.strftime("%d/%m/%y")
+    created_at.strftime('%d/%m/%y')
   end
 
-  def status_capitalize
-    status.capitalize
-  end
+  delegate :capitalize, to: :status, prefix: true
 
   def total_price
     line_items.map { |item| item.book.price * item.quantity }.sum
@@ -34,7 +32,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def date_complete
-    completed_at.strftime("%B %-d, %Y")
+    completed_at.strftime('%B %-d, %Y')
   end
 
   def full_name_complete

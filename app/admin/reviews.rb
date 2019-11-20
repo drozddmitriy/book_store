@@ -1,6 +1,6 @@
 ActiveAdmin.register Review do
   preserve_default_filters!
-  filter :user, collection: -> { User.all.map { |user| user.email } }
+  filter :user, collection: -> { User.all.map(&:email) }
   permit_params :rating, :comment, :title
 
   actions :all, except: %i[edit create update destroy]

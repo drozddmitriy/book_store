@@ -11,7 +11,10 @@ ActiveAdmin.register Author do
     column :actions do |resource|
       links = []
       links << link_to(I18n.t('views.admin.edit'), edit_admin_author_path(resource))
-      links << link_to(I18n.t('views.admin.delete'), admin_author_path(resource), method: :delete, data: { confirm: I18n.t('views.admin.are_you_sure_authors', books_count: resource.books.count) })
+      links << link_to(I18n.t('views.admin.delete'),
+                       admin_author_path(resource),
+                       method: :delete,
+                       data: { confirm: I18n.t('views.admin.are_you_sure_authors', books_count: resource.books.count) })
       links.join(' ').html_safe
     end
   end

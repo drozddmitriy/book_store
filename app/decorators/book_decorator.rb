@@ -2,7 +2,7 @@ class BookDecorator < Draper::Decorator
   delegate_all
 
   def author_full_name
-    authors.map { |author| author.firstname + ' ' + author.lastname }.join(", ")
+    authors.map { |author| author.firstname + ' ' + author.lastname }.join(', ')
   end
 
   def book_dimensions

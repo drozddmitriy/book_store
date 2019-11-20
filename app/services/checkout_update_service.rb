@@ -22,7 +22,7 @@ class CheckoutUpdateService
   end
 
   def delivery
-    @order.update_attributes(order_params)
+    @order.update(order_params)
     return @flash[:danger] = 'Please choose delivery method!' if @order.delivery_id.nil?
 
     @order
@@ -32,13 +32,13 @@ class CheckoutUpdateService
     @credit_card = CreditCard.new(credit_card_params)
     # render_wizard unless @credit_card.save
     @credit_card.save
-    @order.update_attributes(credit_card_id: @credit_card.id)
+    @order.update(credit_card_id: @credit_card.id)
   end
 
   def confirm
     # session[:line_item_ids] = nil
     coupon = Coupon.find_by(id: @session[:coupon_id])
-    coupon.update(active: false) if coupon
+    coupon&.update(active: false)
     @session[:coupon_id] = nil
 
     @session[:current_order_complete] = true

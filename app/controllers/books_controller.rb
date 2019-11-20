@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
 
+  ITEMS = 8
   SORTS = {
     newest: I18n.t('models.book.newest'),
     popular_first: I18n.t('models.book.popular_first'),
@@ -10,11 +11,12 @@ class BooksController < ApplicationController
     price_desc: I18n.t('models.book.price_desc')
   }.freeze
 
-  ITEMS = 8
   before_action :set_filter
 
   def index
-    @pagy, @books = pagy_countless(BookService.new(params[:category], @filter).call, items: ITEMS, link_extra: 'data-remote="true"')
+    @pagy, @books = pagy_countless(BookService.new(params[:category], @filter).call,
+                                   items: ITEMS,
+                                   link_extra: 'data-remote="true"')
     @categories = Category.all
     @category_title = BookService.new(params[:category]).category_title
     @item = LineItem.new

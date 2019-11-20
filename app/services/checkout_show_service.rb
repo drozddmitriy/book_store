@@ -38,8 +38,8 @@ class CheckoutShowService
   private
 
   def show_address_params
-    return { addressable_type: "User", addressable_id: @user.id } if @order.addresses.empty?
+    return { addressable_type: 'User', addressable_id: @user.id } if @order.addresses.empty?
 
-    { addressable_type: "Order", addressable_id: @order.id }
+    { addressable_type: 'Order', addressable_id: @order.id }
   end
 end

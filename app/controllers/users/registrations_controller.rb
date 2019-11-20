@@ -1,10 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
   def quik_register
-    user = User.new({
-                  email: params[:user][:email],
-                  password: Devise.friendly_token.first(Devise.password_length.first)
-                  })
+    user = User.new(
+      email: params[:user][:email],
+      password: Devise.friendly_token.first(Devise.password_length.first)
+    )
 
     if params[:user][:email].present?
       user.confirm

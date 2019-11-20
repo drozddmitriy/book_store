@@ -7,8 +7,7 @@ class ApplicationController < ActionController::Base
 
   def current_order
     order = Order.find_or_create_by(id: session[:order_id])
-        
-    # binding.pry
+
     session[:order_id] = order.id
     order
   end

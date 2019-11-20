@@ -1,5 +1,6 @@
-Rails:
-  Enabled: true
+require:
+  - rubocop-rspec
+  - rubocop-rails
 
 Rails/SkipsModelValidations:
   Enabled: false
@@ -36,3 +37,10 @@ Metrics/CyclomaticComplexity:
 
 Metrics/AbcSize:
   Max: 25
+
+AllCops:
+  Excludes:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'

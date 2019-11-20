@@ -8,7 +8,11 @@ ActiveAdmin.register Category do
     column :actions do |resource|
       links = []
       links << link_to(I18n.t('views.admin.edit'), edit_admin_category_path(resource))
-      links << link_to(I18n.t('views.admin.delete'), admin_category_path(resource), method: :delete, data: { confirm: I18n.t('views.admin.are_you_sure_categorie', books_count: resource.books.count) })
+      links << link_to(I18n.t('views.admin.delete'),
+                       admin_category_path(resource),
+                       method: :delete,
+                       data: { confirm: I18n.t('views.admin.are_you_sure_categorie',
+                                               books_count: resource.books.count) })
       links.join(' ').html_safe
     end
   end
