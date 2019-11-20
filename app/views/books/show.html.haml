@@ -54,7 +54,7 @@
     %h3.in-gold-500.mb-25
       = I18n.t('views.books.reviews')
       (#{@book.book_reviews})
-    - @book.reviews.each do |review|
+    - @book.reviews.includes(:user).each do |review|
       - if review.publish == true
         .general-message-wrap.divider-lg
           .clearfix

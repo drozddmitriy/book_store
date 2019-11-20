@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'country_select'
 gem 'devise'
 gem 'draper'
+gem 'fasterer'
 gem 'ffaker'
 gem 'figaro'
 gem 'fog-core', '2.1.0'
@@ -40,6 +41,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'wicked'
 
 group :development, :test do
+  gem 'bullet'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'pry'

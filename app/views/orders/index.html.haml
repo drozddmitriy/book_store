@@ -7,7 +7,7 @@
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     = render 'filter'
   .visible-xs
-    - @orders.each do |order|
+    - @orders.includes(:line_items).each do |order|
       .general-cart-item.divider-lg-bottom.pt-0
         %table.table
           %tr
