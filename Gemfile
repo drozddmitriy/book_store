@@ -41,7 +41,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'wicked'
 
 group :development, :test do
-  gem 'bullet'
+  gem 'bullet', '~> 6.0', '>= 6.0.2'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'pry'
