@@ -3,6 +3,11 @@ class Book < ApplicationRecord
   ITEM_BOOK_BEST_SELLERS = 4
   FILTERS = %i[newest popular_first title_asc title_desc price_asc price_desc].freeze
 
+  validates :title, :price, :quantity, :dimension_h, :dimension_w, :dimension_d, presence: true
+  validates :year, numericality: { less_than_or_equal_to: Time.current.year }
+  validates :description, length: { maximum: 2000 }
+  validates :price, numericality: { only_integer: true }, length: { maximum: 7 }
+
   belongs_to :category
   has_many :authors_books, dependent: :destroy
   has_many :authors, through: :authors_books
