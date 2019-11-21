@@ -6,9 +6,9 @@ class BookService
 
   def call
     if @category_id
-      Book.where(category_id: @category_id).by_filter(@filter)
+      Book.where(category_id: @category_id).by_filter(@filter).includes(:authors_books, :authors)
     else
-      Book.by_filter(@filter)
+      Book.by_filter(@filter).includes(:authors_books, :authors)
     end
   end
 

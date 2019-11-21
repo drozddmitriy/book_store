@@ -26,6 +26,14 @@ en:
       price_asc: 'Price: Low to high'
       price_desc: 'Price: High to low'
   views:
+    line_items:
+      cart: 'Cart'
+      order_summary: 'Order Summary'
+      checkout_button: 'Checkout'
+      product: 'Product'
+      price: 'Price'
+      quantity: 'Quantity'
+      subtotal: 'SubTotal'
     checkout:
       continue_checkout: 'Continue to Checkout'
       create_password_later: "You’ll be able to create password later"

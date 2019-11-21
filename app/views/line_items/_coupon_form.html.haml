@@ -1,0 +1,7 @@
+= form_with url: coupon_path, local: true, method: :put do |f|
+  .input-group.general-input-group
+    %label.input-label Enter Your Coupon Code
+    = f.text_field :coupon, class: 'form-control mb-30', required: true
+    %div
+      = f.submit "Apply Coupon", class: 'btn btn-primary mr-5 mb-15' do
+        %button

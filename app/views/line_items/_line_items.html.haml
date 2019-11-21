@@ -1,0 +1,34 @@
+.hidden-xs
+  %table.table.table-hover
+    %tr.no-hover
+      %th.col-pic.pl-0
+        %span.in-grey-600= I18n.t('views.line_items.product')
+      %th.col-title
+      %th.col-price
+        %span.in-grey-600= I18n.t('views.line_items.price')
+      %th.col-quantity
+        %span.in-grey-600= I18n.t('views.line_items.quantity')
+      %th.col-total
+        %span.in-grey-600= I18n.t('views.line_items.subtotal')
+      %th.col-close
+    - @items.each do |item|
+      %tr
+        %td
+          .general-img-wrap-table
+            = image_tag item.book.images.first.url(:thumb), class: "cart-img-shadow pull-left", alt: "design-book"
+        %td
+          %p.title= item.book.title
+        %td
+          %span.font-16.in-gold-500= item.book.price
+        %td
+          .input-group
+            = link_to line_item_path(id: item.id, quantity: :minus), class: "input-link", method: :put do
+              %i.fa.fa-minus.line-heaght-40
+            %input.form-control.quantity-input{type: "text", value: "#{item.quantity}"}/
+            = link_to line_item_path(id: item.id, quantity: :plus), class: "input-link", method: :put do
+              %i.fa.fa-plus.line-heaght-40
+        %td
+          %span.font-16.in-gold-500= item.total_price
+        %td
+          = link_to line_item_path(item), class: "close general-cart-close", method: :delete, data: { confirm: 'Are you sure?' } do
+            %span{"aria-hidden" => "true"} ×
