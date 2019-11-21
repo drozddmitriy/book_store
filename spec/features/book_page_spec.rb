@@ -13,7 +13,7 @@ RSpec.feature 'Book page', type: :feature do
      expect(page).to have_content(book.year)
    end
 
-  scenario 'Add to cart' do
+  it scenario 'Add to cart' do
     visit book_path(book)
 
     click_button('Add to Cart')

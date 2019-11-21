@@ -1,8 +1,8 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'support/factory_bot'
 require 'database_cleaner'
@@ -19,18 +19,18 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
-  DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with(:truncation)
   end
-  config.before(:each) do
+  config.before do
     DatabaseCleaner.strategy = :transaction
   end
-  config.before(:each, :js => true) do
+  config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation
   end
-  config.before(:each) do
+  config.before do
     DatabaseCleaner.start
   end
-  config.after(:each) do
+  config.after do
     DatabaseCleaner.clean
   end
   config.before(:all) do

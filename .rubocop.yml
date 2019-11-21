@@ -2,6 +2,9 @@ require:
   - rubocop-rspec
   - rubocop-rails
 
+Rails/FilePath:
+  Enabled: false
+
 Rails/SkipsModelValidations:
   Enabled: false
 

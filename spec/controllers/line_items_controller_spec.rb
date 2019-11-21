@@ -8,7 +8,7 @@ RSpec.describe LineItemsController, type: :controller do
   describe 'GET #index' do
     before { get :index }
 
-    it 'assigns @items' do
+    it 'assigns items' do
       expect(assigns(:items)).not_to be_nil
     end
 
@@ -16,16 +16,15 @@ RSpec.describe LineItemsController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    it 'render :index template' do
-      expect(subject).to render_template(:index)
-    end
+    it { is_expected.to render_template(:index) }
   end
 
   describe 'POST #create' do
     let(:line_item_params) { { line_item: attributes_for(:line_item) } }
+
     before { post :create, params: line_item_params }
 
-    it 'assigns @line_item' do
+    it 'assigns line_item' do
       expect(assigns(:line_item)).to be_a LineItem
     end
 
@@ -39,7 +38,7 @@ RSpec.describe LineItemsController, type: :controller do
       put :update, params: { id: line_item.id, line_item: attributes_for(:line_item, quantity: 10) }
     end
 
-    it 'assigns @line_item' do
+    it 'assigns line_item' do
       expect(assigns(:line_item)).to be_a LineItem
     end
 
@@ -57,5 +56,4 @@ RSpec.describe LineItemsController, type: :controller do
       expect(response).to have_http_status(302)
     end
   end
-
 end

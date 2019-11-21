@@ -1,6 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  it { expect(subject).to belong_to(:user) }
-  it { expect(subject).to belong_to(:book) }
+  it { is_expected.to belong_to(:user) }
+  it { is_expected.to belong_to(:book) }
 end

@@ -7,7 +7,7 @@ FactoryBot.define do
     dimension_h { rand(5.5...10.5).floor(2) }
     dimension_w { rand(4.5...5.5).floor(2) }
     dimension_d { rand(1.3...4.5).floor(2) }
-    year { rand(2001..2019)  }
+    year { rand(2001..2019) }
     material { FFaker::Lorem.words.join(', ') }
     images { [File.open(File.join(Rails.root, 'app/assets/images/test.jpg'))] }
     category
