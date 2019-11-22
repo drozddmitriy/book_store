@@ -1,19 +1,12 @@
 class OrdersController < ApplicationController
   load_and_authorize_resource
 
-  ORDER_STATUSES = {
-    in_queue: I18n.t('controllers.orders.processing'),
-    in_delivery: I18n.t('controllers.orders.in_delivery'),
-    delivered: I18n.t('controllers.orders.delivered'),
-    canceled: I18n.t('controllers.orders.canceled'),
-    all: I18n.t('controllers.orders.all')
-  }.freeze
-
   def index
     order_status = params[:order_status]
-    @orders = OrderDecorator.decorate_collection(OrderFiltersService.filter(order_status, current_user))
+    @orders = OrderDecorator.decorate_collection(OrderFiltersService.new(order_status, current_user)
+                                                                    .filter.includes(:line_items))
 
-    @filter = order_status ? ORDER_STATUSES[order_status.to_sym] : ORDER_STATUSES[:all]
+    @filter = order_status ? OrderFiltersService::FILTERS[order_status.to_sym] : OrderFiltersService::FILTERS[:all]
   end
 
   def show
