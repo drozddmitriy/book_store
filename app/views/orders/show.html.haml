@@ -27,7 +27,7 @@
         %br/
         = @order.show_expiration_month_year
   .visible-xs
-    - @order.line_items.each do |line_item|
+    - @order.line_items.includes(:book).each do |line_item|
       .general-cart-item.divider-lg
         .general-img-wrap-table
           = link_to line_item.book.images.first.url do
@@ -67,7 +67,7 @@
           %th
             %span.in-grey-600= I18n.t('views.orders.total')
       %tbody
-        - @order.line_items.each do |line_item|
+        - @order.line_items.includes(:book).each do |line_item|
           %tr
             %td
               .general-img-wrap-table

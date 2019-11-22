@@ -7,8 +7,8 @@ class AddressesForm
     @user = user
     @order = order
     @params = addresses_params
-    @billing = set_billing
-    @shipping = set_shipping
+    @billing = billing
+    @shipping = shipping
   end
 
   def save
@@ -16,11 +16,15 @@ class AddressesForm
   end
 
   def billing
-    set_billing
+    return user.addresses.billing.first_or_initialize if order.addresses.billing.none?
+
+    order.addresses.billing.first_or_initialize
   end
 
   def shipping
-    set_shipping
+    return user.addresses.shipping.first_or_initialize if order.addresses.shipping.none?
+
+    order.addresses.shipping.first_or_initialize
   end
 
   private
@@ -33,18 +37,6 @@ class AddressesForm
   def save_shipping
     @shipping = order.addresses.shipping.first_or_initialize
     @shipping.update(set_address_cast(address_params(type)))
-  end
-
-  def set_billing
-    return user.addresses.billing.first_or_initialize if order.addresses.billing.none?
-
-    order.addresses.billing.first_or_initialize
-  end
-
-  def set_shipping
-    return user.addresses.shipping.first_or_initialize if order.addresses.shipping.none?
-
-    order.addresses.shipping.first_or_initialize
   end
 
   def address_params(type)
