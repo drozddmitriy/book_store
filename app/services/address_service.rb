@@ -1,17 +1,20 @@
 class AddressService
-  def initialize(user)
+  attr_reader :user, :address
+
+  def initialize(user, address)
     @user = user
+    @address = address
   end
 
   def billing
-    return @user.addresses.billing.first_or_initialize if @user.addresses.billing.none?
+    return address if address && address.cast == 'billing'
 
-    @user.addresses.billing.first
+    user.addresses.billing.first_or_initialize
   end
 
   def shipping
-    return @user.addresses.shipping.first_or_initialize if @user.addresses.shipping.none?
+    return address if address && address.cast == 'shipping'
 
-    @user.addresses.shipping.first
+    user.addresses.shipping.first_or_initialize
   end
 end

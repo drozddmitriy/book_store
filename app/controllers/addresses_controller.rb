@@ -1,9 +1,7 @@
 class AddressesController < ApplicationController
   load_and_authorize_resource
 
-  def index
-    @addresses = AddressService.new(current_user)
-  end
+  def index; end
 
   def create
     @address = Address.new(address_params)
@@ -19,7 +17,9 @@ class AddressesController < ApplicationController
   end
 
   def update
-    if Address.find(params[:id]).update(address_params)
+    @address = Address.find(params[:id])
+
+    if @address.update(address_params)
       flash[:success] = I18n.t('controllers.addresses.address_updated')
       redirect_to addresses_path
     else

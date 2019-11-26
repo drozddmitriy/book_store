@@ -6,12 +6,12 @@
       .col-md-5.col-md-offset-1
         %h3.general-subtitle.mt-0= I18n.t('views.addresses.shipping')
   .row
-    = simple_form_for @addresses.billing do |f|
+    = simple_form_for AddressService.new(current_user, @address).billing do |f|
       .col-md-5.mb-40
         .visible-xs.visible-sm
           %h3.general-subtitle.mt-0= I18n.t('views.addresses.billing')
         = render 'form_fields', f: f, cast: "billing"
-    = simple_form_for @addresses.shipping do |f|
+    = simple_form_for AddressService.new(current_user, @address).shipping do |f|
       .col-md-5.col-md-offset-1.mb-25
         .visible-xs.visible-sm
           %h3.general-subtitle.mt-0= I18n.t('views.addresses.shipping')
