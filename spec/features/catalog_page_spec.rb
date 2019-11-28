@@ -1,26 +1,21 @@
 require 'rails_helper'
 
-RSpec.feature 'Catalog page', type: :feature do
+RSpec.describe 'Catalog page', type: :feature do
   let!(:books) { create_list(:book, 3) }
   let!(:categories) { Category.all }
 
+  before { visit books_path }
 
-  scenario 'User can sort books' do
-    visit books_path
+  context 'when user sort books' do
+    before { find_link('Title A-Z', match: :first).click }
 
-    within('div.dropdowns.mb-25.visible-xs') do
-      find_link('Title A-Z').click
-    end
-
-    expect(page.current_path).to eq books_path
-    expect(all('.title').first.text).to eq books.sort_by(&:title).first.title
+    it { expect(page).to have_current_path books_path, ignore_query: true }
+    it { expect(all('.title').first.text).to eq books.min_by(&:title).title }
   end
 
-  scenario 'User can add book to cart' do
-    visit books_path
+  context 'when user add book to cart' do
+    before { find('a.thumb-hover-link.link', match: :first).click }
 
-    find('a.thumb-hover-link.link', match: :first).click
-
-    expect(find('.shop-quantity').text).to eq('1')
+    it { expect(find('.shop-quantity').text).to eq('1') }
   end
 end

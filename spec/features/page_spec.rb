@@ -6,21 +6,23 @@ RSpec.describe 'Home page', type: :feature do
     visit root_path
   end
 
-  it scenario 'User can see latest books' do
-    expect(find('#slider')).not_to be_nil
+  context 'when user see latest books' do
+    it { expect(find('#slider')).not_to be_nil }
   end
 
-  it scenario 'User click on buy latest book' do
-    click_button('Buy Now')
-    expect(page).to have_current_path(root_path)
+  context 'when user click on buy latest book' do
+    before { click_button('Buy Now') }
+
+    it { expect(page).to have_current_path(root_path) }
   end
 
-  it scenario ' User can see get started button' do
-    expect(page).to have_content('Get Started')
+  context 'when user see get started button' do
+    it { expect(page).to have_content('Get Started') }
   end
 
-  it scenario 'User click on get started button' do
-    find_link('Get Started').click
-    expect(page).to have_current_path(books_path)
+  context 'when user click on get started button' do
+    before { find_link('Get Started').click }
+
+    it { expect(page).to have_current_path(books_path) }
   end
 end

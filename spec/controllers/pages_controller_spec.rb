@@ -7,5 +7,7 @@ RSpec.describe PagesController, type: :controller do
     it 'return success response' do
       expect(response).to have_http_status(200)
     end
+
+    it { is_expected.to render_template(:home) }
   end
 end

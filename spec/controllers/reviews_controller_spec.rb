@@ -19,7 +19,7 @@ RSpec.describe ReviewsController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    it 'assigns @review' do
+    it 'assigns review' do
       expect(assigns(:review)).to match(user.reviews.last)
     end
   end
