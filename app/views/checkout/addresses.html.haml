@@ -1,7 +1,7 @@
 %main.container
   %h1.general-title-margin= I18n.t('views.checkout.checkout_title')
   = render 'steps_header'
-  = simple_form_for @checkout, url: wizard_path, method: :put, class: 'res-mb-100' do |form|
+  = simple_form_for @checkout, url: wizard_path, method: :put, html: { id: 'address_form', class: 'res-mb-100' } do |form|
     .hidden-xs.hidden-sm
       .row
         .col-md-5

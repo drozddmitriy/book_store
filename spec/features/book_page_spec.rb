@@ -31,7 +31,7 @@ RSpec.describe 'Book page', type: :feature do
       fill_in 'review[comment]', with: 'Some test text'
       click_button('Post')
     end
-    
+
     it { expect(page).to have_content('Thanks for Review. It will be published as soon as Admin will approve it.') }
   end
 end

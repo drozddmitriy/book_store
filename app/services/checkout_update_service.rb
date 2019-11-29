@@ -30,13 +30,11 @@ class CheckoutUpdateService
 
   def payment
     @credit_card = CreditCard.new(credit_card_params)
-    # render_wizard unless @credit_card.save
     @credit_card.save
     @order.update(credit_card_id: @credit_card.id)
   end
 
   def confirm
-    # session[:line_item_ids] = nil
     coupon = Coupon.find_by(id: @session[:coupon_id])
     coupon&.update(active: false)
     @session[:coupon_id] = nil
