@@ -58,6 +58,6 @@ class Order < ApplicationRecord
   private
 
   def set_number
-    self.number ||= OrderService.generate_number
+    self.number ||= 'R' + Array.new(10) { rand(1...10) }.join
   end
 end

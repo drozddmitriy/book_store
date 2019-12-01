@@ -1,4 +1,6 @@
 class CheckoutShowService
+  attr_reader :step, :order, :user, :session
+
   def initialize(step, order, user, session)
     @user = user
     @order = order
@@ -7,11 +9,11 @@ class CheckoutShowService
   end
 
   def call
-    public_send(@step.to_s)
+    public_send(step.to_s)
   end
 
   def addresses
-    AddressesForm.new(@user, @order, show_address_params)
+    AddressesForm.new(user, order, show_address_params)
   end
 
   def delivery
@@ -19,27 +21,27 @@ class CheckoutShowService
   end
 
   def payment
-    @order.credit_card || @user.credit_card || CreditCard.new
+    order.credit_card || user.credit_card || CreditCard.new
   end
 
   def confirm
-    @order.decorate
+    order.decorate
   end
 
   def complete
-    @order.set_user_id(@user.id)
-    @user.orders.last.order_in_queue!
-    OrderMailer.confirm_order(@user).deliver_now
-    @session[:current_order_complete] = false
-    @session[:order_id] = nil
-    @order.decorate
+    order.set_user_id(user.id)
+    user.orders.last.order_in_queue!
+    OrderMailer.confirm_order(user).deliver_now
+    session[:current_order_complete] = false
+    session[:order_id] = nil
+    order.decorate
   end
 
   private
 
   def show_address_params
-    return { addressable_type: 'User', addressable_id: @user.id } if @order.addresses.empty?
+    return { addressable_type: 'User', addressable_id: user.id } if order.addresses.empty?
 
-    { addressable_type: 'Order', addressable_id: @order.id }
+    { addressable_type: 'Order', addressable_id: order.id }
   end
 end
