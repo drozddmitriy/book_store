@@ -1,5 +1,12 @@
 en:
   controllers:
+    checkout:
+      choose_delivery: 'Please choose delivery method!'
+    line_items:
+      create: 'Item add to cart!'
+      not_create: 'Item not create!'
+      destroy: 'Item delete!'
+      not_destroy: 'Item not delete!'
     reviews:
       thanks_for_review: 'Thanks for Review. It will be published as soon as Admin will approve it.'
       reviews_not_applied: 'Reviews not applied'

@@ -1,4 +1,6 @@
 class LineItemsController < ApplicationController
+  MINUS = 'minus'.freeze
+  PLUS = 'plus'.freeze
   load_and_authorize_resource
 
   def index
@@ -9,9 +11,9 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.find_or_initialize_by(book_id: params[:line_item][:book_id], order_id: current_order.id)
     @line_item.quantity = params[:line_item][:quantity]
     if @line_item.save
-      flash[:success] = 'Item add to cart!'
+      flash[:success] = I18n.t('controllers.line_items.create')
     else
-      flash[:danger] = 'Item not create!'
+      flash[:danger] = I18n.t('controllers.line_items.not_create')
     end
 
     redirect_back(fallback_location: root_path)
@@ -21,9 +23,9 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.find_by(id: params[:id])
 
     if @line_item.destroy
-      flash[:success] = 'Item delete!'
+      flash[:success] = I18n.t('controllers.line_items.destroy')
     else
-      flash[:danger] = 'Item not delete!'
+      flash[:danger] = I18n.t('controllers.line_items.not_destroy')
     end
 
     redirect_back(fallback_location: root_path)
@@ -32,9 +34,9 @@ class LineItemsController < ApplicationController
   def update
     @line_item = LineItem.find_by(id: params[:id])
     case params[:quantity]
-    when 'plus'
+    when PLUS
       @line_item.quantity += 1
-    when 'minus'
+    when MINUS
       @line_item.quantity -= 1 if @line_item.quantity > 1
     end
 

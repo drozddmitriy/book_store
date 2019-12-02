@@ -23,7 +23,7 @@ class CheckoutUpdateService
 
   def delivery
     order.update(order_params)
-    return flash[:danger] = 'Please choose delivery method!' if order.delivery_id.nil?
+    return flash[:danger] = I18n.t('controllers.checkout.choose_delivery') if order.delivery_id.nil?
 
     order
   end
