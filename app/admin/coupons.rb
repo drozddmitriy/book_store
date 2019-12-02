@@ -4,7 +4,7 @@ ActiveAdmin.register Coupon do
   permit_params :coupon, :active, :sale
 
   form do |f|
-    f.inputs 'Coupons' do
+    f.inputs do
       f.input :coupon, input_html: { value: CouponService.generate }
       f.input :active, input_html: { checked: true }
       f.input :sale, label: 'Sale'
