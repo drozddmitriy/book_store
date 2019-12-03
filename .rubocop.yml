@@ -2,16 +2,19 @@ require:
   - rubocop-rspec
   - rubocop-rails
 
+Rails/OutputSafety:
+  Enabled: false
+
+Lint/AmbiguousOperator:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
 Rails/FilePath:
   Enabled: false
 
 Rails/SkipsModelValidations:
-  Enabled: false
-
-Rails/HasAndBelongsToMany:
-  Enabled: false
-
-Style/RegexpLiteral:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
@@ -22,6 +25,7 @@ Metrics/LineLength:
 
 Metrics/BlockLength:
   Max: 30
+  ExcludedMethods: ['describe']
 
 Documentation:
   Enabled: false
@@ -42,8 +46,12 @@ Metrics/AbcSize:
   Max: 25
 
 AllCops:
-  Excludes:
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
     - 'db/**/*'
     - 'config/**/*'
     - 'script/**/*'
     - 'bin/**/*'
+    - 'test/**/*'
+    - 'spec/rails_helper.rb'

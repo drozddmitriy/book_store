@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin Authors' do
+RSpec.describe Author do
   let(:first_name) { 'firstname' }
   let(:last_name) { 'lastname' }
 
@@ -17,24 +17,29 @@ RSpec.describe 'Admin Authors' do
     before do
       click_link('New Author')
       fill_in 'author[firstname]', with: first_name
-      fill_in 'author[lastname]', with: first_name
+      fill_in 'author[lastname]', with: last_name
       click_button('Create Author')
     end
 
     it { expect(page).to have_content(first_name) }
-    it { expect(page).to have_content(first_name) }
+    it { expect(page).to have_content(last_name) }
   end
 
-  it 'Admin can edit Author' do
-    click_link('Edit', match: :first)
+  context 'when admin click edit' do
+    before { click_link('Edit', match: :first) }
 
-    expect(page).to have_current_path(edit_admin_author_path(Author.last))
+    it { expect(page).to have_current_path(edit_admin_author_path(described_class.last)) }
+  end
 
-    fill_in 'author[firstname]', with: first_name
-    fill_in 'author[lastname]', with: first_name
-    click_button('Update Author')
+  context 'when admin edit Author' do
+    before do
+      click_link('Edit', match: :first)
+      fill_in 'author[firstname]', with: first_name
+      fill_in 'author[lastname]', with: last_name
+      click_button('Update Author')
+    end
 
-    expect(page).to have_content(first_name)
-    expect(page).to have_content(first_name)
+    it { expect(page).to have_content(first_name) }
+    it { expect(page).to have_content(last_name) }
   end
 end

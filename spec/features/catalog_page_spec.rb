@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Catalog page', type: :feature do
   let!(:books) { create_list(:book, 3) }
-  let!(:categories) { Category.all }
 
   before { visit books_path }
 

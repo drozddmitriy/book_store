@@ -22,11 +22,11 @@ RSpec.describe 'Book page', type: :feature do
     it { expect(find('.shop-quantity').text).to eq('1') }
   end
 
-  context 'Write a review' do
+  context 'when user write a review' do
     before do
       login_as(user, scope: :user)
       visit book_path(book)
-      find("#rating-form").set("5")
+      find('#rating-form').set('5')
       fill_in 'review[title]', with: 'Title'
       fill_in 'review[comment]', with: 'Some test text'
       click_button('Post')

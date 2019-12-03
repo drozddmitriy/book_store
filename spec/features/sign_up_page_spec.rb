@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Registration', type: :feature do
   let!(:user) { create(:user) }
+
   before { visit new_user_registration_path }
 
   context 'when account exists' do
-
     before do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
@@ -17,7 +17,6 @@ RSpec.describe 'Registration', type: :feature do
   end
 
   context 'when user sign up successfully' do
-
     before do
       fill_in 'Email', with: 'test@gmail.com'
       fill_in 'Password', with: '123456'
@@ -29,7 +28,6 @@ RSpec.describe 'Registration', type: :feature do
   end
 
   context 'when user sign up not successfully' do
-
     before do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password

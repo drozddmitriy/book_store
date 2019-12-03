@@ -36,14 +36,14 @@ class AddressesForm
 
   def save_shipping
     @shipping = order.addresses.shipping.first_or_initialize
-    @shipping.update(set_address_cast(address_params(type)))
+    @shipping.update(address_cast(address_params(type)))
   end
 
   def address_params(type)
     params.require(type).permit(:firstname, :lastname, :address, :city, :zip, :country, :phone, :cast)
   end
 
-  def set_address_cast(params)
+  def address_cast(params)
     params[:cast] = 'shipping' if params[:use_billing]
 
     params

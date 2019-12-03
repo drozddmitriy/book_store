@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin Reviews' do
+RSpec.describe Review do
   let!(:review) { create(:review) }
 
   before do

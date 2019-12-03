@@ -26,7 +26,7 @@ RSpec.describe 'Checkout page', type: :feature do
         fill_in "addresses_form[#{type}][lastname]", with: 'test'
         fill_in "addresses_form[#{type}][address]", with: 'test'
         fill_in "addresses_form[#{type}][city]", with: 'test'
-        fill_in "addresses_form[#{type}][zip]", with: 'test'
+        fill_in "addresses_form[#{type}][zip]", with: '51200'
         select('Ukraine', from: "addresses_form[#{type}][country]")
         fill_in "addresses_form[#{type}][phone]", with: '+380976245499'
       end
