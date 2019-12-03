@@ -32,6 +32,7 @@ class CheckoutUpdateService
     @credit_card = CreditCard.new(credit_card_params)
     @credit_card.save
     order.update(credit_card_id: @credit_card.id)
+    # @credit_card
   end
 
   def confirm
