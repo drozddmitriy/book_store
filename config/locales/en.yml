@@ -2,6 +2,7 @@ en:
   controllers:
     checkout:
       choose_delivery: 'Please choose delivery method!'
+      cart_empty: 'Cart empty!'
     line_items:
       create: 'Item add to cart!'
       not_create: 'Item not create!'
