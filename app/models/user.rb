@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :line_items, through: :orders, dependent: :destroy
   has_one :credit_card, dependent: :destroy
 
+  # rubocop:disable Lint/AssignmentInCondition
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
@@ -18,6 +19,7 @@ class User < ApplicationRecord
       end
     end
   end
+  # rubocop:enable Lint/AssignmentInCondition
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

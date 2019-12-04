@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Book do
   preserve_default_filters!
   remove_filter :authors_books, :line_items
@@ -105,3 +106,4 @@ ActiveAdmin.register Book do
     redirect_to edit_admin_book_path(book)
   end
 end
+# rubocop:enable Metrics/BlockLength

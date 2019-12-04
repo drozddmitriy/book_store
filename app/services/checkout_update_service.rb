@@ -15,8 +15,7 @@ class CheckoutUpdateService
   end
 
   def addresses
-    order.set_order_use_billing(params[:addresses_form][:use_billing])
-
+    order.order_use_billing(params[:addresses_form][:use_billing])
     @addresses = AddressesForm.new(user, order, addresses_params)
     @addresses.save
   end
@@ -41,7 +40,7 @@ class CheckoutUpdateService
     session[:coupon_id] = nil
 
     session[:current_order_complete] = true
-    order.set_total_price(order.decorate.total_order_price)
+    order.update_total_price(order.decorate.total_order_price)
     order.set_completed_at
   end
 

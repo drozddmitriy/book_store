@@ -29,7 +29,7 @@ class CheckoutShowService
   end
 
   def complete
-    order.set_user_id(user.id)
+    order.user_id(user.id)
     user.orders.last.order_in_queue!
     OrderMailer.confirm_order(user).deliver_now
     session[:current_order_complete] = false

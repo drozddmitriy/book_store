@@ -24,7 +24,7 @@ RSpec.describe 'Registration', type: :feature do
       click_button('Sign up')
     end
 
-    it { expect(page).to have_content('A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.') }
+    it { expect(page).to have_content(I18n.t('views.devise.registrations.message_with_confirm')) }
   end
 
   context 'when user sign up not successfully' do

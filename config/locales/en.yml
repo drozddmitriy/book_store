@@ -184,3 +184,4 @@ en:
         remove_account: 'Remove Account'
         please_remove_account: 'Please Remove My Account'
         all_data_will_be_lost: 'I understand that all data will be lost'
+        message_with_confirm: 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'

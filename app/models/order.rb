@@ -39,15 +39,15 @@ class Order < ApplicationRecord
     end
   end
 
-  def set_total_price(total_order_price)
+  def update_total_price(total_order_price)
     update(total_price: total_order_price)
   end
 
-  def set_order_use_billing(use_billing)
+  def order_use_billing(use_billing)
     use_billing ? update(use_billing: true) : update(use_billing: false)
   end
 
-  def set_user_id(user_id)
+  def user_id(user_id)
     update(user_id: user_id)
   end
 

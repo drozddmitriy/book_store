@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Book do
   let(:test_text) { 'test' }
 
@@ -65,3 +66,4 @@ RSpec.describe Book do
     it { expect(page).to have_content(test_text) }
   end
 end
+# rubocop:enable Metrics/BlockLength
