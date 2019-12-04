@@ -39,9 +39,8 @@ RSpec.describe AddressesController, type: :controller do
       expect(response).to have_http_status(302)
     end
 
-    # it 'assigns address' do
-    #   binding.pry
-    #   expect(assigns(:addresses)).to match_array(user.addresses)
-    # end
+    it 'assigns address' do
+      expect(assigns(:address)).to eq(user.addresses.last)
+    end
   end
 end

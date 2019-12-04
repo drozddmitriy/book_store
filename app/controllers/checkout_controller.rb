@@ -4,11 +4,6 @@ class CheckoutController < ApplicationController
 
   steps :login, :addresses, :delivery, :payment, :confirm, :complete
 
-  def login
-    return jump_to(next_step) if user_signed_in?
-    # render_wizard
-  end
-
   def show
     if current_order.line_items.none? && step == :addresses
       flash[:danger] = 'Cart empty!'
@@ -23,6 +18,13 @@ class CheckoutController < ApplicationController
     @checkout = CheckoutUpdateService.new(step, current_order, current_user, params, session, flash).call
     render_wizard unless @checkout
     redirect_to next_wizard_path unless performed?
+  end
+
+  private
+
+  def login
+    return jump_to(next_step) if user_signed_in?
+    # render_wizard
   end
 
   def checkout_show
