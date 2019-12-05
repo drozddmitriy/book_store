@@ -2,6 +2,9 @@ require:
   - rubocop-rspec
   - rubocop-rails
 
+RSpec/NestedGroups:
+  Enabled: false
+
 Rails/OutputSafety:
   Enabled: false
 
