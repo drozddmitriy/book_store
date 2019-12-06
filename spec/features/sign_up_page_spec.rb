@@ -18,9 +18,9 @@ RSpec.describe 'Registration', type: :feature do
 
   context 'when user sign up successfully' do
     before do
-      fill_in 'Email', with: 'test@gmail.com'
-      fill_in 'Password', with: '123456'
-      fill_in 'Confirm Password', with: '123456'
+      fill_in 'Email', with: "ruby@gmail.com"
+      fill_in 'Password', with: 'Passw0rd'
+      fill_in 'Confirm Password', with: 'Passw0rd'
       click_button('Sign up')
     end
 

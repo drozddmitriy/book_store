@@ -26,6 +26,9 @@ en:
       coupon_applied: 'Coupon applied!'
       coupon_not_applied: 'Coupon not applied!'
   models:
+    user:
+      password: 'Complexity requirement not met. Length should be 8-70 characters and include: 1 uppercase, 1 lowercase and 1 digit'
+      not_be_empty: 'Email should not be empty'
     book:
       newest: 'Newest first'
       popular_first: 'Popular first'

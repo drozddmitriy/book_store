@@ -5,7 +5,6 @@ RSpec.describe CheckoutController, type: :controller do
 
   describe 'step login' do
     context '#show'
-    let(:step) { :login }
 
     before do
       get :show, params: { id: 'login' }

@@ -27,4 +27,12 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
     end
   end
+
+  validate :password_complexity
+
+  def password_complexity
+    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,70}$/
+
+    errors.add :password, I18n.t('models.user.password')
+  end
 end

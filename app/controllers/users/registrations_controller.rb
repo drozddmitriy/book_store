@@ -1,17 +1,14 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   def quik_register
-    user = User.new(
-      email: params[:user][:email],
-      password: Devise.friendly_token.first(Devise.password_length.first)
-    )
+    user = User.find_for_authentication(email: params[:user][:email])
 
-    if params[:user][:email].present?
-      user.confirm
-      user.save
+    if params[:user][:email].present? && !user
+      user = UserService.new(params[:user][:email]).create
       sign_up(:user, user)
       user.send_reset_password_instructions
       redirect_to checkout_path(:addresses)
     else
+      flash[:danger] = I18n.t('models.user.not_be_empty')
       redirect_to checkout_path(:login)
     end
   end

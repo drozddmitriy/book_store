@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :admin_user do
-    email { FFaker::Internet.email }
+    email { 'mail@gmail.com' }
     password { FFaker::Internet.password }
   end
 end
