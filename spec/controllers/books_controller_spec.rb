@@ -14,12 +14,12 @@ RSpec.describe BooksController, type: :controller do
 
     context 'when assigns filter' do
       it 'equal to default filter' do
-        expect(assigns(:filter)).to eq(Book::FILTERS.first)
+        expect(assigns(:filter)).to eq(BookFiltersService::FILTERS.first)
       end
 
       it 'equal to filter from params' do
         get :index, params: { filter: :popular_first }
-        expect(assigns(:filter)).to eq(Book::FILTERS.second)
+        expect(assigns(:filter)).to eq(BookFiltersService::FILTERS.second)
       end
     end
   end

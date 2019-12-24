@@ -6,7 +6,7 @@ class OrderAddressesDecorator < Draper::Decorator
   end
 
   def full_name
-    "#{firstname} #{lastname}"
+    "#{first_name} #{last_name}"
   end
 
   def city_zip

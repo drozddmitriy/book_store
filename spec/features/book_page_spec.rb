@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Book page', type: :feature do
   let(:user) { create(:user) }
-  let!(:book) { create(:book) }
+  let(:book) { create(:book) }
 
   context 'when user see detaile information for book' do
     before { visit book_path(book) }

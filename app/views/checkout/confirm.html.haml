@@ -7,14 +7,14 @@
       %h3.general-subtitle= I18n.t('views.checkout.shipments')
       %p.general-address
         = @checkout.delivery.name
-        = link_to "edit", checkout_path(:delivery), class: "general-edit"
+        = link_to I18n.t('views.checkout.edit'), checkout_path(:delivery), class: "general-edit"
         %br/
         = @checkout.delivery.time
     .col-sm-3
       %h3.general-subtitle= I18n.t('views.checkout.payment_information')
       %p.general-address
         = @checkout.show_credit_card
-        = link_to "edit", checkout_path(:payment), class: "general-edit"
+        = link_to I18n.t('views.checkout.edit'), checkout_path(:payment), class: "general-edit"
         %br/
         = @checkout.show_expiration_month_year
   = render 'line_items_mobile', order: @checkout

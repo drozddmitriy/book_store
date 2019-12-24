@@ -9,16 +9,7 @@
       .visible-xs
         %p.general-order-number.mb-0= I18n.t('views.checkout.order', order: @checkout.number)
         %p.general-address.mb-30= @checkout.date_complete
-      %p.general-address
-        = @checkout.full_name_complete
-        %br/
-        = @checkout.address_complete
-        %br/
-        = @checkout.city_zip_complete
-        %br/
-        = @checkout.country_complete
-        %br/
-        = @checkout.phone_complete
+      = render 'complete_address', address: OrderAddressesDecorator.new(@checkout.addresses.first)  
     .col-sm-6.hidden-xs.text-right
       %p.general-order-number.mb-0= I18n.t('views.checkout.order', order: @checkout.number)
       %p.general-address.mb-30= @checkout.date_complete

@@ -15,12 +15,16 @@ class CheckoutController < ApplicationController
   end
 
   def update
-    @checkout = CheckoutUpdateService.new(step, current_order, current_user, params, session, flash).call
+    @checkout = CheckoutUpdateService.new(step, current_options, params, session, flash).call
     render_wizard unless @checkout
     redirect_to next_wizard_path unless performed?
   end
 
   private
+
+  def current_options
+    { user: current_user, order: current_order }
+  end
 
   def login
     return jump_to(next_step) if user_signed_in?

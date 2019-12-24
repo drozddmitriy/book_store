@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :coupon do
-    coupon { 'COUPONNNNN' }
+    coupon { '4259253464' }
     sale { rand(1..99) }
     active { true }
   end

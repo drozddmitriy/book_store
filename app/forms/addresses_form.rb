@@ -1,4 +1,5 @@
 class AddressesForm
+  SHIPPING = 'shipping'.freeze
   include ActiveModel::Model
 
   attr_reader :user, :order, :billing, :shipping, :params, :use_billing
@@ -16,7 +17,7 @@ class AddressesForm
   end
 
   def select_address(cast)
-    return user.addresses.public_send(cast).first_or_initialize if order.addresses.public_send(cast).none?
+    return user.addresses.public_send(cast).first_or_initialize if order.addresses.public_send(cast)
 
     order.addresses.public_send(cast).first_or_initialize
   end
@@ -34,11 +35,11 @@ class AddressesForm
   end
 
   def address_params(type)
-    params.require(type).permit(:firstname, :lastname, :address, :city, :zip, :country, :phone, :cast)
+    params.require(type).permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :cast)
   end
 
   def address_cast(params)
-    params[:cast] = 'shipping' if params[:use_billing]
+    params[:cast] = SHIPPING if params[:use_billing]
 
     params
   end

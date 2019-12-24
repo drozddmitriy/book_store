@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe CheckoutUpdateService do
   let(:order) { create(:order, status: 'in_progress') }
   let(:user) { create(:user, orders: [order]) }
+  let(:current_options) { { user: user, order: order } }
   let(:delivery) { create(:delivery) }
   let(:session) { { current_order_complete: true } }
   let(:flash) { ActionDispatch::Flash::FlashHash.new }
@@ -11,7 +12,7 @@ RSpec.describe CheckoutUpdateService do
   let(:params) { {} }
 
   context 'when step address' do
-    let(:update_service) { described_class.new(:addresses, order, user, params, session, flash) }
+    let(:update_service) { described_class.new(:addresses, current_options, params, session, flash) }
 
     it do
       allow_any_instance_of(described_class).to receive(:addresses) { addresses }
@@ -21,7 +22,7 @@ RSpec.describe CheckoutUpdateService do
 
   context 'when step delivery' do
     let(:update_service) do
-      described_class.new(:delivery, order, user, { order: { delivery_id: delivery.id } }, session, flash)
+      described_class.new(:delivery, current_options, { order: { delivery_id: delivery.id } }, session, flash)
     end
 
     it do
@@ -31,7 +32,7 @@ RSpec.describe CheckoutUpdateService do
   end
 
   context 'when step payment' do
-    let(:update_service) { described_class.new(:payment, order, user, params, session, flash) }
+    let(:update_service) { described_class.new(:payment, current_options, params, session, flash) }
 
     it do
       allow_any_instance_of(described_class).to receive(:payment) { credit_card }
@@ -40,7 +41,7 @@ RSpec.describe CheckoutUpdateService do
   end
 
   context 'when step confirm' do
-    let(:update_service) { described_class.new(:confirm, order, user, params, session, flash) }
+    let(:update_service) { described_class.new(:confirm, current_options, params, session, flash) }
 
     it { expect(update_service.call).to eq(true) }
   end

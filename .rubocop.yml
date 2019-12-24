@@ -2,22 +2,7 @@ require:
   - rubocop-rspec
   - rubocop-rails
 
-RSpec/NestedGroups:
-  Enabled: false
-
-Rails/OutputSafety:
-  Enabled: false
-
-Lint/AmbiguousOperator:
-  Enabled: false
-
 RSpec/AnyInstance:
-  Enabled: false
-
-Rails/FilePath:
-  Enabled: false
-
-Rails/SkipsModelValidations:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
@@ -25,10 +10,6 @@ Style/FrozenStringLiteralComment:
 
 Metrics/LineLength:
   Max: 120
-
-Metrics/BlockLength:
-  Max: 30
-  ExcludedMethods: ['describe']
 
 Documentation:
   Enabled: false
@@ -43,7 +24,7 @@ Style/ClassAndModuleChildren:
   Enabled: false
 
 Metrics/CyclomaticComplexity:
-  Max: 10
+  Max: 7
 
 Metrics/AbcSize:
   Max: 25
@@ -56,5 +37,4 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'bin/**/*'
-    - 'test/**/*'
     - 'spec/rails_helper.rb'

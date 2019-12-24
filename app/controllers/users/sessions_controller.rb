@@ -7,6 +7,8 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
+  private
+
   def after_sign_in_path_for(resource)
     if current_order.line_items.any?
       checkout_path(:addresses)

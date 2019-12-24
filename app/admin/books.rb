@@ -2,7 +2,7 @@
 ActiveAdmin.register Book do
   preserve_default_filters!
   remove_filter :authors_books, :line_items
-  filter :authors, collection: -> { Author.all.map { |author| author.firstname + " #{author.lastname}" } }
+  filter :authors, collection: -> { AuthorDecorator.decorate_collection(Author.all) }
   permit_params :title, :description, :price, :quantity,
                 :year, :dimension_h, :dimension_w, :dimension_d,
                 :material, :category_id, author_ids: [], images: []
@@ -22,17 +22,17 @@ ActiveAdmin.register Book do
       truncate(resource.description, length: 250)
     end
     column :price do |resource|
-      number_to_currency(resource.price, unit: '€')
+      number_to_currency(resource.price, unit: I18n.t('currency'))
     end
     column :actions do |resource|
       links = []
-      links << link_to('View', admin_book_path(resource))
+      links << link_to(I18n.t('views.admin.view'), admin_book_path(resource))
       links << link_to(I18n.t('views.admin.edit'), edit_admin_book_path(resource))
       links << link_to(I18n.t('views.admin.delete'),
                        admin_book_path(resource),
                        method: :delete,
                        data: { confirm: I18n.t('views.admin.are_you_sure_books') })
-      links.join(' ').html_safe
+      safe_join(links, ' ')
     end
   end
 
@@ -65,12 +65,11 @@ ActiveAdmin.register Book do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
 
     f.inputs do
       f.input :title
-      f.input :authors, as: :check_boxes,
-                        collection: Author.all.map { |author| [author.firstname + ' ' + author.lastname, author.id] }
+      f.input :authors, as: :check_boxes, collection: AuthorDecorator.decorate_collection(Author.all)
       f.input :category, as: :radio
       f.input :description
       f.input :year
@@ -96,7 +95,7 @@ ActiveAdmin.register Book do
   end
 
   action_item :delete_image, only: :edit do
-    link_to('Delete all images', delete_image_admin_book_path(resource), method: :delete)
+    link_to(I18n.t('views.admin.delete_all_images'), delete_image_admin_book_path(resource), method: :delete)
   end
 
   member_action :delete_image, method: :delete do

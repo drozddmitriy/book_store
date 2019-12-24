@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AddressesController, type: :controller do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
 
   before { sign_in(user) }
 

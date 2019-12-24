@@ -3,7 +3,8 @@ ActiveAdmin.register Review do
   filter :user, collection: -> { User.all.map(&:email) }
   permit_params :rating, :comment, :title
 
-  actions :all, except: %i[edit create update destroy]
+  config.remove_action_item(:new)
+  actions :all, only: %i[index show]
 
   scope :all
   scope :published
@@ -40,7 +41,7 @@ ActiveAdmin.register Review do
     column :actions do |resource|
       links = []
       links << link_to(I18n.t('views.admin.show'), admin_review_path(resource))
-      links.join(' ').html_safe
+      safe_join(links, ' ')
     end
   end
 end

@@ -7,50 +7,55 @@ RSpec.describe 'Checkout page', type: :feature do
   before do
     create(:book)
     create_list(:delivery, 3)
-  end
-
-  it 'user checkout order' do
     login_as(user, scope: :user)
     visit root_path
-
     find('input[value="Buy Now"]').click
     find('a.shop-link.hidden-xs').click
-    expect(page).to have_current_path line_items_path, ignore_query: true
+  end
 
-    find('a[href="/checkout/login"]').click
-    expect(page).to have_current_path checkout_path(:addresses), ignore_query: true
+  context 'when user buy book' do
+    it { expect(page).to have_current_path line_items_path, ignore_query: true }
+  end
 
-    within('form#address_form') do
-      %w[billing shipping].each do |type|
-        fill_in "addresses_form[#{type}][firstname]", with: 'test'
-        fill_in "addresses_form[#{type}][lastname]", with: 'test'
-        fill_in "addresses_form[#{type}][address]", with: 'test'
-        fill_in "addresses_form[#{type}][city]", with: 'test'
-        fill_in "addresses_form[#{type}][zip]", with: '51200'
-        select('Ukraine', from: "addresses_form[#{type}][country]")
-        fill_in "addresses_form[#{type}][phone]", with: '+380976245499'
-      end
+  context 'when user click login' do
+    before { find('a[href="/checkout/login"]').click }
 
-      click_button('Save and Continue')
+    it { expect(page).to have_current_path checkout_path(:addresses), ignore_query: true }
+  end
+
+  context 'when user fill in address form' do
+    before do
+      find('a[href="/checkout/login"]').click
+      addresses_form
     end
-    expect(page).to have_current_path checkout_path(:delivery), ignore_query: true
 
-    all('.radio-label').first.click
-    click_button('Save and Continue')
-    expect(page).to have_current_path checkout_path(:payment), ignore_query: true
+    it { expect(page).to have_current_path checkout_path(:delivery), ignore_query: true }
+  end
 
-    within('form#new_credit_card') do
-      fill_in 'credit_card[card_number]', with: '1234567890123456'
-      fill_in 'credit_card[name]', with: 'visa'
-      fill_in 'credit_card[expiration_month_year]', with: '12/20'
-      fill_in 'credit_card[cvv]', with: '111'
-
-      click_button('Save and Continue')
+  context 'when user check delivery' do
+    before do
+      find('a[href="/checkout/login"]').click
+      addresses_form
+      all('.radio-label').first.click
+      click_button(I18n.t('views.checkout.save_continue'))
     end
-    expect(page).to have_current_path checkout_path(:confirm), ignore_query: true
 
-    click_button('Place Order')
-    expect(page).to have_current_path checkout_path(:complete), ignore_query: true
-    expect(page).to have_content I18n.t('views.checkout.email', email: user.email)
+    it { expect(page).to have_current_path checkout_path(:payment), ignore_query: true }
+  end
+
+  context 'when user fill in credit card' do
+    before { credit_card_prepare }
+
+    it { expect(page).to have_current_path checkout_path(:confirm), ignore_query: true }
+  end
+
+  context 'when user confirm order' do
+    before do
+      credit_card_prepare
+      click_button(I18n.t('views.checkout.place_order'))
+    end
+
+    it { expect(page).to have_current_path checkout_path(:complete), ignore_query: true }
+    it { expect(page).to have_content I18n.t('views.checkout.email', email: user.email) }
   end
 end

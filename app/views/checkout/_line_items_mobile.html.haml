@@ -12,7 +12,7 @@
             %span.in-grey-600= I18n.t('views.checkout.price')
           %td
             %span.font-16.in-gold-500
-              = number_to_currency(line_item.book.price, unit: "€")
+              = number_to_currency(line_item.book.price, unit: I18n.t('currency'))
         %tr
           %td.vertical-middle
             %span.in-grey-600= I18n.t('views.checkout.quantity')
@@ -24,4 +24,4 @@
             %span.in-grey-600= I18n.t('views.checkout.subtotal')
           %td
             %span.font-16.in-gold-500
-              = number_to_currency(line_item.total_price, unit: "€")
+              = number_to_currency(line_item.total_price, unit: I18n.t('currency'))

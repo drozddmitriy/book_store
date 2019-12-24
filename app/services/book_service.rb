@@ -6,12 +6,10 @@ class BookService
     @filter = filter
   end
 
-  def call
-    if category_id
-      Book.where(category_id: category_id).by_filter(filter).includes(:authors_books, :authors)
-    else
-      Book.by_filter(filter).includes(:authors_books, :authors)
-    end
+  def filter_for_books
+    return BookQuery.new(Book.all).by_filter(filter).includes(:authors_books, :authors) unless category_id
+
+    BookQuery.new(Book.where(category_id: category_id)).by_filter(filter).includes(:authors_books, :authors)
   end
 
   def category_title

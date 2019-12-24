@@ -1,12 +1,12 @@
 ActiveAdmin.register Author do
   remove_filter :authors_books
-  permit_params :firstname, :lastname, :biography
+  permit_params :first_name, :last_name, :biography
 
   index do
     selectable_column
 
-    column :firstname
-    column :lastname
+    column :first_name
+    column :last_name
     column :biography
     column :actions do |resource|
       links = []
@@ -15,14 +15,14 @@ ActiveAdmin.register Author do
                        admin_author_path(resource),
                        method: :delete,
                        data: { confirm: I18n.t('views.admin.are_you_sure_authors', books_count: resource.books.count) })
-      links.join(' ').html_safe
+      safe_join(links, ' ')
     end
   end
 
   show do
     attributes_table do
-      row :firstname
-      row :lastname
+      row :first_name
+      row :last_name
       row :biography
     end
 
@@ -30,10 +30,10 @@ ActiveAdmin.register Author do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
-      f.input :firstname
-      f.input :lastname
+      f.input :first_name
+      f.input :last_name
       f.input :biography
       f.actions
     end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :current_password
+  validate :password_complexity
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable,
@@ -11,24 +12,15 @@ class User < ApplicationRecord
   has_many :line_items, through: :orders, dependent: :destroy
   has_one :credit_card, dependent: :destroy
 
-  # rubocop:disable Lint/AssignmentInCondition
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
-        user.email = data['email'] if user.email.blank?
-      end
-    end
-  end
-  # rubocop:enable Lint/AssignmentInCondition
-
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.skip_confirmation!
     end
   end
-
-  validate :password_complexity
 
   def password_complexity
     return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,70}$/

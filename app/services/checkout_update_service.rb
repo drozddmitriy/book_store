@@ -1,9 +1,9 @@
 class CheckoutUpdateService
   attr_reader :order, :session, :user, :params, :step, :flash
 
-  def initialize(step, order, user, params, session, flash)
-    @user = user
-    @order = order
+  def initialize(step, current_options, params, session, flash)
+    @user = current_options[:user]
+    @order = current_options[:order]
     @step = step
     @params = params
     @session = session
@@ -22,7 +22,7 @@ class CheckoutUpdateService
 
   def delivery
     order.update(order_params)
-    return flash[:danger] = I18n.t('controllers.checkout.choose_delivery') if order.delivery_id.nil?
+    return flash[:danger] = I18n.t('controllers.checkout.choose_delivery') unless order.delivery_id
 
     order
   end
@@ -38,7 +38,6 @@ class CheckoutUpdateService
     coupon = Coupon.find_by(id: session[:coupon_id])
     coupon&.update(active: false)
     session[:coupon_id] = nil
-
     session[:current_order_complete] = true
     order.update_total_price(order.decorate.total_order_price)
     order.set_completed_at

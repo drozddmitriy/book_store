@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin Orders', type: :feature do
+  let(:admin_user) { create(:admin_user) }
+
   before do
     create(:order)
-
-    admin_user = create(:admin_user)
     login_as(admin_user, scope: :admin_user)
-
     visit admin_orders_path
   end
 

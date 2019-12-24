@@ -1,4 +1,5 @@
 class CheckoutShowService
+  PROGRESS = 'in_progress'.freeze
   attr_reader :step, :order, :user, :session
 
   def initialize(step, order, user, session)
@@ -30,7 +31,7 @@ class CheckoutShowService
 
   def complete
     order.user_id(user.id)
-    user.orders.last.order_in_queue!
+    user.orders.find_by(status: PROGRESS).order_in_queue!
     OrderMailer.confirm_order(user).deliver_now
     session[:current_order_complete] = false
     session[:order_id] = nil

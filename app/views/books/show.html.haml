@@ -20,7 +20,7 @@
         = @book.author_full_name
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10= number_to_currency(@book.price, unit: "€")
+          %p.h1.in-gold-500.mt-10= number_to_currency(@book.price, unit: I18n.t('currency'))
         = simple_form_for @item, method: :post do |f|
           .col-xs-5.col-md-3
             .input-group.general-position
@@ -55,7 +55,7 @@
       = I18n.t('views.books.reviews')
       (#{@book.book_reviews})
     - @book.reviews.includes(:user).each do |review|
-      - if review.publish == true
+      - if review.publish
         .general-message-wrap.divider-lg
           .clearfix
             %span.img-circle.logo-size.inlide-block.pull-left.logo-empty= review.decorate.logo

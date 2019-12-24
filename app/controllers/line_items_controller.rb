@@ -1,6 +1,4 @@
 class LineItemsController < ApplicationController
-  MINUS = 'minus'.freeze
-  PLUS = 'plus'.freeze
   load_and_authorize_resource
 
   def index
@@ -20,8 +18,6 @@ class LineItemsController < ApplicationController
   end
 
   def destroy
-    @line_item = LineItem.find_by(id: params[:id])
-
     if @line_item.destroy
       flash[:success] = I18n.t('controllers.line_items.destroy')
     else
@@ -32,14 +28,7 @@ class LineItemsController < ApplicationController
   end
 
   def update
-    @line_item = LineItem.find_by(id: params[:id])
-    case params[:quantity]
-    when PLUS
-      @line_item.quantity += 1
-    when MINUS
-      @line_item.quantity -= 1 if @line_item.quantity > 1
-    end
-
+    LineItemService.change_quantity(@line_item, params[:quantity])
     @line_item.save
 
     redirect_back(fallback_location: root_path)

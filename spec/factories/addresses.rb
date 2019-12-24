@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :address do |address|
-    firstname { 'Name' }
-    lastname { 'Surname' }
+    first_name { FFaker::Name.first_name }
+    last_name { FFaker::Name.last_name }
     address { 'Suchkova' }
     city { 'Novomoskovsk' }
     zip { FFaker::AddressDE.zip_code }

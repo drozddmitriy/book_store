@@ -13,7 +13,7 @@ ActiveAdmin.register Category do
                        method: :delete,
                        data: { confirm: I18n.t('views.admin.are_you_sure_categorie',
                                                books_count: resource.books.count) })
-      links.join(' ').html_safe
+      safe_join(links, ' ')
     end
   end
 
@@ -26,7 +26,7 @@ ActiveAdmin.register Category do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors(*f.object.errors.keys)
     f.inputs do
       f.input :title
       f.actions

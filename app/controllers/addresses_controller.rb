@@ -17,8 +17,6 @@ class AddressesController < ApplicationController
   end
 
   def update
-    @address = Address.find(params[:id])
-
     if @address.update(address_params)
       flash[:success] = I18n.t('controllers.addresses.address_updated')
       redirect_to addresses_path
@@ -31,6 +29,6 @@ class AddressesController < ApplicationController
   private
 
   def address_params
-    params.require(:address).permit(:firstname, :lastname, :address, :city, :zip, :country, :phone, :cast)
+    params.require(:address).permit(:first_name, :last_name, :address, :city, :zip, :country, :phone, :cast)
   end
 end

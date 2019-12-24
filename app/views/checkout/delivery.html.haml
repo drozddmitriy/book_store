@@ -27,7 +27,7 @@
                 = line_item.object.time
             %td
               %span.font-16.in-gold-500
-                = number_to_currency(line_item.object.price, unit: "€")
+                = number_to_currency(line_item.object.price, unit: I18n.t('currency'))
     .general-text-align
       %p.in-gold-500.font-18= I18n.t('views.checkout.order_summary')
       %table.general-summary-table

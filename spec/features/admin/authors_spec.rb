@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Author do
-  let(:first_name) { 'firstname' }
-  let(:last_name) { 'lastname' }
+  let(:first_name) { 'first_name' }
+  let(:last_name) { 'last_name' }
 
   before do
     create(:author)
@@ -16,8 +16,8 @@ RSpec.describe Author do
   context 'when admin create Author' do
     before do
       click_link('New Author')
-      fill_in 'author[firstname]', with: first_name
-      fill_in 'author[lastname]', with: last_name
+      fill_in 'author[first_name]', with: first_name
+      fill_in 'author[last_name]', with: last_name
       click_button('Create Author')
     end
 
@@ -34,8 +34,8 @@ RSpec.describe Author do
   context 'when admin edit Author' do
     before do
       click_link('Edit', match: :first)
-      fill_in 'author[firstname]', with: first_name
-      fill_in 'author[lastname]', with: last_name
+      fill_in 'author[first_name]', with: first_name
+      fill_in 'author[last_name]', with: last_name
       click_button('Update Author')
     end
 

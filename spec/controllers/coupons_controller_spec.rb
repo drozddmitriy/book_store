@@ -5,7 +5,7 @@ RSpec.describe CouponsController, type: :controller do
     context 'when valid coupon' do
       before do
         create(:coupon)
-        put :update, params: { coupon: 'COUPONNNNN', active: true }
+        put :update, params: attributes_for(:coupon)
       end
 
       it 'redirect to Cart' do
@@ -13,7 +13,7 @@ RSpec.describe CouponsController, type: :controller do
       end
 
       it 'show success message' do
-        expect(flash[:success]).to eq 'Coupon applied!'
+        expect(flash[:success]).to eq I18n.t('controllers.coupons.coupon_applied')
       end
     end
 
@@ -26,7 +26,7 @@ RSpec.describe CouponsController, type: :controller do
       it { is_expected.to redirect_to line_items_path }
 
       it 'show error message' do
-        expect(flash[:danger]).to eq 'Coupon not applied!'
+        expect(flash[:danger]).to eq I18n.t('controllers.coupons.coupon_not_applied')
       end
     end
   end

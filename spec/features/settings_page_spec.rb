@@ -10,8 +10,8 @@ RSpec.describe 'Settings page', type: :feature do
     before do
       visit addresses_path
       within '#billing_address' do
-        fill_in 'Firstname', with: address.firstname
-        fill_in 'Lastname', with: address.lastname
+        fill_in 'First name', with: address.first_name
+        fill_in 'Last name', with: address.last_name
         fill_in 'Address', with: address.address
         fill_in 'City', with: address.city
         fill_in 'Zip', with: address.zip
@@ -29,11 +29,6 @@ RSpec.describe 'Settings page', type: :feature do
     before do
       visit addresses_path
       within '#billing_address' do
-        fill_in 'Firstname', with: ''
-        fill_in 'Lastname', with: ''
-        fill_in 'Address', with: ''
-        fill_in 'City', with: ''
-        fill_in 'Zip', with: address.zip
         find('#address_country').find(:xpath, 'option[2]').select_option
         fill_in 'Phone', with: address.phone
         click_on('Save')
@@ -51,7 +46,7 @@ RSpec.describe 'Settings page', type: :feature do
       address
       visit addresses_path
       within '#billing_address' do
-        fill_in 'Firstname', with: 'update'
+        fill_in 'First name', with: 'update'
         click_on('Save')
       end
     end

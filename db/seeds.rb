@@ -7,8 +7,8 @@ Delivery.create(name: 'DHL', time: '3', price: 10.00)
 end
 
 10.times do
-  Author.create(firstname: FFaker::Name.first_name,
-                lastname: FFaker::Name.last_name,
+  Author.create(first_name: FFaker::Name.first_name,
+                last_name: FFaker::Name.last_name,
                 biography: FFaker::Lorem.paragraph)
 end
 

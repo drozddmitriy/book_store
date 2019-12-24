@@ -40,7 +40,7 @@
               %span.in-grey-600= I18n.t('views.orders.price')
             %td
               %span.font-16.in-gold-500
-                = number_to_currency(line_item.book.price, unit: "€")
+                = number_to_currency(line_item.book.price, unit: I18n.t('currency'))
           %tr
             %td.vertical-middle
               %span.in-grey-600= I18n.t('views.orders.quantity')
@@ -52,7 +52,7 @@
               %span.in-grey-600= I18n.t('views.orders.subtotal')
             %td
               %span.font-16.in-gold-500
-                = number_to_currency(line_item.total_price, unit: "€")
+                = number_to_currency(line_item.total_price, unit: I18n.t('currency'))
   .hidden-xs.divider-lg.pt-20
     %table.table.table-hover
       %thead
@@ -80,13 +80,13 @@
                 = truncate(line_item.book.description, :length => 250)
             %td
               %span.font-16.in-gold-500
-                = number_to_currency(line_item.book.price, unit: "€")
+                = number_to_currency(line_item.book.price, unit: I18n.t('currency'))
             %td
               %span.ml-30
                 = line_item.quantity
             %td
               %span.font-16.in-gold-500
-                = number_to_currency(line_item.total_price, unit: "€")
+                = number_to_currency(line_item.total_price, unit: I18n.t('currency'))
   .text-center.general-text-right
     %p.in-gold-500.font-18= I18n.t('views.orders.order_summary')
     %table.general-summary-table.general-summary-table-right.general-text-right

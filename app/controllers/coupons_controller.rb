@@ -1,6 +1,4 @@
 class CouponsController < ApplicationController
-  load_and_authorize_resource
-
   def update
     coupon = Coupon.find_by(coupon: params[:coupon], active: true)
 
