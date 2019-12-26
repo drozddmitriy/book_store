@@ -2,7 +2,7 @@
   %h1.general-title-margin= I18n.t('views.checkout.checkout_title')
   = render 'steps_header'
   .row.mb-20
-    = render 'confirm_addresses', addresses: OrderAddressesDecorator.decorate_collection(@checkout.addresses)
+    = render 'confirm_addresses', addresses: OrderAddressesDecorator.decorate_collection(@checkout.addresses), order: @checkout
     .col-sm-3
       %h3.general-subtitle= I18n.t('views.checkout.shipments')
       %p.general-address

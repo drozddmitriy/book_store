@@ -14,6 +14,7 @@
           = address.country
           %br/
           = address.phone_address
+      - break if @order.use_billing
     .col-sm-3
       %h3.general-subtitle.mt-0= I18n.t('views.orders.shipments')
       %p.general-address
