@@ -1,5 +1,5 @@
 class OrderMailer < ApplicationMailer
-  default from: ENV['EXAMPLE_MAIL']
+  default from: 'from@example.com'
 
   def confirm_order(user)
     @user = user

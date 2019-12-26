@@ -16,7 +16,7 @@ class CheckoutController < ApplicationController
 
   def update
     @checkout = CheckoutUpdateService.new(step, current_options, params, session, flash).call
-    render_wizard unless @checkout
+    render_wizard unless CheckoutValidService.new(step, @checkout, current_order).valid?
     redirect_to next_wizard_path unless performed?
   end
 
@@ -28,7 +28,6 @@ class CheckoutController < ApplicationController
 
   def login
     return jump_to(next_step) if user_signed_in?
-    # render_wizard
   end
 
   def checkout_show

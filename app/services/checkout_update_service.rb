@@ -18,6 +18,7 @@ class CheckoutUpdateService
     order.order_use_billing(params[:addresses_form][:use_billing])
     @addresses = AddressesForm.new(user, order, addresses_params)
     @addresses.save
+    @addresses
   end
 
   def delivery
@@ -31,7 +32,7 @@ class CheckoutUpdateService
     @credit_card = CreditCard.new(credit_card_params)
     @credit_card.save
     order.update(credit_card_id: @credit_card.id)
-    # @credit_card
+    @credit_card
   end
 
   def confirm
