@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def index
     order_status = params[:order_status]
     @orders = OrderDecorator.decorate_collection(OrderFiltersService.new(order_status, current_user)
-                                                                    .filter.includes(:line_items))
+                                                                    .filter.includes(:order_items))
 
     @filter = order_status ? OrderFiltersService::FILTERS[order_status.to_sym] : OrderFiltersService::FILTERS[:all]
   end

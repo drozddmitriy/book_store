@@ -6,7 +6,7 @@ en:
     checkout:
       choose_delivery: 'Please choose delivery method!'
       cart_empty: 'Cart empty!'
-    line_items:
+    order_items:
       create: 'Item add to cart!'
       not_create: 'Item not create!'
       destroy: 'Item delete!'
@@ -45,7 +45,7 @@ en:
       price_asc: 'Price: Low to high'
       price_desc: 'Price: High to low'
   views:
-    line_items:
+    order_items:
       cart: 'Cart'
       order_summary: 'Order Summary'
       checkout_button: 'Checkout'

@@ -10,7 +10,7 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def after_sign_in_path_for(resource)
-    if current_order.line_items.any?
+    if current_order.order_items.any?
       checkout_path(:addresses)
     else
       super

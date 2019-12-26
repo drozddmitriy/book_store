@@ -9,7 +9,7 @@ RSpec.describe CouponsController, type: :controller do
       end
 
       it 'redirect to Cart' do
-        expect(response).to redirect_to line_items_path
+        expect(response).to redirect_to order_items_path
       end
 
       it 'show success message' do
@@ -23,7 +23,7 @@ RSpec.describe CouponsController, type: :controller do
         put :update, params: { coupon: 'XXXXXX', active: true }
       end
 
-      it { is_expected.to redirect_to line_items_path }
+      it { is_expected.to redirect_to order_items_path }
 
       it 'show error message' do
         expect(flash[:danger]).to eq I18n.t('controllers.coupons.coupon_not_applied')

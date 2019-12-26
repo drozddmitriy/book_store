@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :addresses, as: :addressable, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :orders, dependent: :destroy
-  has_many :line_items, through: :orders, dependent: :destroy
+  has_many :order_items, through: :orders, dependent: :destroy
   has_one :credit_card, dependent: :destroy
 
   def self.from_omniauth(auth)

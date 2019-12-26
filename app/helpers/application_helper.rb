@@ -10,6 +10,6 @@ module ApplicationHelper
   end
 
   def cart_items_count
-    current_order.line_items.count
+    current_order.order_items.count
   end
 end

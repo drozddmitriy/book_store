@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :addresses, only: %i[index create update]
-  resources :line_items
+  resources :order_items
   resources :orders
   resource  :coupon, only: :update
   resources :checkout

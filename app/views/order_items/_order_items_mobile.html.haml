@@ -9,26 +9,26 @@
       %table.table
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.line_items.price')
+            %span.in-grey-600= I18n.t('views.order_items.price')
           %td
             %span.font-16.in-gold-500= item.book.price
         %tr
           %td.vertical-middle
-            %span.in-grey-600= I18n.t('views.line_items.quantity')
+            %span.in-grey-600= I18n.t('views.order_items.quantity')
           %td
             .input-group
-              = link_to line_item_path(id: item.id, quantity: :minus), class: "input-link", method: :put do
+              = link_to order_item_path(id: item.id, quantity: :minus), class: "input-link", method: :put do
                 %i.fa.fa-minus.line-heaght-40
               %input.form-control.quantity-input{type: "text", value: "#{item.quantity}"}/
-              = link_to line_item_path(id: item.id, quantity: :plus), class: "input-link", method: :put do
+              = link_to order_item_path(id: item.id, quantity: :plus), class: "input-link", method: :put do
                 %i.fa.fa-plus.line-heaght-40
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.line_items.subtotal')
+            %span.in-grey-600= I18n.t('views.order_items.subtotal')
           %td
             %span.font-16.in-gold-500= item.total_price
     .general-cart-item.divider-lg-bottom.mb-30
-      = link_to line_item_path(item), class: "close general-cart-close", method: :delete, data: { confirm: 'Are you sure?' } do
+      = link_to order_item_path(item), class: "close general-cart-close", method: :delete, data: { confirm: 'Are you sure?' } do
         %span{"aria-hidden" => "true"} ×
       .general-img-wrap-table
         = image_tag item.book.images.first.url(:thumb), class: "cart-img-shadow pull-left", alt: "design-book"
@@ -36,21 +36,21 @@
       %table.table
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.line_items.price')
+            %span.in-grey-600= I18n.t('views.order_items.price')
           %td
             %span.font-16.in-gold-500= item.book.price
         %tr
           %td.vertical-middle
-            %span.in-grey-600= I18n.t('views.line_items.quantity')
+            %span.in-grey-600= I18n.t('views.order_items.quantity')
           %td
             .input-group
-              = link_to line_item_path(id: item.id, quantity: :minus), class: "input-link", method: :put do
+              = link_to order_item_path(id: item.id, quantity: :minus), class: "input-link", method: :put do
                 %i.fa.fa-minus.line-heaght-40
               %input.form-control.quantity-input{type: "text", value: "#{item.quantity}"}/
-              = link_to line_item_path(id: item.id, quantity: :plus), class: "input-link", method: :put do
+              = link_to order_item_path(id: item.id, quantity: :plus), class: "input-link", method: :put do
                 %i.fa.fa-plus.line-heaght-40
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.line_items.subtotal')
+            %span.in-grey-600= I18n.t('views.order_items.subtotal')
           %td
             %span.font-16.in-gold-500= item.total_price

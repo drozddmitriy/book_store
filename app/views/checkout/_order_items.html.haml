@@ -12,23 +12,23 @@
         %th
           %span.in-grey-600= I18n.t('views.checkout.total')
     %tbody
-      - order.line_items.each do |line_item|
+      - order.order_items.each do |order_item|
         %tr
           %td
             .general-img-wrap-table
-              = link_to line_item.book.images.first.url do
-                = image_tag line_item.book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
+              = link_to order_item.book.images.first.url do
+                = image_tag order_item.book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
           %td
             %p.title
-              = line_item.book.title
+              = order_item.book.title
             %p.in-grey-600.fw-300
-              = truncate(line_item.book.description, :length => 250)
+              = truncate(order_item.book.description, :length => 250)
           %td
             %span.font-16.in-gold-500
-              = number_to_currency(line_item.book.price, unit: I18n.t('currency'))
+              = number_to_currency(order_item.book.price, unit: I18n.t('currency'))
           %td
             %span.ml-30
-              = line_item.quantity
+              = order_item.quantity
           %td
             %span.font-16.in-gold-500
-              = number_to_currency(line_item.total_price, unit: I18n.t('currency'))
+              = number_to_currency(order_item.total_price, unit: I18n.t('currency'))

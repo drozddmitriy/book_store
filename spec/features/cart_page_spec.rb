@@ -10,7 +10,7 @@ RSpec.describe 'Cart page', type: :feature do
       find('a.shop-link.pull-right').click
     end
 
-    it { expect(page).to have_current_path line_items_path, ignore_query: true }
+    it { expect(page).to have_current_path order_items_path, ignore_query: true }
     it { expect(page).to have_content(book.title) }
     it { expect(page).to have_content(book.price) }
   end
@@ -19,7 +19,7 @@ RSpec.describe 'Cart page', type: :feature do
     let(:sale) { create(:coupon) }
 
     before do
-      visit line_items_path
+      visit order_items_path
       fill_in 'coupon', with: sale.coupon
       click_on('Apply Coupon')
     end
@@ -29,7 +29,7 @@ RSpec.describe 'Cart page', type: :feature do
 
   context 'when coupon invalid' do
     before do
-      visit line_items_path
+      visit order_items_path
       fill_in 'coupon', with: 'invalid coupon'
       click_on('Apply Coupon')
     end

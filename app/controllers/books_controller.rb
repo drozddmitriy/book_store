@@ -9,13 +9,13 @@ class BooksController < ApplicationController
                                    link_extra: 'data-remote="true"')
     @categories = Category.all
     @category_title = BookService.new(params[:category]).category_title
-    @item = LineItem.new
+    @item = OrderItem.new
     @sort = BookFiltersService.new(params[:filter]).filter_string
   end
 
   def show
     @book = Book.find(params[:id]).decorate
-    @item = LineItem.new
+    @item = OrderItem.new
   end
 
   private

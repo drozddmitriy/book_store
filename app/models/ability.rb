@@ -13,13 +13,13 @@ class Ability
     elsif user.is_a?(User) && user.persisted?
       can :manage, User, id: user.id
       can :create, Review, user_id: user.id
-      can :cud, LineItem
+      can :cud, OrderItem
       can %i[create update], Address
       can :update, Coupon
       can %i[show update], :checkout
       can %i[create update], Order, user_id: user.id
     else
-      can :cud, LineItem
+      can :cud, OrderItem
       can :update, Coupon
     end
   end

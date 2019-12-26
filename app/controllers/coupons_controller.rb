@@ -10,6 +10,6 @@ class CouponsController < ApplicationController
       flash[:danger] = I18n.t('controllers.coupons.coupon_not_applied')
     end
 
-    redirect_to line_items_path
+    redirect_to order_items_path
   end
 end

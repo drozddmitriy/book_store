@@ -14,7 +14,7 @@ RSpec.describe 'Checkout page', type: :feature do
   end
 
   context 'when user buy book' do
-    it { expect(page).to have_current_path line_items_path, ignore_query: true }
+    it { expect(page).to have_current_path order_items_path, ignore_query: true }
   end
 
   context 'when user click login' do

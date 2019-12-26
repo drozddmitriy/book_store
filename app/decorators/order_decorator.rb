@@ -7,7 +7,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def total_price
-    line_items.map { |item| item.book.price * item.quantity }.sum
+    order_items.map { |item| item.book.price * item.quantity }.sum
   end
 
   def discount

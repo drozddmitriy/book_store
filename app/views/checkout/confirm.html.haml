@@ -17,8 +17,8 @@
         = link_to I18n.t('views.checkout.edit'), checkout_path(:payment), class: "general-edit"
         %br/
         = @checkout.show_expiration_month_year
-  = render 'line_items_mobile', order: @checkout
-  = render 'line_items', order: @checkout
+  = render 'order_items_mobile', order: @checkout
+  = render 'order_items', order: @checkout
   .text-center.general-text-right
     %p.in-gold-500.font-18= I18n.t('views.checkout.order_summary')
     %table.general-summary-table.general-summary-table-right.general-text-right

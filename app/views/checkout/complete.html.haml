@@ -9,12 +9,12 @@
       .visible-xs
         %p.general-order-number.mb-0= I18n.t('views.checkout.order', order: @checkout.number)
         %p.general-address.mb-30= @checkout.date_complete
-      = render 'complete_address', address: OrderAddressesDecorator.new(@checkout.addresses.first)  
+      = render 'complete_address', address: OrderAddressesDecorator.new(@checkout.addresses.first)
     .col-sm-6.hidden-xs.text-right
       %p.general-order-number.mb-0= I18n.t('views.checkout.order', order: @checkout.number)
       %p.general-address.mb-30= @checkout.date_complete
-  = render 'line_items_mobile', order: @checkout
-  = render 'line_items', order: @checkout
+  = render 'order_items_mobile', order: @checkout
+  = render 'order_items', order: @checkout
   .text-center.general-text-right
     %p.in-gold-500.font-18= I18n.t('views.checkout.order_summary')
     %table.general-summary-table.general-summary-table-right.general-text-right

@@ -1,6 +1,6 @@
 ActiveAdmin.register Order do
   preserve_default_filters!
-  remove_filter :line_items, :coupon, :addresses
+  remove_filter :order_items, :coupon, :addresses
   filter :user, as: :select, collection: -> { User.all.map(&:email) }
   permit_params :active_admin_requested_event, :number,
                 :total_price, :status, :user_id, :credit_card_id,

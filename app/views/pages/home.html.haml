@@ -18,7 +18,7 @@
                 %p.lead= truncate(book.description, :length => 250)
                 %p.lead.small= book.decorate.author_full_name
                 .general-align
-                  = simple_form_for LineItem.new, method: :post do |f|
+                  = simple_form_for OrderItem.new, method: :post do |f|
                     = f.hidden_field :book_id, value: book.id
                     = f.hidden_field :quantity, value: 1
                     = f.submit I18n.t('views.pages.buy_now'), class: "btn btn-primary"
@@ -48,7 +48,7 @@
                 .general-thumb-link-wrap
                   %a.thumb-hover-link{href: "#{book_path(book)}"}
                     %i.fa.fa-eye.thumb-icon{"aria-hidden" => "true"}
-                  = link_to line_items_path(LineItem.new, line_item: { book_id: book.id, quantity: 1 }), class: "thumb-hover-link link", method: :post do
+                  = link_to order_items_path(OrderItem.new, order_item: { book_id: book.id, quantity: 1 }), class: "thumb-hover-link link", method: :post do
                     %i.fa.fa-shopping-cart.thumb-icon
           .general-thumb-info
             %p.title= book.title

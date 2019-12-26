@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe LineItemsController, type: :controller do
+RSpec.describe OrderItemsController, type: :controller do
   let(:user) { create(:user) }
   let(:book) { create(:book) }
-  let(:line_item) { create(:line_item) }
+  let(:order_item) { create(:order_item) }
 
   describe 'GET #index' do
     before { get :index }
@@ -20,12 +20,12 @@ RSpec.describe LineItemsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:line_item_params) { { line_item: attributes_for(:line_item) } }
+    let(:order_item_params) { { order_item: attributes_for(:order_item) } }
 
-    before { post :create, params: line_item_params }
+    before { post :create, params: order_item_params }
 
-    it 'assigns line_item' do
-      expect(assigns(:line_item)).to be_a LineItem
+    it 'assigns order_item' do
+      expect(assigns(:order_item)).to be_a OrderItem
     end
 
     it 'return redirect response' do
@@ -35,11 +35,11 @@ RSpec.describe LineItemsController, type: :controller do
 
   describe 'PUT #update' do
     before do
-      put :update, params: { id: line_item.id, line_item: attributes_for(:line_item, quantity: 10) }
+      put :update, params: { id: order_item.id, order_item: attributes_for(:order_item, quantity: 10) }
     end
 
-    it 'assigns line_item' do
-      expect(assigns(:line_item)).to be_a LineItem
+    it 'assigns order_item' do
+      expect(assigns(:order_item)).to be_a OrderItem
     end
 
     it 'return redirect response' do
@@ -49,7 +49,7 @@ RSpec.describe LineItemsController, type: :controller do
 
   describe 'DELETE #destroy' do
     before do
-      put :destroy, params: { id: line_item.id, line_item: attributes_for(:line_item, quantity: 1) }
+      put :destroy, params: { id: order_item.id, order_item: attributes_for(:order_item, quantity: 1) }
     end
 
     it 'return redirect response' do

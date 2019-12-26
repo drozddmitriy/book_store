@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Book do
   preserve_default_filters!
-  remove_filter :authors_books, :line_items
+  remove_filter :authors_books, :order_items
   filter :authors, collection: -> { AuthorDecorator.decorate_collection(Author.all) }
   permit_params :title, :description, :price, :quantity,
                 :year, :dimension_h, :dimension_w, :dimension_d,
