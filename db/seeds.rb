@@ -1,5 +1,7 @@
 4.times do
-  User.create!(email: FFaker::Internet.safe_email, password: "Test#{rand(10...99)}")
+  User.create!(email: FFaker::Internet.email,
+               password: "Testtt#{rand(1...9)}",
+               confirmed_at: Time.zone.now)
 end
 
 Delivery.create(name: 'FedEx', time: '1', price:  30.00)
