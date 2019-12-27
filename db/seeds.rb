@@ -30,7 +30,12 @@ categories = Category.all
               dimension_d: rand(1.3...4.5).floor(2),
               year: rand(2001..2019),
               material: FFaker::Lorem.words.join(', '),
-              category_id: categories.sample.id)
+              category_id: categories.sample.id,
+              images: [File.open(File.join(Rails.root,'app/assets/images/1.jpg')),
+                       File.open(File.join(Rails.root,'app/assets/images/2.jpg')),
+                       File.open(File.join(Rails.root,'app/assets/images/3.jpg')),
+                       File.open(File.join(Rails.root,'app/assets/images/4.png'))]
+            )
 end
 
 books = Book.all
