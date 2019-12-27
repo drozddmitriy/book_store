@@ -1,6 +1,6 @@
 4.times do
   User.create!(email: FFaker::Internet.email,
-               password: "Testtt#{rand(1...9)}",
+               password: "Password#{rand(1...99)}",
                confirmed_at: Time.zone.now)
 end
 
