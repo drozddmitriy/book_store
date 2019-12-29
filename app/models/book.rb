@@ -4,7 +4,7 @@ class Book < ApplicationRecord
   validates :title, :price, :quantity, :dimension_h, :dimension_w, :dimension_d, presence: true
   validates :year, numericality: { less_than_or_equal_to: Time.current.year }
   validates :description, length: { maximum: 2000 }
-  validates :price, numericality: { only_integer: true }, length: { maximum: 7 }
+  validates :price, numericality: { greater_than_or_equal_to: 0 }, length: { maximum: 7 }
 
   belongs_to :category
   has_many :authors_books, dependent: :destroy

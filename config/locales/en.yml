@@ -1,5 +1,9 @@
 en:
   order_mailer:
+    hi: "Hi %{email}!"
+    visit_our_site: 'Please visit our site for checking your status of order.'
+    thanks: 'Thanks for choosing us!'
+    check_it: 'Check it'
     message: 'Your Order with bookstore.com'
   currency: '€'
   controllers:

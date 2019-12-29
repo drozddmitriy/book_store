@@ -42,12 +42,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   ActionMailer::Base.smtp_settings = {
-  address: "smtp.gmail.com",
-  port: 587,
-  domain: ENV['MAIL_HOST'],
-  user_name: ENV['GMAIL_USERNAME'],
-  password: ENV['GMAIL_PASSWORD'],
-  authentication: :plain,
-  enable_starttls_auto: true
-}
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: ENV['MAIL_HOST'],
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 end
