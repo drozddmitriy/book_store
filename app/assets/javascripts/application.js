@@ -17,3 +17,4 @@
 //= require checkout
 //= require active_admin
 //= require checkbox_input
+//= require jquery-raty-js
