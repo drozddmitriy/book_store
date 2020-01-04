@@ -1,9 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   def quik_register
-    user = User.find_by(email: params[:user][:email])
+    user = UserService.new(params[:user][:email]).create
 
-    if params[:user][:email].present? && !user
-      user = UserService.new(params[:user][:email]).create
+    if user
       sign_up(:user, user)
       user.send_reset_password_instructions
       redirect_to checkout_path(:addresses)
