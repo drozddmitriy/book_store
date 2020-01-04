@@ -4,7 +4,7 @@ class CheckoutController < ApplicationController
   steps :login, :addresses, :delivery, :payment, :confirm, :complete
 
   def show
-    if current_order.order_items.none? && step == :addresses
+    if current_order.order_items.none?
       flash[:danger] = I18n.t('controllers.checkout.cart_empty')
       return redirect_back(fallback_location: root_path)
     end

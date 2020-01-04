@@ -3,15 +3,6 @@ require 'rails_helper'
 RSpec.describe CheckoutController, type: :controller do
   let!(:user) { create(:user) }
 
-  describe 'login step' do
-    describe 'GET #show' do
-      before { get :show, params: { id: 'login' } }
-
-      it { expect(response).to have_http_status(200) }
-      it { is_expected.to render_template(:login) }
-    end
-  end
-
   describe 'wicked step' do
     before { sign_in(user) }
 
