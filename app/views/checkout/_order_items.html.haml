@@ -25,10 +25,10 @@
               = truncate(order_item.book.description, :length => 250)
           %td
             %span.font-16.in-gold-500
-              = number_to_currency(order_item.book.price, unit: I18n.t('currency'))
+              = number_to_currency(order_item.book.price)
           %td
             %span.ml-30
               = order_item.quantity
           %td
             %span.font-16.in-gold-500
-              = number_to_currency(order_item.total_price, unit: I18n.t('currency'))
+              = number_to_currency(order_item.total_price)

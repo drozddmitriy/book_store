@@ -7,7 +7,7 @@ ActiveAdmin.register Coupon do
     f.inputs do
       f.input :coupon, input_html: { value: CouponService.generate }
       f.input :active, input_html: { checked: true }
-      f.input :sale, label: 'Sale'
+      f.input :sale, label: I18n.t('views.admin.sale')
     end
     f.actions
   end

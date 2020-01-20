@@ -15,12 +15,8 @@ class OrderFiltersService
   end
 
   def filter
-    case params
-    when I18n.t('controllers.orders_filter.in_queue') then current_user.orders.in_queue
-    when I18n.t('controllers.orders_filter.in_delivery') then current_user.orders.in_delivery
-    when I18n.t('controllers.orders_filter.delivered') then current_user.orders.delivered
-    when I18n.t('controllers.orders_filter.canceled') then current_user.orders.canceled
-    else current_user.orders.all_orders
-    end
+    return current_user.orders.public_send(params.to_sym) if !params.nil? && FILTERS.include?(params.to_sym)
+
+    current_user.orders.all_orders
   end
 end

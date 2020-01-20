@@ -12,11 +12,17 @@ class UserService
       email: params,
       password: Devise.friendly_token.first(Devise.password_length.first)
     )
-    user.valid?
-    return if user.errors.messages[:email].present?
+    return if user_valid?(user)
 
     user.confirm
     user.save
     user
+  end
+
+  private
+
+  def user_valid?(user)
+    user.valid?
+    user.errors.messages[:email].present?
   end
 end

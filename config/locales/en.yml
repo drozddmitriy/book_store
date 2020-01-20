@@ -1,11 +1,20 @@
 en:
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
   order_mailer:
     hi: "Hi %{email}!"
     visit_our_site: 'Please visit our site for checking your status of order.'
     thanks: 'Thanks for choosing us!'
     check_it: 'Check it'
     message: 'Your Order with bookstore.com'
-  currency: '€'
   controllers:
     checkout:
       choose_delivery: 'Please choose delivery method!'
@@ -100,6 +109,8 @@ en:
       email: "An order confirmation has been sent to %{email}"
       order: "Order #%{order}"
     admin:
+      images: 'Images'
+      sale: 'Sale'
       current_state: 'Current state'
       change_state: 'Change state'
       publish: 'Publish'

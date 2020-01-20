@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def initialize(user)
     alias_action :create, :update, :destroy, to: :cud
     user ||= User.new
@@ -23,5 +23,5 @@ class Ability
       can :update, Coupon
     end
   end
-  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 end

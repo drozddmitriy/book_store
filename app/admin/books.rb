@@ -1,8 +1,7 @@
-# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Book do
   preserve_default_filters!
   remove_filter :authors_books, :order_items
-  filter :authors, collection: -> { AuthorDecorator.decorate_collection(Author.all) }
+  filter :authors, collection: -> { Author.all.decorate }
   permit_params :title, :description, :price, :quantity,
                 :year, :dimension_h, :dimension_w, :dimension_d,
                 :material, :category_id, author_ids: [], images: []
@@ -22,7 +21,7 @@ ActiveAdmin.register Book do
       truncate(resource.description, length: 250)
     end
     column :price do |resource|
-      number_to_currency(resource.price, unit: I18n.t('currency'))
+      number_to_currency(resource.price)
     end
     column :actions do |resource|
       links = []
@@ -37,7 +36,7 @@ ActiveAdmin.register Book do
   end
 
   show do
-    panel 'Images' do
+    panel I18n.t('views.admin.images') do
       table do
         resource.images.each do |image|
           span image_tag image.thumb.url
@@ -69,7 +68,7 @@ ActiveAdmin.register Book do
 
     f.inputs do
       f.input :title
-      f.input :authors, as: :check_boxes, collection: AuthorDecorator.decorate_collection(Author.all)
+      f.input :authors, as: :check_boxes, collection: Author.all.decorate
       f.input :category, as: :radio
       f.input :description
       f.input :year
@@ -85,7 +84,7 @@ ActiveAdmin.register Book do
       f.input :images, as: :file, input_html: { multiple: true }
     end
 
-    f.inputs 'Images', multipart: true do
+    f.inputs I18n.t('views.admin.images'), multipart: true do
       f.object.images.each do |image|
         span image_tag image.thumb.url
       end
@@ -105,4 +104,3 @@ ActiveAdmin.register Book do
     redirect_to edit_admin_book_path(book)
   end
 end
-# rubocop:enable Metrics/BlockLength

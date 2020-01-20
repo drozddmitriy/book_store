@@ -3,15 +3,16 @@ class BooksController < ApplicationController
 
   before_action :book_filter
 
+  # rubocop:disable Metrics/AbcSize
   def index
     @pagy, @books = pagy_countless(BookService.new(params[:category], @filter).filter_for_books,
                                    items: Book::ITEMS,
                                    link_extra: 'data-remote="true"')
     @categories = Category.all
     @category_title = BookService.new(params[:category]).category_title
-    @item = OrderItem.new
     @sort = BookFiltersService.new(params[:filter]).filter_string
   end
+  # rubocop:enable Metrics/AbcSize
 
   def show
     @book = Book.find(params[:id]).decorate

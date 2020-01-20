@@ -6,8 +6,7 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-    @order_item = OrderItem.find_or_initialize_by(book_id: params[:order_item][:book_id], order_id: current_order.id)
-    @order_item.quantity = params[:order_item][:quantity]
+    @order_item = OrderItemService.new(order_item_params, current_order).create
     if @order_item.save
       flash[:success] = I18n.t('controllers.order_items.create')
     else
@@ -28,7 +27,7 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-    OrderItemService.change_quantity(@order_item, params[:quantity])
+    @order_item = OrderItemService.new(params[:quantity], current_order, @order_item).change_quantity
     @order_item.save
 
     redirect_back(fallback_location: root_path)

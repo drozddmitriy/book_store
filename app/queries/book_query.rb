@@ -1,6 +1,15 @@
 class BookQuery
   ITEM_LATEST_BOOKS = 3
   ITEM_BOOK_BEST_SELLERS = 4
+  FILTER = {
+    newest: 'created_at DESC',
+    popular_first: 'order_items.quantity DESC',
+    title_asc: 'title',
+    title_desc: 'title DESC',
+    price_asc: 'price',
+    price_desc: 'price DESC'
+  }.freeze
+
   attr_accessor :initial_scope
 
   def initialize(initial_scope)
@@ -16,13 +25,8 @@ class BookQuery
   end
 
   def by_filter(filter)
-    case filter
-    when :newest then initial_scope.order('created_at DESC')
-    when :popular_first then initial_scope.joins(:order_items).order('order_items.quantity DESC')
-    when :title_asc then initial_scope.order('title')
-    when :title_desc then initial_scope.order('title DESC')
-    when :price_asc then initial_scope.order('price')
-    when :price_desc then initial_scope.order('price DESC')
-    end
+    return initial_scope.joins(:order_items).order(FILTER[filter]) if filter == :popular_first
+
+    initial_scope.order(FILTER[filter])
   end
 end

@@ -1,5 +1,5 @@
-$(document).ready(function(){
-  $('.fa-minus').parent('#minus').click(function(event){
+$(document).ready(function() {
+  $('.fa-minus').parent('#minus').click(function(event) {
     var input;
     var quantity;
     input = $(this).siblings('.quantity-input');

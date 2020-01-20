@@ -20,7 +20,7 @@
         = @book.author_full_name
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10= number_to_currency(@book.price, unit: I18n.t('currency'))
+          %p.h1.in-gold-500.mt-10= number_to_currency(@book.price)
         = simple_form_for @item, method: :post do |f|
           .col-xs-5.col-md-3
             .input-group.general-position

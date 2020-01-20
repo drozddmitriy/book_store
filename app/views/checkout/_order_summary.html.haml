@@ -2,14 +2,14 @@
   %td
     %p.font-16= I18n.t('views.checkout.subtotal_summary')
   %td
-    %p.font-16= number_to_currency(order.total_price, unit: I18n.t('currency'))
+    %p.font-16= number_to_currency(order.total_price)
 %tr
   %td
     %p.font-16= I18n.t('views.checkout.coupon_summary')
   %td
-    %p.font-16= number_to_currency(order.discount, unit: I18n.t('currency'))
+    %p.font-16= number_to_currency(order.discount)
 %tr
   %td
     %strong.font-18= I18n.t('views.checkout.order_total_summary')
   %td
-    %strong.font-18= number_to_currency(order.total_order_price, unit: I18n.t('currency'))
+    %strong.font-18= number_to_currency(order.total_order_price)

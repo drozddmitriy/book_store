@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe OrderItemsController, type: :controller do
-  let(:user) { create(:user) }
   let(:book) { create(:book) }
-  let(:order_item) { create(:order_item) }
+  let(:order_item) { create(:order_item, book: book) }
 
   describe 'GET #index' do
     before { get :index }
@@ -49,7 +48,7 @@ RSpec.describe OrderItemsController, type: :controller do
 
   describe 'DELETE #destroy' do
     before do
-      put :destroy, params: { id: order_item.id, order_item: attributes_for(:order_item, quantity: 1) }
+      put :destroy, params: { id: order_item.id }
     end
 
     it 'return redirect response' do

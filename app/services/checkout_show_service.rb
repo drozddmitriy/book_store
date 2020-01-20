@@ -33,8 +33,7 @@ class CheckoutShowService
     order.user_id(user.id)
     user.orders.find_by(status: PROGRESS).order_in_queue!
     OrderMailer.confirm_order(user).deliver_now
-    session[:current_order_complete] = false
-    session[:order_id] = nil
+    clear_session
     order.decorate
   end
 
@@ -44,5 +43,10 @@ class CheckoutShowService
     return { addressable_type: 'User', addressable_id: user.id } if order.addresses.empty?
 
     { addressable_type: 'Order', addressable_id: order.id }
+  end
+
+  def clear_session
+    session[:current_order_complete] = false
+    session[:order_id] = nil
   end
 end

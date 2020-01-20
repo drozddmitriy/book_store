@@ -15,19 +15,16 @@ Documentation:
   Enabled: false
 
 Metrics/MethodLength:
-  Max: 15
+  Exclude:
+    - 'spec/**/*'
 
 Metrics/BlockLength:
-  Max: 45
+  Exclude:
+    - 'spec/**/*'
+    - 'app/admin/**/*'
 
 Style/ClassAndModuleChildren:
   Enabled: false
-
-Metrics/CyclomaticComplexity:
-  Max: 7
-
-Metrics/AbcSize:
-  Max: 25
 
 AllCops:
   Exclude:
