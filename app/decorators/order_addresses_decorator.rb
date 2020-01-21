@@ -2,7 +2,7 @@ class OrderAddressesDecorator < Draper::Decorator
   delegate_all
 
   def capitalize_address
-    "#{cast.capitalize} Address"
+    I18n.t('decorator.capitalize_address', capitalize: cast.capitalize)
   end
 
   def full_name
@@ -14,6 +14,6 @@ class OrderAddressesDecorator < Draper::Decorator
   end
 
   def phone_address
-    "Phone #{phone}"
+    I18n.t('decorator.phone_address', phone: phone)
   end
 end

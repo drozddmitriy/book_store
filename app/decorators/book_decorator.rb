@@ -7,7 +7,7 @@ class BookDecorator < Draper::Decorator
   end
 
   def book_dimensions
-    "H: #{dimension_h} x W: #{dimension_w} x D: #{dimension_d}"
+    I18n.t('decorator.dimension', dimension_h: dimension_h, dimension_w: dimension_w, dimension_d: dimension_d)
   end
 
   def book_reviews

@@ -2,12 +2,10 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    order_status = params[:order_status]
-    @orders = OrderDecorator.decorate_collection(OrderFiltersService.new(order_status, current_user)
-                                                                    .filter.includes(:order_items))
+    order_object = OrderFiltersService.new(params[:order_status], current_user)
+    @orders = OrderDecorator.decorate_collection(order_object.filter.includes(:order_items))
 
-    @filter = (OrderFiltersService::FILTERS.include?(order_status&.to_sym) ?
-    OrderFiltersService::FILTERS[order_status.to_sym] : OrderFiltersService::FILTERS[:all]).call
+    @filter = order_object.filter_menu
   end
 
   def show

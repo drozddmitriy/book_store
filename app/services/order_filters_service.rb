@@ -19,4 +19,8 @@ class OrderFiltersService
 
     current_user.orders.all_orders
   end
+
+  def filter_menu
+    (FILTERS.include?(params&.to_sym) ? FILTERS[params.to_sym] : FILTERS[:all]).call
+  end
 end
