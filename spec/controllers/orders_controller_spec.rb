@@ -15,7 +15,7 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it 'assigns filter' do
-      expect(assigns(:filter)).to eq(OrderFiltersService::FILTERS[:all])
+      expect(assigns(:filter)).to eq((OrderFiltersService::FILTERS[:all]).call)
     end
 
     it 'return a success response' do

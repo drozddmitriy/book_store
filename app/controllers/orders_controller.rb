@@ -6,11 +6,12 @@ class OrdersController < ApplicationController
     @orders = OrderDecorator.decorate_collection(OrderFiltersService.new(order_status, current_user)
                                                                     .filter.includes(:order_items))
 
-    @filter = order_status ? OrderFiltersService::FILTERS[order_status.to_sym] : OrderFiltersService::FILTERS[:all]
+    @filter = (OrderFiltersService::FILTERS.include?(order_status&.to_sym) ?
+    OrderFiltersService::FILTERS[order_status.to_sym] : OrderFiltersService::FILTERS[:all]).call
   end
 
   def show
-    @order = current_user.orders.find_by(id: params[:id]).decorate
+    @order = @order.decorate
     @current_address = OrderAddressesDecorator.decorate_collection(@order.addresses)
   end
 end

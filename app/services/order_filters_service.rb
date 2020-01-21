@@ -1,10 +1,10 @@
 class OrderFiltersService
   FILTERS = {
-    in_queue: I18n.t('controllers.orders.processing'),
-    in_delivery: I18n.t('controllers.orders.in_delivery'),
-    delivered: I18n.t('controllers.orders.delivered'),
-    canceled: I18n.t('controllers.orders.canceled'),
-    all: I18n.t('controllers.orders.all')
+    in_queue: -> { I18n.t('controllers.orders.processing') },
+    in_delivery: -> { I18n.t('controllers.orders.in_delivery') },
+    delivered: -> { I18n.t('controllers.orders.delivered') },
+    canceled: -> { I18n.t('controllers.orders.canceled') },
+    all: -> { I18n.t('controllers.orders.all') }
   }.freeze
 
   attr_reader :params, :current_user

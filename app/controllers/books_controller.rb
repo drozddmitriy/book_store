@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   # rubocop:enable Metrics/AbcSize
 
   def show
-    @book = Book.find(params[:id]).decorate
+    @book = @book.decorate
     @item = OrderItem.new
   end
 

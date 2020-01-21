@@ -4,7 +4,6 @@ class AddressesController < ApplicationController
   def index; end
 
   def create
-    @address = Address.new(address_params)
     @address.addressable = current_user
 
     if @address.save

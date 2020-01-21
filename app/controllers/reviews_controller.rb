@@ -2,8 +2,6 @@ class ReviewsController < ApplicationController
   load_and_authorize_resource
 
   def create
-    @review = Review.new(review_params)
-
     if @review.save
       flash[:success] = I18n.t('controllers.reviews.thanks_for_review')
     else

@@ -1,4 +1,5 @@
 ActiveAdmin.register Book do
+  decorate_with BookDecorator
   preserve_default_filters!
   remove_filter :authors_books, :order_items
   filter :authors, collection: -> { Author.all.decorate }
@@ -14,9 +15,7 @@ ActiveAdmin.register Book do
       image_tag resource.images.first.thumb.url if resource.images.any?
     end
     column :category
-    column :authors do |resource|
-      BookDecorator.new(resource).author_full_name
-    end
+    column :authors, &:author_full_name
     column :description do |resource|
       truncate(resource.description, length: 250)
     end
@@ -45,9 +44,7 @@ ActiveAdmin.register Book do
     end
     attributes_table do
       row :title
-      row :authors do |resource|
-        BookDecorator.new(resource).author_full_name
-      end
+      row :authors, &:author_full_name
       row :category
       row :year
       row :description
