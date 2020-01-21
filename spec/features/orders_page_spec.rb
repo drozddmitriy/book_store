@@ -11,7 +11,7 @@ RSpec.describe 'Orders page', type: :feature do
     end
 
     it { expect(page).to have_content(order.number) }
-    it { expect(page).to have_content(order.date) }
+    it { expect(page).to have_content(I18n.l(order.created_at, format: :date)) }
     it { expect(page).to have_content(order.status_capitalize) }
     it { expect(page).to have_content(order.total_price) }
   end

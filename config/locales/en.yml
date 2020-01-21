@@ -1,4 +1,8 @@
 en:
+  time:
+    formats:
+      date: '%d/%m/%y'
+      date_complete: '%B %-d, %Y'
   number:
     currency:
       format:

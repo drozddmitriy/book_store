@@ -4,23 +4,23 @@
       .col-sm-9
         %ul.list-inline.general-align.mb-25
           %li
-            %a.nav-link{href: root_path}= I18n.t('views.pages.home')
+            %a.nav-link{href: root_path}= t('views.pages.home')
           %li
-            %a.nav-link{href: books_path}= I18n.t('views.pages.shop')
+            %a.nav-link{href: books_path}= t('views.pages.shop')
           - if user_signed_in?
             %li
               %a.nav-link
-                = link_to I18n.t('views.pages.orders'), orders_path, class:"nav-link"
+                = link_to t('views.pages.orders'), orders_path, class:"nav-link"
             %li
-              = link_to I18n.t('views.pages.settings'), edit_user_registration_path, class: "nav-link"
+              = link_to t('views.pages.settings'), edit_user_registration_path, class: "nav-link"
           - else
             %li
-              = link_to I18n.t('views.pages.log_in'), new_user_session_path, class:"nav-link"
+              = link_to t('views.pages.log_in'), new_user_session_path, class:"nav-link"
             %li
-              = link_to I18n.t('views.pages.sign_up'), new_user_registration_path, class:"nav-link"
+              = link_to t('views.pages.sign_up'), new_user_registration_path, class:"nav-link"
       .col-sm-3
-        %p.general-nav-mail= I18n.t('views.pages.support')
-        %p.general-nav-number= I18n.t('views.pages.number')
+        %p.general-nav-mail= t('views.pages.support')
+        %p.general-nav-number= t('views.pages.number')
         %ul.list-inline.general-align
           %li
             %a.nav-link{href: "#"}

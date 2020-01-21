@@ -2,14 +2,14 @@
   %table.table.table-hover
     %tr.no-hover
       %th.col-pic.pl-0
-        %span.in-grey-600= I18n.t('views.order_items.product')
+        %span.in-grey-600= t('views.order_items.product')
       %th.col-title
       %th.col-price
-        %span.in-grey-600= I18n.t('views.order_items.price')
+        %span.in-grey-600= t('views.order_items.price')
       %th.col-quantity
-        %span.in-grey-600= I18n.t('views.order_items.quantity')
+        %span.in-grey-600= t('views.order_items.quantity')
       %th.col-total
-        %span.in-grey-600= I18n.t('views.order_items.subtotal')
+        %span.in-grey-600= t('views.order_items.subtotal')
       %th.col-close
     - @items.each do |item|
       %tr

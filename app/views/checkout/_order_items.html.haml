@@ -3,14 +3,14 @@
     %thead
       %tr
         %th
-          %span.in-grey-600= I18n.t('views.checkout.book')
+          %span.in-grey-600= t('views.checkout.book')
         %th.col-method
         %th
-          %span.in-grey-600= I18n.t('views.checkout.price')
+          %span.in-grey-600= t('views.checkout.price')
         %th
-          %span.in-grey-600= I18n.t('views.checkout.quantity')
+          %span.in-grey-600= t('views.checkout.quantity')
         %th
-          %span.in-grey-600= I18n.t('views.checkout.total')
+          %span.in-grey-600= t('views.checkout.total')
     %tbody
       - order.order_items.each do |order_item|
         %tr

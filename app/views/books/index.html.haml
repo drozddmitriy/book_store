@@ -2,7 +2,7 @@
   - if params[:category]
     %h1.general-title-margin= @category_title
   - else
-    %h1.general-title-margin= I18n.t('views.books.catalog')
+    %h1.general-title-margin= t('views.books.catalog')
   .hidden-xs.clearfix
     .dropdowns.pull-right
       .dropdown.width-240
@@ -13,7 +13,7 @@
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
         %a.filter-link{href: books_path}
-          = I18n.t('views.books.all')
+          = t('views.books.all')
           %span.badge.general-badge= Book.count
       - @categories.each do |category|
         %li.mr-35
@@ -21,7 +21,7 @@
             = category.title
             %span.badge.general-badge= category.books.count
   .dropdowns.mb-25.visible-xs
-    %p.lead.small.mb-10= I18n.t('views.books.filter')
+    %p.lead.small.mb-10= t('views.books.filter')
     .dropdown
       %a.dropdown-toggle.lead.small{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
         = @sort
@@ -29,14 +29,14 @@
       %ul.dropdown-menu
         %li.mr-35
           %a.filter-link{href: books_path}
-            = I18n.t('views.books.all')
+            = t('views.books.all')
             %span.badge.general-badge= Book.count
         - @categories.each do |category|
           %li.mr-35
             %a.filter-link{href: "#{books_path(category: category.id)}"}
               = category.title
               %span.badge.general-badge= category.books.count
-    %p.lead.small.mb-10= I18n.t('views.books.sort_by')
+    %p.lead.small.mb-10= t('views.books.sort_by')
     .dropdown
       %a.dropdown-toggle.lead.small{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
         = @sort

@@ -1,5 +1,5 @@
 %main.container.general-main-wrap
-  %h1.general-title-margin= I18n.t('views.checkout.order', order: @order.number)
+  %h1.general-title-margin= t('views.checkout.order', order: @order.number)
   .row.mb-20
     - @current_address.each do |address|
       .col-sm-3
@@ -16,13 +16,13 @@
           = address.phone_address
       - break if @order.use_billing
     .col-sm-3
-      %h3.general-subtitle.mt-0= I18n.t('views.orders.shipments')
+      %h3.general-subtitle.mt-0= t('views.orders.shipments')
       %p.general-address
         = @order.delivery.name
         %br/
         = @order.delivery.time
     .col-sm-3
-      %h3.general-subtitle.mt-0= I18n.t('views.orders.payment_information')
+      %h3.general-subtitle.mt-0= t('views.orders.payment_information')
       %p.general-address
         = @order.show_credit_card
         %br/
@@ -38,19 +38,19 @@
         %table.table
           %tr
             %td
-              %span.in-grey-600= I18n.t('views.orders.price')
+              %span.in-grey-600= t('views.orders.price')
             %td
               %span.font-16.in-gold-500
                 = number_to_currency(order_item.book.price)
           %tr
             %td.vertical-middle
-              %span.in-grey-600= I18n.t('views.orders.quantity')
+              %span.in-grey-600= t('views.orders.quantity')
             %td
               %span
                 = order_item.quantity
           %tr
             %td
-              %span.in-grey-600= I18n.t('views.orders.subtotal')
+              %span.in-grey-600= t('views.orders.subtotal')
             %td
               %span.font-16.in-gold-500
                 = number_to_currency(order_item.total_price)
@@ -59,14 +59,14 @@
       %thead
         %tr
           %th
-            %span.in-grey-600= I18n.t('views.orders.book')
+            %span.in-grey-600= t('views.orders.book')
           %th.col-method
           %th
-            %span.in-grey-600= I18n.t('views.orders.price')
+            %span.in-grey-600= t('views.orders.price')
           %th
-            %span.in-grey-600= I18n.t('views.orders.quantity')
+            %span.in-grey-600= t('views.orders.quantity')
           %th
-            %span.in-grey-600= I18n.t('views.orders.total')
+            %span.in-grey-600= t('views.orders.total')
       %tbody
         - @order.order_items.includes(:book).each do |order_item|
           %tr
@@ -89,6 +89,6 @@
               %span.font-16.in-gold-500
                 = number_to_currency(order_item.total_price)
   .text-center.general-text-right
-    %p.in-gold-500.font-18= I18n.t('views.orders.order_summary')
+    %p.in-gold-500.font-18= t('views.orders.order_summary')
     %table.general-summary-table.general-summary-table-right.general-text-right
       = render 'checkout/order_summary', order: @order

@@ -7,7 +7,7 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand= I18n.t('views.pages.bookstore')
+        %a.navbar-brand= t('views.pages.bookstore')
       %a.shop-link.pull-right.hidden-xs{href: order_items_path}
         %span.shop-icon
           %span.shop-quantity= cart_items_count
@@ -17,38 +17,38 @@
             %span{"aria-hidden" => "true"} ×
           %ul.nav.navbar-nav
             %li
-              %a{href: root_path}= I18n.t('views.pages.home')
+              %a{href: root_path}= t('views.pages.home')
             %li
-              %a{"aria-controls" => "menu", "aria-expanded" => "false", "data-toggle" => "collapse", href: "#menu", type: "button"}= I18n.t('views.pages.shop')
+              %a{"aria-controls" => "menu", "aria-expanded" => "false", "data-toggle" => "collapse", href: "#menu", type: "button"}= t('views.pages.shop')
               %ul#menu.collapse.list-unstyled.pl-30.mb-10{"aria-expanded" => "false"}
                 - Category.all.each do |category|
                   %li
                     %a.collapse-link{href: "#{books_path(category: category.id)}"}= category.title
             %li
-              %a{href: "#"}= I18n.t('views.pages.my_account')
+              %a{href: "#"}= t('views.pages.my_account')
         .hidden-xs
           %ul.nav.navbar-nav
             %li
-              %a{href: root_path}= I18n.t('views.pages.home')
+              %a{href: root_path}= t('views.pages.home')
             %li.dropdown
-              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}= I18n.t('views.pages.shop')
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}= t('views.pages.shop')
               %ul.dropdown-menu
                 - Category.all.each do |category|
                   %li
                     %a.collapse-link{href: "#{books_path(category: category.id)}"}= category.title
             %li.dropdown
-              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}= I18n.t('views.pages.my_account')
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}= t('views.pages.my_account')
               %ul.dropdown-menu
                 - if user_signed_in?
                   %li
-                    = link_to I18n.t('views.pages.orders'), orders_path
+                    = link_to t('views.pages.orders'), orders_path
                   %li
-                    = link_to I18n.t('views.pages.settings'), addresses_path
+                    = link_to t('views.pages.settings'), addresses_path
                   %li.divider{role: "separator"}
                   %li
-                    = link_to I18n.t('views.pages.log_out'), destroy_user_session_path, method: :delete
+                    = link_to t('views.pages.log_out'), destroy_user_session_path, method: :delete
                 - else
                   %li
-                    = link_to I18n.t('views.pages.log_in'), new_user_session_path
+                    = link_to t('views.pages.log_in'), new_user_session_path
                   %li
-                    = link_to I18n.t('views.pages.sign_up'), new_user_registration_path
+                    = link_to t('views.pages.sign_up'), new_user_registration_path

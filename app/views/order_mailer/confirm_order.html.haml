@@ -1,8 +1,8 @@
 %p
-  = I18n.t('order_mailer.hi', email: @user.email)
+  = t('order_mailer.hi', email: @user.email)
 %p
-  = I18n.t('order_mailer.thanks')
+  = t('order_mailer.thanks')
 %p
-  = I18n.t('order_mailer.visit_our_site')
+  = t('order_mailer.visit_our_site')
 %p
   = link_to I18n.t('order_mailer.check_it'), orders_url(host: "radiant-plains-48256.herokuapp.com")

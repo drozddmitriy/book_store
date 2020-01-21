@@ -9,12 +9,12 @@
       %table.table
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.order_items.price')
+            %span.in-grey-600= t('views.order_items.price')
           %td
             %span.font-16.in-gold-500= item.book.price
         %tr
           %td.vertical-middle
-            %span.in-grey-600= I18n.t('views.order_items.quantity')
+            %span.in-grey-600= t('views.order_items.quantity')
           %td
             .input-group
               = link_to order_item_path(id: item.id, quantity: :minus), class: "input-link", method: :put do
@@ -24,7 +24,7 @@
                 %i.fa.fa-plus.line-heaght-40
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.order_items.subtotal')
+            %span.in-grey-600= t('views.order_items.subtotal')
           %td
             %span.font-16.in-gold-500= item.total_price
     .general-cart-item.divider-lg-bottom.mb-30
@@ -36,12 +36,12 @@
       %table.table
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.order_items.price')
+            %span.in-grey-600= t('views.order_items.price')
           %td
             %span.font-16.in-gold-500= item.book.price
         %tr
           %td.vertical-middle
-            %span.in-grey-600= I18n.t('views.order_items.quantity')
+            %span.in-grey-600= t('views.order_items.quantity')
           %td
             .input-group
               = link_to order_item_path(id: item.id, quantity: :minus), class: "input-link", method: :put do
@@ -51,6 +51,6 @@
                 %i.fa.fa-plus.line-heaght-40
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.order_items.subtotal')
+            %span.in-grey-600= t('views.order_items.subtotal')
           %td
             %span.font-16.in-gold-500= item.total_price

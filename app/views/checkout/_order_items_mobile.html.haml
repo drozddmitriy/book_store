@@ -9,19 +9,19 @@
       %table.table
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.checkout.price')
+            %span.in-grey-600= t('views.checkout.price')
           %td
             %span.font-16.in-gold-500
               = number_to_currency(order_item.book.price)
         %tr
           %td.vertical-middle
-            %span.in-grey-600= I18n.t('views.checkout.quantity')
+            %span.in-grey-600= t('views.checkout.quantity')
           %td
             %span
               = order_item.quantity
         %tr
           %td
-            %span.in-grey-600= I18n.t('views.checkout.subtotal')
+            %span.in-grey-600= t('views.checkout.subtotal')
           %td
             %span.font-16.in-gold-500
               = number_to_currency(order_item.total_price)

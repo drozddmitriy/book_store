@@ -1,6 +1,6 @@
 %main.container.general-main-wrap
-  %h1.mt-0.mb-25= I18n.t('views.orders.my_orders')
-  %p.lead.small.mb-10.visible-xs= I18n.t('views.orders.sort_by')
+  %h1.mt-0.mb-25= t('views.orders.my_orders')
+  %p.lead.small.mb-10.visible-xs= t('views.orders.sort_by')
   .dropdowns.dropdown.general-order-dropdown
     %a.dropdown-toggle.lead.small{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
       = @filter
@@ -12,22 +12,22 @@
         %table.table
           %tr
             %td.col-half
-              %span.in-grey-600= I18n.t('views.orders.number')
+              %span.in-grey-600= t('views.orders.number')
             %td.col-half
               %span.general-order-number= order.number
           %tr
             %td
-              %span.in-grey-600= I18n.t('views.orders.completed_at')
+              %span.in-grey-600= t('views.orders.completed_at')
             %td
-              %span.in-grey-900.font-16.fw-300= order.date
+              %span.in-grey-900.font-16.fw-300= l(order.created_at, format: :date)
           %tr
             %td
-              %span.in-grey-600= I18n.t('views.orders.status')
+              %span.in-grey-600= t('views.orders.status')
             %td
               %span.font-16.in-grey-900.fw-300= order.status_capitalize
           %tr
             %td
-              %span.in-grey-600= I18n.t('views.orders.total')
+              %span.in-grey-600= t('views.orders.total')
             %td
               %strong.font-16= number_to_currency(order.total_price)
   .hidden-xs.mb-res-50
@@ -35,13 +35,13 @@
       %thead
         %tr
           %th
-            %span.in-grey-600= I18n.t('views.orders.number')
+            %span.in-grey-600= t('views.orders.number')
           %th
-            %span.in-grey-600= I18n.t('views.orders.completed_at')
+            %span.in-grey-600= t('views.orders.completed_at')
           %th
-            %span.in-grey-600= I18n.t('views.orders.status')
+            %span.in-grey-600= t('views.orders.status')
           %th
-            %span.in-grey-600= I18n.t('views.orders.total')
+            %span.in-grey-600= t('views.orders.total')
       %tbody
         - @orders.each do |order|
           %tr
@@ -50,7 +50,7 @@
                 %span.general-order-number
                   = order.number
             %td
-              %span.in-grey-900.font-16.fw-300= order.date
+              %span.in-grey-900.font-16.fw-300= l(order.created_at, format: :date)
             %td
               %span.font-16.in-grey-900.fw-300= order.status_capitalize
             %td
