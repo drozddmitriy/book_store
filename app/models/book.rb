@@ -1,9 +1,15 @@
 class Book < ApplicationRecord
   ITEMS = 8
 
-  validates :title, :price, :quantity, :dimension_h, :dimension_w, :dimension_d, presence: true
+  validates :title, presence: true
+  validates :quantity, presence: true
+  validates :dimension_h, presence: true
+  validates :dimension_w, presence: true
+  validates :dimension_d, presence: true
   validates :year, numericality: { less_than_or_equal_to: Time.current.year }
   validates :description, length: { maximum: 2000 }
+
+  validates :price, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }, length: { maximum: 7 }
 
   belongs_to :category

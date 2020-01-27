@@ -1,8 +1,7 @@
 class Delivery < ApplicationRecord
   has_many :orders, dependent: :destroy
 
-  validates :name, :time, :price, presence: true
-  validates :name, uniqueness: true
-  validates :name, length: { maximum: 50 }
-  validates :price, numericality: true
+  validates :time, presence: true
+  validates :name, uniqueness: true, length: { maximum: 50 }, presence: true
+  validates :price, numericality: true, presence: true
 end

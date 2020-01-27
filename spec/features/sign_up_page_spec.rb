@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Registration', type: :feature do
   let(:user) { create(:user) }
 

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Coupon do
   let(:code) { '1234567890' }
 

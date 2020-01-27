@@ -1,5 +1,5 @@
 %main.container
-  %a.general-back-link{href: books_path}
+  = link_to books_path, class: "general-back-link" do
     %i.fa.fa-long-arrow-left.mr-15
     = t('views.books.results')
   .row
@@ -24,10 +24,10 @@
         = simple_form_for @item, method: :post do |f|
           .col-xs-5.col-md-3
             .input-group.general-position
-              %a#minus.input-link{href: "#"}
+              = link_to "#", class: "input-link", id: "minus" do
                 %i.fa.fa-minus.line-height-40
               = f.text_field :quantity, value: 1, class: "form-control quantity-input"
-              %a#plus.input-link{href: "#"}
+              = link_to "#", class: "input-link", id: "plus" do
                 %i.fa.fa-plus.line-height-40
           .col-xs-7.col-md-5
             = f.hidden_field :book_id, value: @book.id

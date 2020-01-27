@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CheckoutStepService do
   let(:session) { { current_order_complete: 'complete' } }
   let(:delivery) { create(:delivery) }

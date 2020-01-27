@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CheckoutUpdateService do
   let(:order) { create(:order, status: 'in_progress') }
   let(:user) { create(:user, orders: [order]) }

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Author do
   let(:first_name) { 'first_name' }
   let(:last_name) { 'last_name' }

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Book do
   let(:test_text) { 'test' }
   let(:edit_test_text) { 'edit_test' }

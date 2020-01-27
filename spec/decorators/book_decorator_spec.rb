@@ -1,15 +1,13 @@
-require 'rails_helper'
-
 RSpec.describe BookDecorator do
   subject(:decorator) { described_class.new(book) }
 
-  let(:authors) { [create(:author)] }
+  let(:authors) { create_list(:author, 1) }
   let(:book) { create(:book, authors: authors) }
-  let(:book_decorator) { "H: #{book.dimension_h} x W: #{book.dimension_w} x D: #{book.dimension_d}" }
-  let(:author_test) { AuthorDecorator.new(authors.first) }
 
   describe '#book_dimensions' do
-    it { expect(decorator.book_dimensions).to eq(book_decorator) }
+    let(:book_dimensions) { "H: #{book.dimension_h} x W: #{book.dimension_w} x D: #{book.dimension_d}" }
+
+    it { expect(decorator.book_dimensions).to eq(book_dimensions) }
   end
 
   describe '#book_reviews' do
@@ -17,6 +15,8 @@ RSpec.describe BookDecorator do
   end
 
   describe '#author_full_name' do
+    let(:author_test) { AuthorDecorator.new(authors.first) }
+
     it { expect(decorator.author_full_name).to eq(author_test.full_name) }
   end
 end

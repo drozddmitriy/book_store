@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Home page', type: :feature do
   before do
     create(:book)

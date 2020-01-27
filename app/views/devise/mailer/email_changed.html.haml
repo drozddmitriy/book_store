@@ -1,8 +1,8 @@
 %p
-  Hello #{@email}!
+  = t('views.devise.registrations.hello', email: @email)
 - if @resource.try(:unconfirmed_email?)
   %p
-    We're contacting you to notify you that your email is being changed to #{@resource.unconfirmed_email}.
+    = t('views.devise.registrations.mail_begin_changed', email: @resource.unconfirmed_email)
 - else
   %p
-    We're contacting you to notify you that your email has been changed to #{@resource.email}.
+    = t('views.devise.registrations.email_has_been_changed', email: @resource.email)

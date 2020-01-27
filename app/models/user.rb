@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessor :current_password
+  REGULAR_EXP = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,70}$/.freeze
   validate :password_complexity
 
   devise :database_authenticatable, :registerable,
@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def password_complexity
-    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,70}$/
+    return if password.blank? || password =~ REGULAR_EXP
 
     errors.add :password, I18n.t('models.user.password')
   end

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe OrderFiltersService do
   subject(:order_filters_service) { described_class }
 

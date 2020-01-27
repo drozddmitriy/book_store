@@ -1,10 +1,8 @@
-require 'rails_helper'
-
 RSpec.describe 'Order page', type: :feature do
   let(:user) { create(:user) }
   let(:book) { create(:book) }
   let(:order_item) { [create(:order_item, book: book)] }
-  let(:addresses) { [create(:address)] }
+  let(:addresses) { create_list(:address, 1) }
   let(:credit_card) { create(:credit_card) }
   let(:delivery) { create(:delivery) }
   let(:order) do

@@ -3,7 +3,7 @@
     %h3.general-subtitle= address.capitalize_address
     %p.general-address
       = address.full_name
-      = link_to "edit", checkout_path(:addresses), class: "general-edit"
+      = link_to t('views.checkout.edit'), checkout_path(:addresses), class: "general-edit"
       %br/
       = address.address
       %br/

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe BookFiltersService do
   context 'when default filter' do
     let(:book_filters_service) { described_class.new(nil) }

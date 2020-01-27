@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe OrdersController, type: :controller do
   let(:user) { create(:user) }
   let(:order) { create(:order, user_id: user.id) }

@@ -3,7 +3,7 @@ class OrderDecorator < Draper::Decorator
   delegate :capitalize, to: :status, prefix: true
 
   def total_price
-    order_items.map { |item| item.book.price * item.quantity }.sum
+    order_items.sum { |item| item.book.price * item.quantity }
   end
 
   def discount

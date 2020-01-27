@@ -17,9 +17,9 @@ class AddressesForm
   end
 
   def select_address(cast)
-    return user.addresses.public_send(cast).first_or_initialize if order.addresses.public_send(cast)
+    return order.addresses.public_send(cast).first_or_initialize if order.addresses.exists?
 
-    order.addresses.public_send(cast).first_or_initialize
+    user.addresses.public_send(cast).first_or_initialize
   end
 
   private

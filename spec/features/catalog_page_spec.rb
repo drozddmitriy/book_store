@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Catalog page', type: :feature do
   let!(:books) { create_list(:book, 3) }
 

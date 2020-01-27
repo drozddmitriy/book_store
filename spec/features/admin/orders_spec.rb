@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Admin Orders', type: :feature do
   let(:admin_user) { create(:admin_user) }
 

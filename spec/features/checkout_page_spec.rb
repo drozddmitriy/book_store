@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Checkout page', type: :feature do
   let(:user) { create(:user) }
   let(:order) { create(:order) }

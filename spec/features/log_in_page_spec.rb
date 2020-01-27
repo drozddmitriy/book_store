@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Log in page', type: :feature do
   let!(:user) { create(:user) }
 

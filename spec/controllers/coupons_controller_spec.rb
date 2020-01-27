@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CouponsController, type: :controller do
   describe 'PUT #update' do
     context 'when valid coupon' do

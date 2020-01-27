@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe CouponService do
   subject(:coupon_service) { described_class }
 

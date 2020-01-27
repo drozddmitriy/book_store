@@ -1,29 +1,38 @@
-require 'rails_helper'
-
 RSpec.describe OrderDecorator do
   subject(:decorator) { described_class.new(order) }
 
-  let(:book) { create(:book) }
+  let(:book) { create(:book, price: 100) }
   let(:credit_card) { create(:credit_card) }
-  let(:order_item) { [create(:order_item, book: book)] }
+  let(:order_item) { [create(:order_item, book: book, quantity: 2)] }
   let(:user) { create(:user) }
   let(:order) { create(:order, user: user, order_items: order_item, credit_card: credit_card) }
-  let(:total_price) { order.order_items.map { |item| item.book.price * item.quantity }.sum }
-  let(:show_expiration_month_year) { order.credit_card.expiration_month_year }
 
   describe '#total_price' do
-    it { expect(decorator.total_price).to eq(total_price) }
+    let(:test_price) { 200 }
+
+    it { expect(decorator.total_price).to eq(test_price) }
   end
 
   describe '#discount' do
+    let(:coupon) { create(:coupon, sale: 10) }
+
     it { expect(decorator.discount).to eq(0) }
+
+    it do
+      coupon.update(order_id: order.id)
+      expect(decorator.discount).to eq(20)
+    end
   end
 
   describe '#total_order_price' do
-    it { expect(decorator.total_order_price).to eq(total_price) }
+    let(:test_price) { 200 }
+
+    it { expect(decorator.total_order_price).to eq(test_price) }
   end
 
   describe '#show_expiration_month_year' do
-    it { expect(decorator.show_expiration_month_year).to eq(show_expiration_month_year) }
+    let(:test_month_year) { '11/19' }
+
+    it { expect(decorator.show_expiration_month_year).to eq(test_month_year) }
   end
 end

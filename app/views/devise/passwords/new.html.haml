@@ -10,5 +10,5 @@
     .actions
       = f.submit t('views.devise.passwords.email_instructions'), class: "btn btn-default center-block mb-20", id: 'reset-btn'
     .text-center
-      %a.in-gold-500.mb-20{href: root_path}
+      = link_to root_path, class: "in-gold-500 mb-20" do
         = t('views.devise.passwords.cancel')

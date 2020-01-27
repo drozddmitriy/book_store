@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe BookService do
   subject(:book_service) { described_class }
 

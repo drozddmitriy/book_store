@@ -12,5 +12,5 @@
           %table.general-summary-table.general-summary-table-right.general-text-right
             = render 'checkout/order_summary', order: current_order.decorate
           %button.btn.btn-default.mb-20.visible-xs-inline-block= t('views.order_items.checkout_button')
-  %a{href: "#{checkout_path(:login)}"}
+  = link_to checkout_path(:login) do
     %button.btn.btn-default.mb-20.hidden-xs.center-block= t('views.order_items.checkout_button')

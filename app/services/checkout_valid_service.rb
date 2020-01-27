@@ -9,7 +9,7 @@ class CheckoutValidService
 
   def valid?
     case step
-    when :addresses then @checkout.billing.errors.full_messages.empty? || @checkout.shipping.errors.full_messages.empty?
+    when :addresses then @checkout.billing.errors.full_messages.empty? && @checkout.shipping.errors.full_messages.empty?
     when :delivery  then @checkout
     when :payment   then order.credit_card_id
     when :confirm   then order.completed_at

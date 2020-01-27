@@ -33,7 +33,7 @@
     %h2.h1= t('views.pages.welcome')
     .mb-res-50
       %p= t('views.pages.description')
-    %a{href: books_path}
+    = link_to books_path do
       %button.btn.btn-default= t('views.pages.start')
   .mb-35
     %h3= t('views.pages.best_sellers')
@@ -46,7 +46,7 @@
                 = image_tag book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
               .thumb-hover
                 .general-thumb-link-wrap
-                  %a.thumb-hover-link{href: "#{book_path(book)}"}
+                  = link_to book_path(book), class: "thumb-hover-link" do
                     %i.fa.fa-eye.thumb-icon{"aria-hidden" => "true"}
                   = link_to order_items_path(OrderItem.new, order_item: { book_id: book.id, quantity: 1 }), class: "thumb-hover-link link", method: :post do
                     %i.fa.fa-shopping-cart.thumb-icon

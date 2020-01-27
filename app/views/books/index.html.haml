@@ -12,14 +12,16 @@
         = render 'filter'
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
-        %a.filter-link{href: books_path}
+        = link_to books_path, class: "filter-link" do
           = t('views.books.all')
-          %span.badge.general-badge= Book.count
+          %span.badge.general-badge
+            = Book.count
       - @categories.each do |category|
         %li.mr-35
-          %a.filter-link{href: "#{books_path(category: category.id)}"}
+          = link_to books_path(category: category.id), class: "filter-link" do
             = category.title
-            %span.badge.general-badge= category.books.count
+            %span.badge.general-badge
+              = category.books.count
   .dropdowns.mb-25.visible-xs
     %p.lead.small.mb-10= t('views.books.filter')
     .dropdown
@@ -28,14 +30,16 @@
         %i.fa.fa-angle-down.dropdown-icon.pull-right
       %ul.dropdown-menu
         %li.mr-35
-          %a.filter-link{href: books_path}
+          = link_to books_path, class: "filter-link" do
             = t('views.books.all')
-            %span.badge.general-badge= Book.count
+            %span.badge.general-badge
+              = Book.count
         - @categories.each do |category|
           %li.mr-35
-            %a.filter-link{href: "#{books_path(category: category.id)}"}
+            = link_to books_path(category: category.id), class: "filter-link" do
               = category.title
-              %span.badge.general-badge= category.books.count
+              %span.badge.general-badge
+                = category.books.count
     %p.lead.small.mb-10= t('views.books.sort_by')
     .dropdown
       %a.dropdown-toggle.lead.small{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Cart page', type: :feature do
   let!(:book) { create(:book) }
 
