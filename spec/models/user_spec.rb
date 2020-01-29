@@ -35,15 +35,7 @@ RSpec.describe User, type: :model do
       )
     end
 
-    let(:user) do
-      described_class.new(
-        provider: 'facebook',
-        uid: 12_345,
-        email: 'user@example.com',
-        password: 'Passw0rd',
-        password_confirmation: 'Passw0rd'
-      )
-    end
+    let(:user) { create(:user, provider: 'facebook', uid: 12_345, email: 'user@example.com',)}
 
     context 'when retrieves an existing user' do
       it do
