@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
       )
     end
 
-    let(:user) { create(:user, provider: 'facebook', uid: 12_345, email: 'user@example.com',)}
+    let(:user) { create(:user, provider: 'facebook', uid: 12_345, email: 'user@example.com') }
 
     context 'when retrieves an existing user' do
       it do

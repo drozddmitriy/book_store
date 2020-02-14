@@ -1,10 +1,9 @@
 class BookQuery
   DELIVERED = 3
   ITEM_LATEST_BOOKS = 3
-  ITEM_BOOK_BEST_SELLERS = 4
   SORTS = {
     newest: 'created_at DESC',
-    popular_first: 'order_items.quantity DESC',
+    popular_first: 'count(order_items.id) DESC',
     title_asc: 'title',
     title_desc: 'title DESC',
     price_asc: 'price',
@@ -22,18 +21,14 @@ class BookQuery
   end
 
   def best_sellers
-    sql = "SELECT book_id AS book_id, COUNT(*) AS count_all FROM orders
-           INNER JOIN order_items ON order_items.order_id = orders.id
-           WHERE orders.status = #{DELIVERED}
-           GROUP BY book_id
-           ORDER BY count_all DESC"
-    records_array = ActiveRecord::Base.connection.execute(sql).to_a
-    book_id_keys = records_array.map { |h| h.values[0] }
-    initial_scope.find(book_id_keys).first(ITEM_BOOK_BEST_SELLERS)
+    ids = OrderItem.joins(:order, :book).select('book_id as book_id')
+                   .where('orders.status = ?', DELIVERED).group(:book_id, :category_id)
+
+    initial_scope.where(id: ids)
   end
 
-  def by_filter(filter)
-    return initial_scope.joins(:order_items).order(SORTS[filter]) if filter == :popular_first
+  def by_sort(filter)
+    return initial_scope.joins(:order_items).group(:id).order(SORTS[filter]) if filter == :popular_first
 
     initial_scope.order(SORTS[filter])
   end

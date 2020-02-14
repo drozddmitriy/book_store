@@ -7,9 +7,9 @@ class BookService
   end
 
   def filter_for_books
-    return BookQuery.new(Book.all).by_filter(filter).includes(:authors_books, :authors) unless category_id
+    return BookQuery.new(Book.all).by_sort(filter).includes(:authors_books, :authors) unless category_id
 
-    BookQuery.new(Book.where(category_id: category_id)).by_filter(filter).includes(:authors_books, :authors)
+    BookQuery.new(Book.where(category_id: category_id)).by_sort(filter).includes(:authors_books, :authors)
   end
 
   def category_title
