@@ -10,7 +10,7 @@ class BooksController < ApplicationController
                                    link_extra: 'data-remote="true"')
     @categories = Category.all
     @category_title = BookService.new(params[:category]).category_title
-    @sort = BookFiltersService.new(params[:filter]).filter_string
+    @sort = BookSortService.new(params[:filter]).filter_string
   end
   # rubocop:enable Metrics/AbcSize
 
@@ -22,6 +22,6 @@ class BooksController < ApplicationController
   private
 
   def book_filter
-    @filter = BookFiltersService.new(params[:filter]).filter_sym
+    @filter = BookSortService.new(params[:filter]).filter_sym
   end
 end

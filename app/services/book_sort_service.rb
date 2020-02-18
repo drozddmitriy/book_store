@@ -1,5 +1,5 @@
-class BookFiltersService
-  FILTERS = %i[newest popular_first title_asc title_desc price_asc price_desc].freeze
+class BookSortService
+  MENU_SORTS = %i[newest popular_first title_asc title_desc price_asc price_desc].freeze
 
   SORTS = {
     newest: -> { I18n.t('models.book.newest') },
@@ -17,7 +17,7 @@ class BookFiltersService
   end
 
   def filter_sym
-    FILTERS.include?(params&.to_sym) ? params.to_sym : FILTERS.first
+    MENU_SORTS.include?(params&.to_sym) ? params.to_sym : MENU_SORTS.first
   end
 
   def filter_string
