@@ -14,6 +14,7 @@ jobs:
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: bookstore_test
+          POSTGRES_PASSWORD: password
 
     working_directory: ~/repo
 
