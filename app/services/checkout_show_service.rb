@@ -32,7 +32,7 @@ class CheckoutShowService
   def complete
     order.user_id(user.id)
     user.orders.find_by(status: PROGRESS).order_in_queue!
-    # OrderMailer.confirm_order(user).deliver_now
+    OrderMailer.confirm_order(user).deliver_now
     clear_session
     order.decorate
   end
