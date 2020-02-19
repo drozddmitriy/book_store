@@ -1,4 +1,5 @@
 ActiveAdmin.register Review do
+  includes :book, :user
   preserve_default_filters!
   filter :user, collection: -> { User.all.map(&:email) }
   permit_params :rating, :comment, :title

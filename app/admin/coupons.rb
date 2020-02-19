@@ -1,4 +1,5 @@
 ActiveAdmin.register Coupon do
+  includes :order
   preserve_default_filters!
   remove_filter :order
   permit_params :coupon, :active, :sale

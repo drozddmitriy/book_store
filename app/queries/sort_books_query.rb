@@ -1,4 +1,4 @@
-class SortBooksQuery
+class SortBooksQuery < ApplicationQuery
   SORTS = {
     newest: 'created_at DESC',
     popular_first: 'count(order_items.id) DESC',
@@ -8,13 +8,14 @@ class SortBooksQuery
     price_desc: 'price DESC'
   }.freeze
 
-  attr_accessor :initial_scope
+  attr_accessor :initial_scope, :filter
 
-  def initialize(initial_scope)
+  def initialize(initial_scope, filter)
     @initial_scope = initial_scope
+    @filter = filter
   end
 
-  def by_sort(filter)
+  def call
     return initial_scope.left_joins(:order_items).group(:id).order(SORTS[filter]) if filter == :popular_first
 
     initial_scope.order(SORTS[filter])

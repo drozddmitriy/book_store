@@ -61,6 +61,6 @@ RSpec.describe Book do
       click_button('Update Book')
     end
 
-    it { expect(page).to have_content(test_text) }
+    it { expect(page).to have_content(edit_test_text) }
   end
 end

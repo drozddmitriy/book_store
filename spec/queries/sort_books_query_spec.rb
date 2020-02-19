@@ -8,36 +8,36 @@ RSpec.describe SortBooksQuery do
 
   context 'when sort by default' do
     it do
-      sort = sort_books.new(Book.all).by_sort(:newest).first
-      expect(sort).to eq(book4)
+      sort = sort_books.call(Book.all, :newest)
+      expect(sort).to match_array([book4, book3, book2, book1])
     end
   end
 
   context 'when sort by title_asc' do
     it do
-      sort = sort_books.new(Book.all).by_sort(:title_asc).first
-      expect(sort).to eq(book1)
+      sort = sort_books.call(Book.all, :title_asc)
+      expect(sort).to match_array([book1, book2, book3, book4])
     end
   end
 
   context 'when sort by title_desc' do
     it do
-      sort = sort_books.new(Book.all).by_sort(:title_desc).first
-      expect(sort).to eq(book4)
+      sort = sort_books.call(Book.all, :title_desc)
+      expect(sort).to match_array([book4, book3, book2, book1])
     end
   end
 
   context 'when sort by price_asc' do
     it do
-      sort = sort_books.new(Book.all).by_sort(:price_asc).first
-      expect(sort).to eq(book1)
+      sort = sort_books.call(Book.all, :price_asc)
+      expect(sort).to match_array([book1, book2, book3, book4])
     end
   end
 
   context 'when sort by price_desc' do
     it do
-      sort = sort_books.new(Book.all).by_sort(:price_desc).first
-      expect(sort).to eq(book4)
+      sort = sort_books.call(Book.all, :price_desc)
+      expect(sort).to match_array([book4, book3, book2, book1])
     end
   end
 
@@ -49,14 +49,9 @@ RSpec.describe SortBooksQuery do
       create(:order_item, book: book4)
     end
 
-    it 'return book with order' do
-      sort = sort_books.new(Book.all).by_sort(:popular_first).first
-      expect(sort).to eq(book2)
-    end
-
-    it 'return book without order' do
-      sort = sort_books.new(Book.all).by_sort(:popular_first).last
-      expect(sort).to eq(book1)
+    it do
+      sort = sort_books.call(Book.all, :popular_first)
+      expect(sort).to match_array([book2, book3, book4, book1])
     end
   end
 end

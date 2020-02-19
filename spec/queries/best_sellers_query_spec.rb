@@ -9,6 +9,7 @@ RSpec.describe BestSellersQuery do
     let(:book2) { create(:book, category: category1) }
     let(:book3) { create(:book, category: category2) }
     let(:book4) { create(:book, category: category2) }
+    let(:book_without_order) { create(:book) }
 
     let(:order) { create(:order, status: :delivered) }
 
@@ -22,12 +23,5 @@ RSpec.describe BestSellersQuery do
     end
 
     it { expect(best_sellers.call).to match_array([book1, book4]) }
-  end
-
-  context 'when not include in best_sellers' do
-    let(:book5) { create(:book) }
-
-    it { expect(best_sellers.call).to be_empty }
-    it { expect(best_sellers.call).not_to include(book5) }
   end
 end

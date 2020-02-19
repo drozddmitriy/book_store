@@ -42,6 +42,7 @@ gem 'country_select'
 gem 'draper'
 gem 'figaro'
 gem 'pagy'
+gem 'sidekiq'
 gem 'simple_form'
 gem 'wicked'
 

@@ -1,5 +1,6 @@
 RSpec.describe Coupon do
   let(:code) { '1234567890' }
+  let(:edit_code) { '3334567991' }
 
   before do
     create(:coupon)
@@ -32,13 +33,13 @@ RSpec.describe Coupon do
   context 'when admin edit Coupon' do
     before do
       click_link('Edit', match: :first)
-      fill_in 'coupon[coupon]', with: code
+      fill_in 'coupon[coupon]', with: edit_code
       find(:css, '#coupon_active').set(false)
       fill_in 'coupon[sale]', with: 20.0
       click_button('Update Coupon')
     end
 
-    it { expect(page).to have_content(code) }
+    it { expect(page).to have_content(edit_code) }
     it { expect(page).to have_content(20.0) }
   end
 end

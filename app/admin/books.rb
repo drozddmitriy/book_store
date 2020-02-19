@@ -1,4 +1,5 @@
 ActiveAdmin.register Book do
+  includes :category, :authors
   decorate_with BookDecorator
   preserve_default_filters!
   remove_filter :authors_books, :order_items

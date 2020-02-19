@@ -1,4 +1,4 @@
-class LatestBooksQuery
+class LatestBooksQuery < ApplicationQuery
   ITEM_LATEST_BOOKS = 3
 
   class << self

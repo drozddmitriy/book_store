@@ -1,6 +1,4 @@
 class BookSortService
-  MENU_SORTS = %i[newest popular_first title_asc title_desc price_asc price_desc].freeze
-
   SORTS = {
     newest: -> { I18n.t('models.book.newest') },
     pop_first: -> { I18n.t('models.book.pop_first') },
@@ -16,11 +14,11 @@ class BookSortService
     @params = params
   end
 
-  def filter_sym
-    MENU_SORTS.include?(params&.to_sym) ? params.to_sym : MENU_SORTS.first
+  def sort_sym
+    SORTS.key?(params&.to_sym) ? params.to_sym : SORTS.keys.first
   end
 
-  def filter_string
-    (SORTS.include?(params&.to_sym) ? SORTS[params.to_sym] : SORTS[:newest]).call
+  def sort_string
+    (SORTS.key?(params&.to_sym) ? SORTS[params.to_sym] : SORTS[:newest]).call
   end
 end

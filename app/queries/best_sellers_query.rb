@@ -1,4 +1,4 @@
-class BestSellersQuery
+class BestSellersQuery < ApplicationQuery
   DELIVERED = 3
 
   class << self

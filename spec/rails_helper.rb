@@ -1,13 +1,18 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
+
 require File.expand_path('../config/environment', __dir__)
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
+
 require 'rspec/rails'
+require 'capybara/rspec'
+require 'capybara/rails'
 require 'support/factory_bot'
 require 'database_cleaner'
 require 'support/checkout_helper'
 require 'support/shoulda_matchers'
+require 'support/capybara'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -21,9 +26,16 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.include CheckoutHelper
 
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
+  config.before(:each) do
     DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, type: :feature) do
+    driver_shares_db_connection_with_specs = Capybara.current_driver == :rack_test
+    
+    unless driver_shares_db_connection_with_specs
+      DatabaseCleaner.strategy = :truncation
+    end
   end
 
   config.before(:each) do

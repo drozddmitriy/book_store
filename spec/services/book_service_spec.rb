@@ -11,10 +11,10 @@ RSpec.describe BookService do
   end
 
   context 'when select category' do
-    it { expect(book_service.new(category.id, filter).filter_for_books.first).to eq(book_by_category) }
+    it { expect(book_service.new(category.id, filter).sort_for_books.first).to eq(book_by_category) }
   end
 
   context 'when not select category' do
-    it { expect(book_service.new(nil, filter).filter_for_books.first).to eq(book) }
+    it { expect(book_service.new(nil, filter).sort_for_books.first).to eq(book) }
   end
 end

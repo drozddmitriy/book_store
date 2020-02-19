@@ -1,4 +1,5 @@
 ActiveAdmin.register Order do
+  includes :user, :delivery, :credit_card
   preserve_default_filters!
   remove_filter :order_items, :coupon, :addresses
   filter :user, as: :select, collection: -> { User.all.map(&:email) }

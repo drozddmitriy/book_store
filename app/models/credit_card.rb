@@ -6,13 +6,8 @@ class CreditCard < ApplicationRecord
   belongs_to :user, optional: true
   has_many :orders, dependent: :destroy
 
-  validates :name, format: NAME_REG_EXP
-  validates :name, presence: true, length: { maximum: 50 }
-
+  validates :name, presence: true, length: { maximum: 50 }, format: NAME_REG_EXP
   validates :expiration_month_year, format: EXP_MONTH_YEAR_REG_EXP, presence: true
-
-  validates :card_number, presence: true, length: { is: 16 }
-  validates :card_number, numericality: { only_integer: true }
-
+  validates :card_number, numericality: { only_integer: true }, presence: true, length: { is: 16 }
   validates :cvv, format: CVV_REG_EXP, numericality: { only_integer: true }, presence: true
 end
