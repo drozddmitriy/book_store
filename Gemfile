@@ -43,6 +43,7 @@ gem 'draper'
 gem 'figaro'
 gem 'pagy'
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
 gem 'simple_form'
 gem 'wicked'
 

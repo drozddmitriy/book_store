@@ -40,6 +40,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'stormy-cove-64868.herokuapp.com', :protocol => 'https'  }
   config.action_mailer.delivery_method=:smtp
   config.action_mailer.raise_delivery_errors = true
+  config.active_job.queue_adapter = :sidekiq
 
   ActionMailer::Base.smtp_settings = {
     address: "smtp.gmail.com",

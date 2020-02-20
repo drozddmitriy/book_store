@@ -1,7 +1,6 @@
 class CleanerOrderJob < ApplicationJob
-  queue_as :default
-
   def perform(*_args)
-    Order.where(user_id: nil).destroy_all
+    Order.where(user_id: nil)
+         .where("now() >= created_at + INTERVAL '24 hours'").destroy_all
   end
 end

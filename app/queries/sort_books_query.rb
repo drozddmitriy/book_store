@@ -8,16 +8,16 @@ class SortBooksQuery < ApplicationQuery
     price_desc: 'price DESC'
   }.freeze
 
-  attr_accessor :initial_scope, :filter
+  attr_accessor :initial_scope, :sort_params
 
-  def initialize(initial_scope, filter)
+  def initialize(initial_scope, sort_params)
     @initial_scope = initial_scope
-    @filter = filter
+    @sort_params = sort_params
   end
 
   def call
-    return initial_scope.left_joins(:order_items).group(:id).order(SORTS[filter]) if filter == :popular_first
+    return initial_scope.left_joins(:order_items).group(:id).order(SORTS[sort_params]) if sort_params == :popular_first
 
-    initial_scope.order(SORTS[filter])
+    initial_scope.order(SORTS[sort_params])
   end
 end

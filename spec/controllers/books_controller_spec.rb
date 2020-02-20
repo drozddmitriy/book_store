@@ -12,12 +12,12 @@ RSpec.describe BooksController, type: :controller do
 
     context 'when assigns filter' do
       it 'equal to default filter' do
-        expect(assigns(:filter)).to eq(BookSortService::SORTS.keys.first)
+        expect(assigns(:sorts)).to eq(BookSortService::SORTS.keys.first)
       end
 
       it 'equal to filter from params' do
-        get :index, params: { filter: :pop_first }
-        expect(assigns(:filter)).to eq(BookSortService::SORTS.keys.second)
+        get :index, params: { sort: :pop_first }
+        expect(assigns(:sorts)).to eq(BookSortService::SORTS.keys.second)
       end
     end
   end
