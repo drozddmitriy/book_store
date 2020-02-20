@@ -62,6 +62,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.active_job.queue_adapter = :sidekiq
+  config.cache_store = :redis_cache_store, { driver: :hiredis, url: 'redis://localhost:6379/0' }
 
   config.after_initialize do
     Bullet.enable = true
