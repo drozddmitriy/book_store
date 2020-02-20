@@ -24,10 +24,11 @@ gem 'uglifier', '>= 1.3.0'
 
 # Core
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'hiredis'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
-gem 'hiredis'
 gem 'rails', '~> 5.2.3'
+gem 'redis'
 
 # Storage
 gem 'carrierwave'
@@ -35,7 +36,6 @@ gem 'fog-core', '2.1.0'
 gem 'fog-google'
 gem 'google-cloud-storage', '~> 1.11', require: false
 gem 'mini_magick', '~> 4.8'
-gem 'redis'
 
 # Tools
 gem 'aasm'

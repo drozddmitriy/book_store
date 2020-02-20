@@ -7,5 +7,4 @@
 :schedule:
   CleanerOrderJob:
     every: 24h
-    queue: scheduler
     enabled: true

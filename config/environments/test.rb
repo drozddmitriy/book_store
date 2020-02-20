@@ -46,4 +46,5 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.cache_store = :redis_cache_store, { driver: :hiredis, url: 'redis://localhost:6379/0' }
+  config.active_job.queue_adapter = :test
 end
