@@ -1,6 +1,4 @@
 RSpec.describe CleanerOrderJob, type: :job do
-  include ActiveJob::TestHelper
-
   subject(:job) { described_class.perform_later }
 
   it 'matches with enqueued job' do
@@ -8,9 +6,10 @@ RSpec.describe CleanerOrderJob, type: :job do
   end
 
   context 'when execute perform' do
-    let!(:order_1) { create(:order) }
-    let!(:order_2) { create(:order, created_at: Time.current - 1.hour, user_id: nil) }
-    let!(:expired_order) { create(:order, created_at: Time.current - 1.day, user_id: nil) }
+    let!(:order_1) { create(:order, created_at: Time.current - 1.day + 1.second, user_id: nil) }
+    let!(:order_2) { create(:order, created_at: Time.current - 1.day - 1.second) }
+    let!(:expired_order_1) { create(:order, created_at: Time.current - 1.day - 1.second, user_id: nil) }
+    let!(:expired_order_2) { create(:order, created_at: Time.current - 1.day, user_id: nil) }
 
     it 'deletes expired order' do
       perform_enqueued_jobs { job }

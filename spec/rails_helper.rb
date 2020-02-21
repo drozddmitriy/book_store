@@ -25,6 +25,7 @@ RSpec.configure do |config|
   config.include CheckoutHelper
   config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include ActiveJob::TestHelper, type: :job
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 end
