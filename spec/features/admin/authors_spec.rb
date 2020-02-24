@@ -19,8 +19,10 @@ RSpec.describe Author do
       click_button('Create Author')
     end
 
-    it { expect(page).to have_content(first_name) }
-    it { expect(page).to have_content(last_name) }
+    it do
+      expect(page).to have_content(first_name)
+      expect(page).to have_content(last_name)
+    end
   end
 
   context 'when admin click edit' do
@@ -37,7 +39,9 @@ RSpec.describe Author do
       click_button('Update Author')
     end
 
-    it { expect(page).to have_content(first_name) }
-    it { expect(page).to have_content(last_name) }
+    it do
+      expect(page).to have_content(first_name)
+      expect(page).to have_content(last_name)
+    end
   end
 end

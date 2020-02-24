@@ -8,9 +8,11 @@ RSpec.describe 'Cart page', type: :feature do
       find('a.shop-link.pull-right').click
     end
 
-    it { expect(page).to have_current_path order_items_path, ignore_query: true }
-    it { expect(page).to have_content(book.title) }
-    it { expect(page).to have_content(book.price) }
+    it do
+      expect(page).to have_current_path order_items_path, ignore_query: true
+      expect(page).to have_content(book.title)
+      expect(page).to have_content(book.price)
+    end
   end
 
   context 'when coupon valid' do

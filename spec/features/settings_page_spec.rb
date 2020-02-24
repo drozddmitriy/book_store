@@ -19,8 +19,10 @@ RSpec.describe 'Settings page', type: :feature do
       end
     end
 
-    it { expect(page).to have_current_path(addresses_path) }
-    it { expect(page).to have_content(I18n.t('controllers.addresses.address_created')) }
+    it do
+      expect(page).to have_current_path(addresses_path)
+      expect(page).to have_content(I18n.t('controllers.addresses.address_created'))
+    end
   end
 
   context 'when not created address' do
@@ -33,8 +35,10 @@ RSpec.describe 'Settings page', type: :feature do
       end
     end
 
-    it { expect(page).to have_current_path(addresses_path) }
-    it { expect(page).to have_content(I18n.t('controllers.addresses.address_not_created')) }
+    it do
+      expect(page).to have_current_path(addresses_path)
+      expect(page).to have_content(I18n.t('controllers.addresses.address_not_created'))
+    end
   end
 
   context 'when update address' do
@@ -49,7 +53,9 @@ RSpec.describe 'Settings page', type: :feature do
       end
     end
 
-    it { expect(page).to have_current_path(addresses_path) }
-    it { expect(page).to have_content(I18n.t('controllers.addresses.address_updated')) }
+    it do
+      expect(page).to have_current_path(addresses_path)
+      expect(page).to have_content(I18n.t('controllers.addresses.address_updated'))
+    end
   end
 end

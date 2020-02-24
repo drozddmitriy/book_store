@@ -34,8 +34,10 @@ RSpec.describe Book do
   context 'when admin view book' do
     before { click_link('View', match: :first) }
 
-    it { expect(page).to have_current_path(admin_book_path(described_class.last)) }
-    it { expect(page).to have_content(described_class.last.title) }
+    it do
+      expect(page).to have_current_path(admin_book_path(described_class.last))
+      expect(page).to have_content(described_class.last.title)
+    end
   end
 
   context 'when admin click edit' do

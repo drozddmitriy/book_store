@@ -20,8 +20,10 @@ RSpec.describe Coupon do
       click_button('Create Coupon')
     end
 
-    it { expect(page).to have_content(code) }
-    it { expect(page).to have_content(15.0) }
+    it do
+      expect(page).to have_content(code)
+      expect(page).to have_content(15.0)
+    end
   end
 
   context 'when admin click edit' do
@@ -39,7 +41,9 @@ RSpec.describe Coupon do
       click_button('Update Coupon')
     end
 
-    it { expect(page).to have_content(edit_code) }
-    it { expect(page).to have_content(20.0) }
+    it do
+      expect(page).to have_content(edit_code)
+      expect(page).to have_content(20.0)
+    end
   end
 end

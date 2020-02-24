@@ -20,7 +20,7 @@ RSpec.describe Review do
       click_link('Publish')
     end
 
-    it { expect(page).to have_content('Yes') }
+    it { expect(find('.yes').text).to have_content('YES') }
   end
 
   context 'when admin unpublish' do
@@ -31,6 +31,6 @@ RSpec.describe Review do
       click_link('Unpublish')
     end
 
-    it { expect(page).to have_content('No') }
+    it { expect(find('.no').text).to have_content('NO') }
   end
 end

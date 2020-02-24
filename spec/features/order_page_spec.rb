@@ -20,17 +20,19 @@ RSpec.describe 'Order page', type: :feature do
       visit order_path(order)
     end
 
-    it { expect(page).to have_content(I18n.t('views.checkout.order', order: order.number)) }
-    it { expect(page).to have_content(order.delivery.name) }
-    it { expect(page).to have_content(order.show_credit_card) }
-    it { expect(page).to have_content(order.show_expiration_month_year) }
-    it { expect(page).to have_content(order.order_items.first.book.title) }
-    it { expect(page).to have_content(order.order_items.first.quantity) }
-    it { expect(page).to have_content(order.order_items.first.book.price) }
-    it { expect(page).to have_content(current_address.first.full_name) }
-    it { expect(page).to have_content(current_address.first.address) }
-    it { expect(page).to have_content(current_address.first.city_zip) }
-    it { expect(page).to have_content(current_address.first.country) }
-    it { expect(page).to have_content(current_address.first.phone_address) }
+    it do
+      expect(page).to have_content(I18n.t('views.checkout.order', order: order.number))
+      expect(page).to have_content(order.delivery.name)
+      expect(page).to have_content(order.show_credit_card)
+      expect(page).to have_content(order.show_expiration_month_year)
+      expect(page).to have_content(order.order_items.first.book.title)
+      expect(page).to have_content(order.order_items.first.quantity)
+      expect(page).to have_content(order.order_items.first.book.price)
+      expect(page).to have_content(current_address.first.full_name)
+      expect(page).to have_content(current_address.first.address)
+      expect(page).to have_content(current_address.first.city_zip)
+      expect(page).to have_content(current_address.first.country)
+      expect(page).to have_content(current_address.first.phone_address)
+    end
   end
 end

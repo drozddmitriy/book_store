@@ -8,9 +8,11 @@ RSpec.describe 'Orders page', type: :feature do
       visit orders_path
     end
 
-    it { expect(page).to have_content(order.number) }
-    it { expect(page).to have_content(I18n.l(order.created_at, format: :date)) }
-    it { expect(page).to have_content(order.status_capitalize) }
-    it { expect(page).to have_content(order.total_price) }
+    it do
+      expect(page).to have_content(order.number)
+      expect(page).to have_content(I18n.l(order.created_at, format: :date))
+      expect(page).to have_content(order.status_capitalize)
+      expect(page).to have_content(order.total_price)
+    end
   end
 end

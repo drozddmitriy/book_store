@@ -5,10 +5,12 @@ RSpec.describe 'Book page', type: :feature do
   context 'when user see detaile information for book' do
     before { visit book_path(book) }
 
-    it { expect(page).to have_content(book.title) }
-    it { expect(page).to have_content(book.decorate.author_full_name) }
-    it { expect(page).to have_content(book.price) }
-    it { expect(page).to have_content(book.year) }
+    it do
+      expect(page).to have_content(book.title)
+      expect(page).to have_content(book.decorate.author_full_name)
+      expect(page).to have_content(book.price)
+      expect(page).to have_content(book.year)
+    end
   end
 
   context 'when user add to cart' do
@@ -24,7 +26,9 @@ RSpec.describe 'Book page', type: :feature do
     before do
       login_as(user, scope: :user)
       visit book_path(book)
-      find('#rating-form').set('5')
+      within('#rating-form') do
+        find('img', match: :first).click
+      end
       fill_in 'review[title]', with: 'Title'
       fill_in 'review[comment]', with: 'Some test text'
       click_button('Post')

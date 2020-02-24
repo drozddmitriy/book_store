@@ -53,7 +53,9 @@ RSpec.describe 'Checkout page', type: :feature do
       click_button(I18n.t('views.checkout.place_order'))
     end
 
-    it { expect(page).to have_current_path checkout_path(:complete), ignore_query: true }
-    it { expect(page).to have_content I18n.t('views.checkout.email', email: user.email) }
+    it do
+      expect(page).to have_current_path checkout_path(:complete), ignore_query: true
+      expect(page).to have_content I18n.t('views.checkout.email', email: user.email)
+    end
   end
 end
