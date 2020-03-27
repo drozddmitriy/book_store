@@ -1,0 +1,20 @@
+%main.container.mb-res-50
+  %h1.general-title-margin= t('views.checkout.checkout_title')
+  = render 'steps_header'
+  %h3.general-subtitle= t('views.checkout.credit_card')
+  = simple_form_for @checkout, url: wizard_path, method: :put, html: {class: 'max-600'} do |form|
+    = form.input :card_number, required: false, label: t('views.checkout.card_number'), placeholder: t('views.checkout.card_number')
+    .row
+      .col-sm-6
+        = form.input :name, required: false, placeholder: 'Name on Card'
+      .col-sm-3
+        = form.input :expiration_month_year, label: t('views.checkout.month_year'), required: false, placeholder: I18n.t('views.checkout.month_year')
+      .col-sm-3
+        = form.input :cvv, label: t('views.checkout.cvv'), required: false, placeholder: t('views.checkout.cvv'), input_html: { class: 'relative' }, as: :password
+        %i.fa.fa-question-circle.general-form-help.pr-15{"data-placement" => :top, "data-toggle" => "tooltip", title: "#{I18n.t('views.checkout.hint')}"}
+    .general-text-align
+      %p.in-gold-500.font-18= t('views.checkout.order_summary')
+      %table.general-summary-table
+        = render 'order_summary', order: current_order.decorate
+    .pull-right
+      = form.submit t('views.checkout.save_continue'), class: 'btn btn-default mb-80'

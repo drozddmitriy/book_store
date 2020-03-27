@@ -1,0 +1,7 @@
+%p
+  = t('views.devise.registrations.hello', email: @resource.email)
+%p
+  = t('views.devise.registrations.account_locked')
+%p
+  = t('views.devise.registrations.click_ulock_account')
+%p= link_to I18n.t('views.devise.registrations.unlock_account'), unlock_url(@resource, unlock_token: @token)

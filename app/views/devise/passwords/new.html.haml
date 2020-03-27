@@ -1,0 +1,14 @@
+%main.container.general-main-wrap
+  .text-center
+    %h1.mb-30
+      = t('views.devise.passwords.forgot_password')
+    %p.general-password-text
+      = t('views.devise.passwords.instructions')
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "general-form" }) do |f|
+    .form-group.mb-25
+      = f.input :email, required: false,placeholder: t('views.devise.passwords.enter_email'), input_html: { autocomplete: "email" }, label: false
+    .actions
+      = f.submit t('views.devise.passwords.email_instructions'), class: "btn btn-default center-block mb-20", id: 'reset-btn'
+    .text-center
+      = link_to root_path, class: "in-gold-500 mb-20" do
+        = t('views.devise.passwords.cancel')

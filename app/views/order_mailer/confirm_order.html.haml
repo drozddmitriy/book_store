@@ -1,0 +1,8 @@
+%p
+  = t('order_mailer.hi', email: @user.email)
+%p
+  = t('order_mailer.thanks')
+%p
+  = t('order_mailer.visit_our_site')
+%p
+  = link_to I18n.t('order_mailer.check_it'), orders_url(host: "radiant-plains-48256.herokuapp.com")

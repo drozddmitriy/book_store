@@ -1,0 +1,27 @@
+.visible-xs
+  - order.order_items.each do |order_item|
+    .general-cart-item.divider-lg
+      .general-img-wrap-table
+        = link_to order_item.book.images.first.url do
+          = image_tag order_item.book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
+      %p.title
+        = order_item.book.title
+      %table.table
+        %tr
+          %td
+            %span.in-grey-600= t('views.checkout.price')
+          %td
+            %span.font-16.in-gold-500
+              = number_to_currency(order_item.book.price)
+        %tr
+          %td.vertical-middle
+            %span.in-grey-600= t('views.checkout.quantity')
+          %td
+            %span
+              = order_item.quantity
+        %tr
+          %td
+            %span.in-grey-600= t('views.checkout.subtotal')
+          %td
+            %span.font-16.in-gold-500
+              = number_to_currency(order_item.total_price)

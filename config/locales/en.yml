@@ -1,0 +1,243 @@
+en:
+  time:
+    formats:
+      date: '%d/%m/%y'
+      date_complete: '%B %-d, %Y'
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
+  decorator:
+    dimension: "H: %{dimension_h} x W: %{dimension_w} x D: %{dimension_d}"
+    capitalize_address: "%{capitalize} Address"
+    phone_address: "Phone %{phone}"
+  order_mailer:
+    hi: "Hi %{email}!"
+    visit_our_site: 'Please visit our site for checking your status of order.'
+    thanks: 'Thanks for choosing us!'
+    check_it: 'Check it'
+    message: 'Your Order with bookstore.com'
+  controllers:
+    checkout:
+      choose_delivery: 'Please choose delivery method!'
+      cart_empty: 'Cart empty!'
+    order_items:
+      create: 'Item add to cart!'
+      not_create: 'Item not create!'
+      destroy: 'Item delete!'
+      not_destroy: 'Item not delete!'
+    reviews:
+      thanks_for_review: 'Thanks for Review. It will be published as soon as Admin will approve it.'
+      reviews_not_applied: 'Reviews not applied'
+    addresses:
+      address_created: 'Address created'
+      address_not_created: 'Address not created'
+      address_updated: 'Address updated'
+      address_not_updated: 'Address not updated'
+    orders:
+      processing: 'Waiting for processing'
+      in_delivery: 'In delivery'
+      delivered: 'Delivery'
+      canceled: 'Canceled'
+      all: 'All'
+    orders_filter:
+      in_queue: 'in_queue'
+      in_delivery: 'in_delivery'
+      delivered: 'delivered'
+      canceled: 'canceled'
+    coupons:
+      coupon_applied: 'Coupon applied!'
+      coupon_not_applied: 'Coupon not applied!'
+  models:
+    user:
+      password: 'Complexity requirement not met. Length should be 8-70 characters and include: 1 uppercase, 1 lowercase and 1 digit'
+      not_be_empty: 'Email invalid'
+    book:
+      newest: 'Newest first'
+      popular_first: 'Popular first'
+      title_asc: 'Title A-Z'
+      title_desc: 'Title Z-A'
+      price_asc: 'Price: Low to high'
+      price_desc: 'Price: High to low'
+  views:
+    order_items:
+      cart: 'Cart'
+      order_summary: 'Order Summary'
+      checkout_button: 'Checkout'
+      product: 'Product'
+      price: 'Price'
+      quantity: 'Quantity'
+      subtotal: 'SubTotal'
+    checkout:
+      edit: 'edit'
+      continue_checkout: 'Continue to Checkout'
+      create_password_later: "You’ll be able to create password later"
+      quik_register: 'Quik Register'
+      new_customer: 'New Customer'
+      forgot_password: 'Forgot password?'
+      password: 'Password'
+      enter_email: 'Enter Email'
+      with_password: 'Log In with Password'
+      or: 'or'
+      returning_customer: 'Returning Customer'
+      checkout_title: 'Checkout'
+      billing_address: 'Billing Address'
+      shipping_address: 'Shipping Address'
+      use_billing: 'Use Billing Adress'
+      fields_required: 'all fields are required'
+      price: 'Price'
+      quantity: 'Quantity'
+      total: 'Total'
+      book: 'Book'
+      subtotal: 'SubTotal'
+      subtotal_summary: 'SubTotal:'
+      coupon_summary: 'Coupon:'
+      order_total_summary: 'Order Total:'
+      order_summary: 'Order Summary'
+      shipments: 'Shipments'
+      payment_information: 'Payment Information'
+      shipping_method: 'Shipping Method'
+      method: 'Method'
+      days: 'Days'
+      credit_card: 'Credit Card'
+      card_number: 'Card Number'
+      month_year: 'MM / YY'
+      cvv: 'CVV'
+      hint: '3-digit security code, usually found on the back of your card. American Express cards has 4-digit code, located on the front'
+      save_continue: 'Save and Continue'
+      place_order: 'Place Order'
+      back_store: 'Back to Store'
+      thank: 'Thank You for your Order!'
+      email: "An order confirmation has been sent to %{email}"
+      order: "Order #%{order}"
+    admin:
+      images: 'Images'
+      sale: 'Sale'
+      current_state: 'Current state'
+      change_state: 'Change state'
+      publish: 'Publish'
+      unpublish: 'Unpublish'
+      view: 'View'
+      show: 'Show'
+      edit: 'Edit'
+      delete: 'Delete'
+      delete_all_images: 'Delete all images'
+      are_you_sure_authors: "Are you sure you want to delete this items? They are associated with %{books_count} of books."
+      are_you_sure_books: 'Are you sure you want to delete this book?'
+      are_you_sure_categorie: "Are you sure you want to delete these item? They are associated with %{books_count} of books."
+    reviews:
+      score: 'Score'
+      title: 'Title'
+      review: 'Review'
+      post: 'Post'
+    orders:
+      my_orders: 'My Orders'
+      sort_by: 'Sort by'
+      number: 'Number'
+      completed_at: 'Completed at'
+      status: 'Status'
+      total: 'Total'
+      shipments: 'Shipments'
+      payment_information: 'Payment Information'
+      price: 'Price'
+      quantity: 'Quantity'
+      subtotal: 'SubTotal'
+      book: 'Book'
+      order_summary: 'Order Summary'
+    pages:
+      log_in: 'Log in'
+      sign_up: 'Sign up'
+      log_out: 'Log out'
+      description: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
+      welcome: 'Welcome to our amazing Bookstore!'
+      bookstore: 'Bookstore'
+      home: 'Home'
+      shop: 'Shop'
+      my_account: 'My account'
+      orders: 'Orders'
+      settings: 'Settings'
+      support: 'support@bookstore.com'
+      number: '(555)-555-5555'
+      start: 'Get Started'
+      best_sellers: 'Best Sellers'
+      previous: 'Previous'
+      next: 'Next'
+      buy_now: 'Buy Now'
+    books:
+      catalog: 'Сatalog'
+      filter: 'Filter by category'
+      add_to_cart: 'Add to Cart'
+      all: 'All'
+      view_more: 'View More'
+      results: 'Back to results'
+      year: 'Year of publication'
+      dimensions: 'Dimensions'
+      materials: 'Materials'
+      write_review: 'Write review'
+      read_more: 'Read More'
+      book_description: 'Description'
+      sort_by: 'Sort by'
+      reviews: 'Reviews'
+      verified_reviewer: 'Verified Reviewer'
+    addresses:
+      billing: 'Billing Address'
+      shipping: 'Shipping Address'
+      country: 'Select country'
+      phone: 'Example +355661234567'
+      order: 'Order'
+      save: 'Save'
+    devise:
+      passwords:
+        forgot_password: 'Forgot your password?'
+        instructions: "We'll email you instructions on how to reset it"
+        enter_email: 'Enter your email'
+        email_instructions: 'Email Instructions'
+        cancel: 'Cancel'
+        new_password: 'Set new password'
+        type_new_password: 'Type a new Password'
+        change: 'Change'
+      registrations:
+        sign_up: 'Sign up'
+        password: 'Password'
+        or: 'or'
+        enter_email: 'Enter Email'
+        password: 'Password'
+        forgot_password: 'Forgot password?'
+        confirm_password: 'Confirm Password'
+        log_in: 'Log in'
+        remember_me: 'Remember me'
+        have_account: 'Have an Account?'
+        settings: 'Settings'
+        address: 'Address'
+        privacy: 'Privacy'
+        save: 'Save'
+        email: 'Email'
+        waiting_confirmation: "Currently waiting confirmation for: %{email}"
+        old_password: 'Old Password'
+        new_password: 'New Password'
+        remove_account: 'Remove Account'
+        please_remove_account: 'Please Remove My Account'
+        all_data_will_be_lost: 'I understand that all data will be lost'
+        message_with_confirm: 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
+        resend_confirm: 'Resend confirmation instructions'
+        mail_confirm: 'Confirm my account'
+        unlock_account: 'Unlock my account'
+        resend_instructions: 'Resend confirmation instructions'
+        welcome: "Welcome %{email}!"
+        confirm_account_text: "You can confirm your account email through the link below:"
+        hello: "Hello %{email}!"
+        mail_begin_changed: "We're contacting you to notify you that your email is being changed to %{email}."
+        email_has_been_changed: "We're contacting you to notify you that your email has been changed to %{email}."
+        password_has_changed: "We're contacting you to notify you that your password has been changed."
+        change_your_password_text: 'Someone has requested a link to change your password. You can do this through the link below.'
+        change_my_password: 'Change my password'
+        ignore_this_email: "If you didn't request this, please ignore this email."
+        create_new_password: "Your password won't change until you access the link above and create a new one."
+        account_locked: 'Your account has been locked due to an excessive number of unsuccessful sign in attempts.'
+        click_ulock_account: "Click the link below to unlock your account:"

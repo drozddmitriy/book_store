@@ -1,0 +1,59 @@
+%body
+  %header.navbar.navbar-default
+    .container
+      .navbar-header
+        %button.navbar-toggle.pull-left{"data-target" => "#navbar", "data-toggle" => "collapse", type: "button"}
+          %span.sr-only
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand= t('views.pages.bookstore')
+      = link_to order_items_path, class: "shop-link pull-right hidden-xs" do
+        %span.shop-icon
+          %span.shop-quantity= cart_items_count
+      #navbar.navbar-collapse.collapse.pl-30{"aria-expanded" => "false"}
+        .visible-xs
+          %button.close{"aria-label" => "Close", type: "button"}
+            %span{"aria-hidden" => "true"} ×
+          %ul.nav.navbar-nav
+            %li
+              = link_to root_path do
+                = t('views.pages.home')
+            %li
+              %a{"aria-controls" => "menu", "aria-expanded" => "false", "data-toggle" => "collapse", href: "#menu", type: "button"}= t('views.pages.shop')
+              %ul#menu.collapse.list-unstyled.pl-30.mb-10{"aria-expanded" => "false"}
+                - Category.all.each do |category|
+                  %li
+                    = link_to books_path(category: category.id), class: "collapse-link" do
+                      = category.title
+            %li
+              = link_to "#" do
+                = t('views.pages.my_account')
+        .hidden-xs
+          %ul.nav.navbar-nav
+            %li
+              = link_to root_path do
+                = t('views.pages.home')
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}= t('views.pages.shop')
+              %ul.dropdown-menu
+                - Category.all.each do |category|
+                  %li
+                    = link_to books_path(category: category.id), class: "collapse-link" do
+                      = category.title
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}= t('views.pages.my_account')
+              %ul.dropdown-menu
+                - if user_signed_in?
+                  %li
+                    = link_to t('views.pages.orders'), orders_path
+                  %li
+                    = link_to t('views.pages.settings'), addresses_path
+                  %li.divider{role: "separator"}
+                  %li
+                    = link_to t('views.pages.log_out'), destroy_user_session_path, method: :delete
+                - else
+                  %li
+                    = link_to t('views.pages.log_in'), new_user_session_path
+                  %li
+                    = link_to t('views.pages.sign_up'), new_user_registration_path
