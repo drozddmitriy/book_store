@@ -1,0 +1,57 @@
+%main.container
+  #slider.carousel.slide{"data-ride" => "carousel"}
+    %ol.carousel-indicators
+      %li.active{"data-slide-to" => "0", "data-target" => "#slider"}
+      %li{"data-slide-to" => "1", "data-target" => "#slider"}
+      %li{"data-slide-to" => "2", "data-target" => "#slider"}
+    .carousel-inner{role: "listbox"}
+      - @latest_books.each_with_index do |book, index|
+        %div{class: "item #{index == 0 ? 'active' : ''}"}
+          .row
+            .col-sm-5
+              .general-img-wrap
+                = link_to book.images.first.url do
+                  = image_tag book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
+            .col-sm-7
+              .mb-60
+                %h1= book.title
+                %p.lead= truncate(book.description, :length => 250)
+                %p.lead.small= book.decorate.author_full_name
+                .general-align
+                  = simple_form_for OrderItem.new, method: :post do |f|
+                    = f.hidden_field :book_id, value: book.id
+                    = f.hidden_field :quantity, value: 1
+                    = f.submit t('views.pages.buy_now'), class: "btn btn-primary"
+    %a.left.carousel-control{"data-slide" => "prev", href: "#slider", role: "button"}
+      %span.icon-prev{"aria-hidden" => "true"}
+      %span.sr-only= t('views.pages.previous')
+    %a.right.carousel-control{"data-slide" => "next", href: "#slider", role: "button"}
+      %span.icon-next{"aria-hidden" => "true"}
+      %span.sr-only= t('views.pages.next')
+.container
+  .jumbotron.text-center.mb-0
+    %h2.h1= t('views.pages.welcome')
+    .mb-res-50
+      %p= t('views.pages.description')
+    = link_to books_path do
+      %button.btn.btn-default= t('views.pages.start')
+  .mb-35
+    %h3= t('views.pages.best_sellers')
+    .row
+      - @best_sellers.each do |book|
+        .col-xs-6.col-sm-3
+          .general-thumb-wrap
+            .thumbnail.general-thumbnail
+              = link_to book.images.first.url do
+                = image_tag book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
+              .thumb-hover
+                .general-thumb-link-wrap
+                  = link_to book_path(book), class: "thumb-hover-link" do
+                    %i.fa.fa-eye.thumb-icon{"aria-hidden" => "true"}
+                  = link_to order_items_path(OrderItem.new, order_item: { book_id: book.id, quantity: 1 }), class: "thumb-hover-link link", method: :post do
+                    %i.fa.fa-shopping-cart.thumb-icon
+          .general-thumb-info
+            %p.title= book.title
+            %p.font-16.in-gold-500= number_to_currency(book.price)
+            %span.divider-sm
+            %p.lead.small= book.decorate.author_full_name

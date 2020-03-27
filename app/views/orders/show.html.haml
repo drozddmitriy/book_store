@@ -1,0 +1,94 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('views.checkout.order', order: @order.number)
+  .row.mb-20
+    - @current_address.each do |address|
+      .col-sm-3
+        %h3.general-subtitle.mt-0= address.capitalize_address
+        %p.general-address
+          = address.full_name
+          %br/
+          = address.address
+          %br/
+          = address.city_zip
+          %br/
+          = address.country
+          %br/
+          = address.phone_address
+      - break if @order.use_billing
+    .col-sm-3
+      %h3.general-subtitle.mt-0= t('views.orders.shipments')
+      %p.general-address
+        = @order.delivery.name
+        %br/
+        = @order.delivery.time
+    .col-sm-3
+      %h3.general-subtitle.mt-0= t('views.orders.payment_information')
+      %p.general-address
+        = @order.show_credit_card
+        %br/
+        = @order.show_expiration_month_year
+  .visible-xs
+    - @order.order_items.includes(:book).each do |order_item|
+      .general-cart-item.divider-lg
+        .general-img-wrap-table
+          = link_to order_item.book.images.first.url do
+            = image_tag order_item.book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
+        %p.title
+          = order_item.book.title
+        %table.table
+          %tr
+            %td
+              %span.in-grey-600= t('views.orders.price')
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(order_item.book.price)
+          %tr
+            %td.vertical-middle
+              %span.in-grey-600= t('views.orders.quantity')
+            %td
+              %span
+                = order_item.quantity
+          %tr
+            %td
+              %span.in-grey-600= t('views.orders.subtotal')
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(order_item.total_price)
+  .hidden-xs.divider-lg.pt-20
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600= t('views.orders.book')
+          %th.col-method
+          %th
+            %span.in-grey-600= t('views.orders.price')
+          %th
+            %span.in-grey-600= t('views.orders.quantity')
+          %th
+            %span.in-grey-600= t('views.orders.total')
+      %tbody
+        - @order.order_items.includes(:book).each do |order_item|
+          %tr
+            %td
+              .general-img-wrap-table
+                = link_to order_item.book.images.first.url do
+                  = image_tag order_item.book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
+            %td
+              %p.title
+                = order_item.book.title
+              %p.in-grey-600.fw-300
+                = truncate(order_item.book.description, :length => 250)
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(order_item.book.price)
+            %td
+              %span.ml-30
+                = order_item.quantity
+            %td
+              %span.font-16.in-gold-500
+                = number_to_currency(order_item.total_price)
+  .text-center.general-text-right
+    %p.in-gold-500.font-18= t('views.orders.order_summary')
+    %table.general-summary-table.general-summary-table-right.general-text-right
+      = render 'checkout/order_summary', order: @order

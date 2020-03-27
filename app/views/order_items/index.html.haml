@@ -1,0 +1,16 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('views.order_items.cart')
+  = render 'order_items_mobile'
+  = render 'order_items'
+  .general-order-wrap
+    .row
+      .col-sm-4
+        = render 'coupon_form'
+      .col-sm-8
+        .res-mr-200.text-center.general-text-right
+          %p.in-gold-500.font-18= t('views.order_items.order_summary')
+          %table.general-summary-table.general-summary-table-right.general-text-right
+            = render 'checkout/order_summary', order: current_order.decorate
+          %button.btn.btn-default.mb-20.visible-xs-inline-block= t('views.order_items.checkout_button')
+  = link_to checkout_path(:login) do
+    %button.btn.btn-default.mb-20.hidden-xs.center-block= t('views.order_items.checkout_button')

@@ -1,0 +1,8 @@
+%p
+  = t('views.devise.registrations.hello', email: @email)
+- if @resource.try(:unconfirmed_email?)
+  %p
+    = t('views.devise.registrations.mail_begin_changed', email: @resource.unconfirmed_email)
+- else
+  %p
+    = t('views.devise.registrations.email_has_been_changed', email: @resource.email)

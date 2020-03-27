@@ -1,0 +1,34 @@
+.hidden-xs.divider-lg.pt-20
+  %table.table.table-hover
+    %thead
+      %tr
+        %th
+          %span.in-grey-600= t('views.checkout.book')
+        %th.col-method
+        %th
+          %span.in-grey-600= t('views.checkout.price')
+        %th
+          %span.in-grey-600= t('views.checkout.quantity')
+        %th
+          %span.in-grey-600= t('views.checkout.total')
+    %tbody
+      - order.order_items.each do |order_item|
+        %tr
+          %td
+            .general-img-wrap-table
+              = link_to order_item.book.images.first.url do
+                = image_tag order_item.book.images.first.url, class: "img-shadow general-thumbnail-img", alt: "design-book"
+          %td
+            %p.title
+              = order_item.book.title
+            %p.in-grey-600.fw-300
+              = truncate(order_item.book.description, :length => 250)
+          %td
+            %span.font-16.in-gold-500
+              = number_to_currency(order_item.book.price)
+          %td
+            %span.ml-30
+              = order_item.quantity
+          %td
+            %span.font-16.in-gold-500
+              = number_to_currency(order_item.total_price)

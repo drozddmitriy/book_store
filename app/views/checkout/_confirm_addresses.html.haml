@@ -1,0 +1,15 @@
+- addresses.each do |address|
+  .col-sm-3
+    %h3.general-subtitle= address.capitalize_address
+    %p.general-address
+      = address.full_name
+      = link_to t('views.checkout.edit'), checkout_path(:addresses), class: "general-edit"
+      %br/
+      = address.address
+      %br/
+      = address.city_zip
+      %br/
+      = address.country
+      %br/
+      = address.phone_address
+  - break if order.use_billing
